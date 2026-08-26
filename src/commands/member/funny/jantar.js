@@ -1,0 +1,64 @@
+// jantar.js
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
+import { InvalidParameterError } from "../../../errors/index.js";
+import { onlyNumbers } from "../../../utils/index.js";
+
+export default {
+  name: "jantar",
+  description: "Convida um usuário para jantar.",
+  commands: ["jantar", "janta"],
+  usage: `${PREFIX}jantar @usuario`,
+  /**
+   * @param {CommandHandleProps} props
+   */
+  handle: async ({
+    sendGifFromFile,
+    sendErrorReply,
+    userLid,
+    replyLid,
+    args,
+    isReply,
+  }) => {
+    if (!args.length && !isReply) {
+      throw new InvalidParameterError(
+        "Você precisa mencionar ou marcar um membro!"
+      );
+    }
+
+    const targetLid = isReply
+      ? replyLid
+      : args[0]
+      ? `${onlyNumbers(args[0])}@lid`
+      : null;
+
+    if (!targetLid) {
+      await sendErrorReply(
+        "Você precisa mencionar um usuário ou responder uma mensagem para jantar."
+      );
+
+      return;
+    }
+
+    const userNumber = onlyNumbers(userLid);
+    const targetNumber = onlyNumbers(targetLid);
+
+    // Lista de GIFs
+    const gifs = [
+      "jantar1.mp4",
+      "jantar2.mp4",
+      "jantar3.mp4",
+      "jantar4.mp4",
+    ];
+
+    // Escolhe um gif aleatório
+    const gifAleatorio =
+      gifs[Math.floor(Math.random() * gifs.length)];
+
+    await sendGifFromFile(
+      path.resolve(ASSETS_DIR, "images", "funny", gifAleatorio),
+      `@${userNumber} foi a um jantar com @${targetNumber}!`,
+      [userLid, targetLid]
+    );
+  },
+};

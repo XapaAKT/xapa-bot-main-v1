@@ -1,0 +1,18 @@
+[
+  {
+    "id": "marriage_mslvkr9d_mb6000",
+    "type": "marriage",
+    "from": "227886971789349",
+    "to": "202474002595871",
+    "familyId": null,
+    "createdAt": "2026-08-09T14:05:41.761Z"
+  },
+  {
+    "id": "marriage_mslvmlhh_ab4qeo",
+    "type": "marriage",
+    "from": "264351680331787",
+    "to": "203512864604224",
+    "familyId": null,
+    "createdAt": "2026-08-09T14:07:07.589Z"
+  }
+]

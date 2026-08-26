@@ -1,0 +1,528 @@
+{
+  "users": {
+    "227886971789349": {
+      "coins": 66666666654618170,
+      "packs": {
+        "common": 675,
+        "rare": 664,
+        "epic": 658,
+        "legendary": 761
+      },
+      "pokemons": [
+        {
+          "uid": "poke_mseimxrc_s9sg4p",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-04T10:29:05.256Z"
+        },
+        {
+          "uid": "poke_mseirut6_660b94",
+          "id": "oddish",
+          "name": "Oddish",
+          "rarity": "comum",
+          "value": 1500,
+          "image": "3doddish.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-08-04T10:32:54.714Z"
+        },
+        {
+          "uid": "poke_mseis4xb_m96itp",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-04T10:33:07.823Z"
+        },
+        {
+          "uid": "poke_mseisa9g_bn2a0y",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-04T10:33:14.740Z"
+        },
+        {
+          "uid": "poke_mseisk27_1if2by",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-08-04T10:33:27.439Z"
+        },
+        {
+          "uid": "poke_mseiwo5f_1tc3t3",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-08-04T10:36:39.363Z"
+        },
+        {
+          "uid": "poke_mseiwukt_ruwret",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-04T10:36:47.693Z"
+        },
+        {
+          "uid": "poke_msf8tlfc_hvw8b2",
+          "id": "charizard",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "FuckCharizard.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-04T22:42:05.880Z"
+        },
+        {
+          "uid": "poke_msfchlsg_v62gi1",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "fishing",
+          "caughtAt": "2026-08-05T00:24:44.944Z"
+        },
+        {
+          "uid": "poke_msfjqb2f_okk5i2",
+          "id": "sceptile",
+          "name": "Sceptile",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "SceptileGXShyne.webp",
+          "source": "fishing",
+          "caughtAt": "2026-08-05T03:47:28.263Z"
+        },
+        {
+          "uid": "poke_msfjrem3_5ixo32",
+          "id": "pikachu",
+          "name": "Pikachu",
+          "rarity": "incomum",
+          "value": 8000,
+          "image": "Pikachu.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-08-05T03:48:19.515Z"
+        },
+        {
+          "uid": "poke_msfjripx_u76ykn",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-05T03:48:24.837Z"
+        },
+        {
+          "uid": "poke_msfjs4lv_jjunbi",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-08-05T03:48:53.203Z"
+        },
+        {
+          "uid": "poke_mshr7p0s_h1ex3y",
+          "id": "sceptile",
+          "name": "Sceptile",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "SceptileGXShyne.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-06T16:52:29.164Z"
+        },
+        {
+          "uid": "poke_msl5czcd_4t2n2j",
+          "id": "pikachu",
+          "name": "Pikachu",
+          "rarity": "incomum",
+          "value": 8000,
+          "image": "Pikachu.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-08-09T01:51:48.973Z"
+        },
+        {
+          "uid": "poke_msn3xdxz_u7ecm4",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-10T10:47:14.135Z"
+        },
+        {
+          "uid": "poke_msn3xwy1_vob483",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-10T10:47:38.761Z"
+        },
+        {
+          "uid": "poke_msnfze23_m7l62j",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-10T16:24:42.987Z"
+        },
+        {
+          "uid": "poke_msnmzxfm_of4eyu",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-10T19:41:05.410Z"
+        },
+        {
+          "uid": "poke_msnz9gmx_2u26xc",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-08-11T01:24:25.593Z"
+        },
+        {
+          "uid": "poke_mswoy7en_qypo2b",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-08-17T03:45:39.839Z"
+        }
+      ],
+      "fishingCount": 12,
+      "lastFishingAt": 1786938192786,
+      "stats": {
+        "nothing": 4,
+        "money": 1500,
+        "packs": 19,
+        "pokemons": 21,
+        "sold": 0
+      }
+    },
+    "": {
+      "coins": 1515,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [
+        {
+          "uid": "poke_msfjn826_l9vcav",
+          "id": "greninja",
+          "name": "Greninja",
+          "rarity": "epico",
+          "value": 35000,
+          "image": "GreninjaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-05T03:45:04.398Z"
+        }
+      ],
+      "fishingCount": 4,
+      "lastFishingAt": 1786034972075,
+      "stats": {
+        "nothing": 1,
+        "money": 1515,
+        "packs": 1,
+        "pokemons": 1,
+        "sold": 0
+      }
+    },
+    "198874333495529": {
+      "coins": 1159,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [],
+      "fishingCount": 6,
+      "lastFishingAt": 1786412896346,
+      "stats": {
+        "nothing": 4,
+        "money": 1159,
+        "packs": 0,
+        "pokemons": 0,
+        "sold": 0
+      }
+    },
+    "241777399328845": {
+      "coins": 3941,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [],
+      "fishingCount": 1,
+      "lastFishingAt": 1785901707924,
+      "stats": {
+        "nothing": 0,
+        "money": 3941,
+        "packs": 0,
+        "pokemons": 0,
+        "sold": 0
+      }
+    },
+    "150139943551199": {
+      "coins": 536,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [],
+      "fishingCount": 1,
+      "lastFishingAt": 1785948408817,
+      "stats": {
+        "nothing": 0,
+        "money": 536,
+        "packs": 0,
+        "pokemons": 0,
+        "sold": 0
+      }
+    },
+    "257393799786750": {
+      "coins": 0,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [
+        {
+          "uid": "poke_msgbktvc_hp8oz8",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "fishing",
+          "caughtAt": "2026-08-05T16:47:01.944Z"
+        }
+      ],
+      "fishingCount": 1,
+      "lastFishingAt": 1785948421944,
+      "stats": {
+        "nothing": 0,
+        "money": 0,
+        "packs": 0,
+        "pokemons": 1,
+        "sold": 0
+      }
+    },
+    "5541027967106": {
+      "coins": 60026,
+      "packs": {
+        "common": 0,
+        "rare": 2,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [
+        {
+          "uid": "poke_mso2them_05quzk",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-11T03:03:58.558Z"
+        }
+      ],
+      "fishingCount": 13,
+      "lastFishingAt": 1786417421429,
+      "stats": {
+        "nothing": 2,
+        "money": 3326,
+        "packs": 8,
+        "pokemons": 11,
+        "sold": 10
+      }
+    },
+    "264351680331787": {
+      "coins": 52765,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [
+        {
+          "uid": "poke_msl5yhgj_8kzp27",
+          "id": "oddish",
+          "name": "Oddish",
+          "rarity": "comum",
+          "value": 1500,
+          "image": "3doddish.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-08-09T02:08:32.227Z"
+        }
+      ],
+      "fishingCount": 13,
+      "lastFishingAt": 1786482523801,
+      "stats": {
+        "nothing": 7,
+        "money": 5965,
+        "packs": 6,
+        "pokemons": 7,
+        "sold": 6
+      }
+    },
+    "236240565760231": {
+      "coins": 13850,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [
+        {
+          "uid": "poke_msnwftii_x1vgvw",
+          "id": "oddish",
+          "name": "Oddish",
+          "rarity": "comum",
+          "value": 1500,
+          "image": "3doddish.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-08-11T00:05:23.370Z"
+        }
+      ],
+      "fishingCount": 9,
+      "lastFishingAt": 1786407665474,
+      "stats": {
+        "nothing": 2,
+        "money": 13850,
+        "packs": 1,
+        "pokemons": 1,
+        "sold": 0
+      }
+    },
+    "219881035280560": {
+      "coins": 0,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [],
+      "fishingCount": 1,
+      "lastFishingAt": 1786326362297,
+      "stats": {
+        "nothing": 1,
+        "money": 0,
+        "packs": 0,
+        "pokemons": 0,
+        "sold": 0
+      }
+    },
+    "103500574892114": {
+      "coins": 8267,
+      "packs": {
+        "common": 0,
+        "rare": 1,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [
+        {
+          "uid": "poke_mso05rsm_sk92o6",
+          "id": "oddish",
+          "name": "Oddish",
+          "rarity": "comum",
+          "value": 1500,
+          "image": "3doddish.webp",
+          "source": "fishing",
+          "caughtAt": "2026-08-11T01:49:33.046Z"
+        }
+      ],
+      "fishingCount": 12,
+      "lastFishingAt": 1786482700377,
+      "stats": {
+        "nothing": 7,
+        "money": 2467,
+        "packs": 2,
+        "pokemons": 3,
+        "sold": 2
+      }
+    },
+    "202474002595871": {
+      "coins": 507,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [],
+      "fishingCount": 3,
+      "lastFishingAt": 1786482545099,
+      "stats": {
+        "nothing": 2,
+        "money": 507,
+        "packs": 0,
+        "pokemons": 0,
+        "sold": 0
+      }
+    },
+    "27810685047025": {
+      "coins": 1818,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [],
+      "fishingCount": 3,
+      "lastFishingAt": 1786482813322,
+      "stats": {
+        "nothing": 1,
+        "money": 1818,
+        "packs": 0,
+        "pokemons": 0,
+        "sold": 0
+      }
+    }
+  }
+}

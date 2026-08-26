@@ -1,0 +1,7 @@
+node_modules/
+temp/
+assets/images/personalizado/
+.env
+baileys_store/
+*.log
+.DS_Store

@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "ownerLid": "235442255466616@lid",
+  "cooldownMs": 30000,
+  "replyChance": 100,
+  "audioFiles": [
+    "assets/samples/xing1.mp3"
+  ],
+  "texts": [
+    "kkkk, vi vocês aí.",
+    "calma aí, já entendi kkk.",
+    "lá vem vocês de novo kkkkk.",
+    "para de me marcar em tudo aí kkk.",
+    "eu tô vendo vocês, relaxa kkk."
+  ]
+}

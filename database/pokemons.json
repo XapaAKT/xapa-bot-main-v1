@@ -1,0 +1,22 @@
+[
+  { "id": "oddish", "nome": "Oddish", "raridade": "comum", "valor": 1500, "imagem": "3doddish.webp" },
+  { "id": "articuno", "nome": "Articuno", "raridade": "lendario", "valor": 70000, "imagem": "Articuno.webp" },
+  { "id": "charizard_ass", "nome": "Charizard", "raridade": "epico", "valor": 42000, "imagem": "CharizardASS.webp" },
+  { "id": "blastoise", "nome": "Blastoise", "raridade": "epico", "valor": 40000, "imagem": "FuckBlastoiser.webp" },
+  { "id": "charizard", "nome": "Charizard", "raridade": "epico", "valor": 42000, "imagem": "FuckCharizard.webp" },
+  { "id": "venusaur", "nome": "Venusaur", "raridade": "epico", "valor": 38000, "imagem": "FuckVenusaur.webp" },
+  { "id": "gardevoir", "nome": "Gardevoir", "raridade": "raro", "valor": 18000, "imagem": "GardevoirPIXEL.webp" },
+  { "id": "greninja", "nome": "Greninja", "raridade": "epico", "valor": 35000, "imagem": "GreninjaGX.webp" },
+  { "id": "kadabra", "nome": "Kadabra", "raridade": "incomum", "valor": 5000, "imagem": "KadabraFIRERED.webp" },
+  { "id": "lucario", "nome": "Lucario", "raridade": "lendario", "valor": 60000, "imagem": "Lucario.webp" },
+  { "id": "lugia", "nome": "Lugia", "raridade": "lendario", "valor": 90000, "imagem": "Lugia.webp" },
+  { "id": "mimikyu", "nome": "Mimikyu", "raridade": "epico", "valor": 30000, "imagem": "mimikyuANIM.webp" },
+  { "id": "moltres", "nome": "Moltres", "raridade": "lendario", "valor": 75000, "imagem": "moltres.webp" },
+  { "id": "pikachu", "nome": "Pikachu", "raridade": "incomum", "valor": 8000, "imagem": "Pikachu.webp" },
+  { "id": "pikachu_start", "nome": "Pikachu Star", "raridade": "raro", "valor": 3000, "imagem": "PikachuStar.webp" },
+  { "id": "sceptile", "nome": "Sceptile", "raridade": "epico", "valor": 38000, "imagem": "SceptileGXShyne.webp" },
+  { "id": "surf_pikachu", "nome": "Surf Pikachu", "raridade": "raro", "valor": 15000, "imagem": "SurfPikachu.webp" },
+  { "id": "tsareena", "nome": "Tsareena", "raridade": "epico", "valor": 30000, "imagem": "TsareenaGX.webp" },
+  { "id": "umbreon", "nome": "Umbreon", "raridade": "lendario", "valor": 55000, "imagem": "UmbreonPIXEL.webp" },
+  { "id": "zapdos", "nome": "Zapdos", "raridade": "lendario", "valor": 80000, "imagem": "Zapdos.webp" }
+]

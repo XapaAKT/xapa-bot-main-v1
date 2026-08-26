@@ -1,0 +1,35 @@
+{
+  "name": "XIC-BOT",
+  "version": "1.0",
+  "description": "Um bot de WhatsApp.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./src/index.js",
+    "test": "node ./src/test.js",
+    "test:all": "node --test"
+  },
+  "engines": {
+    "node": ">=22.8.0"
+  },
+  "keywords": [],
+  "author": "Xapa",
+  "license": "ISC",
+  "dependencies": {
+    "@cacheable/node-cache": "^3.0.0",
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "axios": "^1.19.0",
+    "baileys": "7.0.0-rc13",
+    "baileys_helper": "^1.0.6",
+    "correios-brasil": "^3.0.6",
+    "express": "^5.2.1",
+    "node-cache": "^5.1.2",
+    "node-webpmux": "^3.2.1",
+    "openai": "^6.32.0",
+    "pino": "^10.3.1",
+    "tiktoken": "^1.0.21"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
