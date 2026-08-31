@@ -7,6 +7,7 @@
  * @author Xapa in Chains
  */
 import { TIMEOUT_IN_MILLISECONDS_BY_EVENT } from "./config.js";
+import { notifyJoinRequest } from "./events/group-join-request.js";
 import { onMessagesUpsert } from "./middlewares/onMesssagesUpsert.js";
 import { badMacHandler } from "./utils/badMacHandler.js";
 import { errorLog } from "./utils/logger.js";
@@ -40,6 +41,14 @@ export function load(socket) {
         "messages.upsert"
       );
     }, TIMEOUT_IN_MILLISECONDS_BY_EVENT);
+  });
+
+  socket.ev.on("group.join-request", async (data) => {
+    await safeEventHandler(
+      () => notifyJoinRequest({ socket, data }),
+      data,
+      "group.join-request",
+    );
   });
 
   process.on("uncaughtException", (error) => {

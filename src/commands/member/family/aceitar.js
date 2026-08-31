@@ -1,5 +1,5 @@
 import { acceptPendingProposal } from "../../../services/family.js";
-import { toLid } from "../../../utils/family.js";
+import { familyToMentions } from "../../../services/family.js";
 
 export default {
   name: "aceitar",
@@ -14,13 +14,15 @@ export default {
 
       if (sendSuccessReact) await sendSuccessReact();
 
-      if (result.type === "marriage") {
-        const [a, b] = result.family.spouses;
-        const text = `🎉 Casamento realizado!\n\n💍 ${toLid(a)} ❤️ ${toLid(b)}\n🏠 ${result.family.name}`;
-        await sendText(text, [toLid(a), toLid(b)].filter(Boolean));
-        return;
+      const text = result.type === "marriage"
+        ? `╔══════ೋღ💍ღೋ══════╗\n║ 𝐂𝐀𝐒𝐀𝐌𝐄𝐍𝐓𝐎 𝐑𝐄𝐀𝐋𝐈𝐙𝐀𝐃𝐎\n╚══════ೋღ💍ღೋ══════╝\n\n🏠 *${result.family.name}*\n❤️ Parabéns ao novo casal!`
+        : `╔══════ೋღ👶ღೋ══════╗\n║ 𝐀𝐃𝐎𝐂̧𝐀̃𝐎 𝐑𝐄𝐀𝐋𝐈𝐙𝐀𝐃𝐀\n╚══════ೋღ👶ღೋ══════╝\n\n🏠 *${result.family.name}*\n👶 A família ganhou um novo filho!`;
+
+      if (sendText) {
+        await sendText(text, familyToMentions(result.family));
+      } else {
+        await sendReply(text);
       }
-      //... resto do código de adoção
 
     } catch (error) {
       return await sendReply(error.message || "Erro ao aceitar pedido.");

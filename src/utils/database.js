@@ -58,10 +58,10 @@ function getGroup(jid) {
     const db = readDB();
     if (!db.groups[jid]) {
         db.groups[jid] = {
-            active: true,
+            active: false,
             prefix: PREFIX, // <- AGORA JÁ NASCE COM PREFIX
             antiAudio: false, antiSticker: false, antiLink: false,
-            autoResponder: false, autoSticker: false,
+            autoResponder: false, autoSticker: false, ownerReplyAudio: false,
             exit: true, welcome: true, onlyAdmins: false, muted: [],
         };
         writeDB(db);
@@ -77,7 +77,7 @@ function getGroup(jid) {
 }
 
 export function isActiveGroupRestriction(jid, type) { return getGroup(jid)[type] || false; }
-export function updateIsActiveGroupRestriction(jid, type, value) { const db = readDB(); getGroup(jid); db.groups[jid][type] = value; writeDB(db); }
+export function updateIsActiveGroupRestriction(jid, type, value) { getGroup(jid); const db = readDB(); db.groups[jid][type] = value; writeDB(db); }
 export const activateAntiLinkGroup = (jid) => updateIsActiveGroupRestriction(jid, "antiLink", true);
 export const deactivateAntiLinkGroup = (jid) => updateIsActiveGroupRestriction(jid, "antiLink", false);
 export const isActiveAntiLinkGroup = (jid) => isActiveGroupRestriction(jid, "antiLink");
@@ -93,6 +93,9 @@ export const isActiveAutoResponderGroup = (jid) => isActiveGroupRestriction(jid,
 export const activateAutoStickerGroup = (jid) => updateIsActiveGroupRestriction(jid, "autoSticker", true);
 export const deactivateAutoStickerGroup = (jid) => updateIsActiveGroupRestriction(jid, "autoSticker", false);
 export const isActiveAutoStickerGroup = (jid) => isActiveGroupRestriction(jid, "autoSticker");
+export const activateOwnerReplyAudio = (jid) => updateIsActiveGroupRestriction(jid, "ownerReplyAudio", true);
+export const deactivateOwnerReplyAudio = (jid) => updateIsActiveGroupRestriction(jid, "ownerReplyAudio", false);
+export const isActiveOwnerReplyAudio = (jid) => isActiveGroupRestriction(jid, "ownerReplyAudio");
 export const activateExitGroup = (jid) => updateIsActiveGroupRestriction(jid, "exit", true);
 export const deactivateExitGroup = (jid) => updateIsActiveGroupRestriction(jid, "exit", false);
 export const isActiveExitGroup = (jid) => isActiveGroupRestriction(jid, "exit");
@@ -115,7 +118,7 @@ export function getPrefix(groupJid) {
     }
     if (!db.groups[groupJid]) {
         db.groups[groupJid] = {
-            active: true, prefix: PREFIX, antiAudio: false, antiSticker: false, antiLink: false,
+            active: false, prefix: PREFIX, antiAudio: false, antiSticker: false, antiLink: false,
             autoResponder: false, autoSticker: false, exit: true, welcome: true, onlyAdmins: false, muted: []
         };
         writeDB(db);
@@ -136,7 +139,7 @@ export function setPrefix(groupJid, newPrefix) {
 
     if (!db.groups[groupJid]) {
         db.groups[groupJid] = {
-            active: true, prefix: PREFIX, antiAudio: false, antiSticker: false, antiLink: false,
+            active: false, prefix: PREFIX, antiAudio: false, antiSticker: false, antiLink: false,
             autoResponder: false, autoSticker: false, exit: true, welcome: true, onlyAdmins: false, muted: []
         };
     }

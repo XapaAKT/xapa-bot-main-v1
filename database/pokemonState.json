@@ -1,12 +1,12 @@
 {
   "users": {
     "227886971789349": {
-      "coins": 66666666654618170,
+      "coins": 66666666654613670,
       "packs": {
-        "common": 675,
-        "rare": 664,
-        "epic": 658,
-        "legendary": 761
+        "common": 673,
+        "rare": 658,
+        "epic": 656,
+        "legendary": 760
       },
       "pokemons": [
         {
@@ -218,15 +218,135 @@
           "image": "moltres.webp",
           "source": "pack:legendary",
           "caughtAt": "2026-08-17T03:45:39.839Z"
+        },
+        {
+          "uid": "poke_mtawne46_q7od14",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-27T02:29:58.710Z"
+        },
+        {
+          "uid": "poke_mtaxekcs_7a3wec",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-08-27T02:51:06.508Z"
+        },
+        {
+          "uid": "poke_mtaxff1x_etjhng",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-08-27T02:51:46.293Z"
+        },
+        {
+          "uid": "poke_mtbnrt0i_ejxqxo",
+          "id": "oddish",
+          "name": "Oddish",
+          "rarity": "comum",
+          "value": 1500,
+          "image": "3doddish.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-08-27T15:09:14.274Z"
+        },
+        {
+          "uid": "poke_mtbnrt0i_qxb5ip",
+          "id": "kadabra",
+          "name": "Kadabra",
+          "rarity": "incomum",
+          "value": 5000,
+          "image": "KadabraFIRERED.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-08-27T15:09:14.274Z"
+        },
+        {
+          "uid": "poke_mtbnrt0i_a15zb8",
+          "id": "oddish",
+          "name": "Oddish",
+          "rarity": "comum",
+          "value": 1500,
+          "image": "3doddish.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-08-27T15:09:14.274Z"
+        },
+        {
+          "uid": "poke_mtbns817_mxfxtm",
+          "id": "surf_pikachu",
+          "name": "Surf Pikachu",
+          "rarity": "raro",
+          "value": 15000,
+          "image": "SurfPikachu.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-27T15:09:33.739Z"
+        },
+        {
+          "uid": "poke_mtbnsi1m_c2s8lt",
+          "id": "pikachu_start",
+          "name": "Pikachu Star",
+          "rarity": "raro",
+          "value": 3000,
+          "image": "PikachuStar.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-27T15:09:46.714Z"
+        },
+        {
+          "uid": "poke_mtbnsi1m_anu163",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-27T15:09:46.714Z"
+        },
+        {
+          "uid": "poke_mtbnsi1n_5fqm7z",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-27T15:09:46.715Z"
+        },
+        {
+          "uid": "poke_mtbnsi1n_8xgg1n",
+          "id": "sceptile",
+          "name": "Sceptile",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "SceptileGXShyne.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-27T15:09:46.715Z"
+        },
+        {
+          "uid": "poke_mtbnsi1n_vgqboo",
+          "id": "venusaur",
+          "name": "Venusaur",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "FuckVenusaur.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-08-27T15:09:46.715Z"
         }
       ],
-      "fishingCount": 12,
-      "lastFishingAt": 1786938192786,
+      "fishingCount": 14,
+      "lastFishingAt": 1787883587207,
       "stats": {
-        "nothing": 4,
-        "money": 1500,
-        "packs": 19,
-        "pokemons": 21,
+        "nothing": 5,
+        "money": 2001,
+        "packs": 31,
+        "pokemons": 33,
         "sold": 0
       }
     },
@@ -306,14 +426,25 @@
         "epic": 0,
         "legendary": 0
       },
-      "pokemons": [],
-      "fishingCount": 1,
-      "lastFishingAt": 1785948408817,
+      "pokemons": [
+        {
+          "uid": "poke_mtaxkmqo_re35tw",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "fishing",
+          "caughtAt": "2026-08-27T02:55:49.536Z"
+        }
+      ],
+      "fishingCount": 2,
+      "lastFishingAt": 1787799349536,
       "stats": {
         "nothing": 0,
         "money": 536,
         "packs": 0,
-        "pokemons": 0,
+        "pokemons": 1,
         "sold": 0
       }
     },

@@ -14,7 +14,7 @@ const DEFAULT_CONFIG = {
   cooldownMs: 30000,
   replyChance: 100,
   audioFiles: ["assets/samples/xing1.mp3"],
-  texts: ["kkkk, vi vocês aí."],
+  texts: ["hum"],
 };
 
 const cooldownByGroup = new Map();
@@ -91,7 +91,7 @@ export async function handleOwnerReplyAudio({ commonFunctions }) {
   const chance = Number(config.replyChance ?? 100);
   if (Math.random() * 100 >= chance) return false;
 
-  const text = pickRandom(config.texts) || "kkkk, vi vocês aí.";
+  const text = pickRandom(config.texts) || "hum";
   const audioRelative = pickRandom(config.audioFiles) || "assets/samples/xing1.mp3";
   const audioPath = path.resolve(process.cwd(), audioRelative);
 

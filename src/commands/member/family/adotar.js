@@ -27,8 +27,8 @@ export default {
         text: `👶 @${userLid.replace(/\D/g, "")} quer te adotar.\n\nVocê aceita ser adotado(a)?`,
         footer: "XIC-BOT Family",
         buttons: [
-          { id: `${PREFIX}aceitar_${proposalId}`, text: "✅ Aceitar" },
-          { id: `${PREFIX}recusar_${proposalId}`, text: "❌ Recusar" },
+          { id: `${PREFIX}aceitar ${proposalId}`, text: "✅ Aceitar" },
+          { id: `${PREFIX}recusar ${proposalId}`, text: "❌ Recusar" },
         ],
       });
 

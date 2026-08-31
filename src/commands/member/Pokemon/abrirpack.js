@@ -26,34 +26,43 @@ export default {
         String(fullArgs || "")
           .trim()
           .split(/\s+/)[0] || "comum";
+      const amount = Number(
+        String(fullArgs || "").trim().split(/\s+/)[1] || "1"
+      );
 
       if (sendWaitReact) {
         await sendWaitReact();
       }
 
-      await sendReply(`📦 Abrindo pack *${packType}*...`);
+      await sendReply(`📦 Abrindo *${amount}x pack ${packType}*...`);
       await delay(1200);
 
-      const result = await openPack(userLid, packType);
+      const result = await openPack(userLid, packType, amount);
 
       if (sendSuccessReact) {
         await sendSuccessReact();
       }
 
+      const results = result.pokemons
+        .map((pokemon, index) =>
+          `${index + 1}. *${pokemon.name}* | ${pokemon.rarity} | ${formatMoney(pokemon.value)}`
+        )
+        .join("\n");
+
       await sendReply(
 `🎉 ━━━━━━━━━━━━━━━━━━━━
-📦 *PACK ABERTO!*
+📦 *${result.amount} PACK(S) ABERTO(S)!*
 
-✨ Você encontrou um Pokémon!
+${results}
 
-🏷️ Nome: *${result.pokemon.name}*
-⭐ Raridade: *${result.pokemon.rarity}*
-💰 Valor: *${formatMoney(result.pokemon.value)}*
-
-📥 Adicionado à sua coleção!`
+📥 Tudo foi adicionado à sua coleção!`
       );
 
-      return await sendStickerFromFile(result.imagePath);
+      try {
+        return await sendStickerFromFile(result.imagePath);
+      } catch {
+        return await sendReply("✅ Os Pokémon foram salvos, mas a imagem não está disponível.");
+      }
     } catch (error) {
       return await reply(
         error.message || "Erro ao abrir pack."

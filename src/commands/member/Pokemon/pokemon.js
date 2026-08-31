@@ -1,4 +1,8 @@
-import { buildCollectionText, getUserSummary } from "../../../services/pokemonGame.js";
+import {
+  buildCollectionText,
+  buildPokedexText,
+  getUserSummary,
+} from "../../../services/pokemonGame.js";
 
 export default {
   name: "pokemon",
@@ -7,6 +11,7 @@ export default {
   usage: "/pokemon",
 
   handle: async ({
+    commandName,
     userLid,
     sendReply,
     sendErrorReply,
@@ -16,14 +21,9 @@ export default {
     try {
       const summary = await getUserSummary(userLid);
 
-      const text = buildCollectionText(
-        {
-          coins: summary.coins,
-          packs: summary.packs,
-          pokemons: [],
-        },
-        userLid
-      );
+      const text = commandName === "pokedex"
+        ? buildPokedexText(summary.catalog, summary.pokemons, userLid)
+        : buildCollectionText(summary, userLid);
 
       return await sendReply(text);
     } catch (error) {

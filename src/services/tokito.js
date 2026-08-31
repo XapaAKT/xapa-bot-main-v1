@@ -293,6 +293,25 @@ export async function youtubeSearch(search) {
   });
 }
 
+export async function scrapeMusicAudio(search) {
+  const results = await youtubeSearch(search);
+  const result = Array.isArray(results)
+    ? results[0]
+    : results?.resultado?.[0] || results?.results?.[0];
+
+  if (!result?.url) {
+    throw new Error("Nenhuma música foi encontrada.");
+  }
+
+  const audio = await ytmp3(result.url);
+
+  if (!audio?.arquivo) {
+    throw new Error("Não foi possível extrair o áudio da música.");
+  }
+
+  return { result, audioUrl: audio.arquivo };
+}
+
 export async function pinterestSearch(search) {
   if (!search?.trim()) {
     throw new Error("Informe o que deseja pesquisar.");

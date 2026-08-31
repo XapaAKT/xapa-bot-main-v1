@@ -1,42 +1,49 @@
-import { spawn, exec as execCallback } from "node:child_process";
+import { spawn, execFile as execFileCallback } from "node:child_process";
 import { promisify } from "node:util";
 import path from "node:path";
 import { PREFIX } from "../../config.js";
 
-const exec = promisify(execCallback);
+const execFile = promisify(execFileCallback);
+const BOT_DIR = process.cwd();
 
-const HOME_DIR = process.env.HOME || "/data/data/com.termux/files/home";
-const BOT_DIR = path.resolve(HOME_DIR, "Xapa-bot-main");
-const SOURCE_DIR = "/storage/emulated/0/Download/Xapa-bot-main";
+function restartBot() {
+  const child = spawn(process.execPath, [path.join(BOT_DIR, "src", "index.js")], {
+    cwd: BOT_DIR,
+    detached: true,
+    stdio: "ignore",
+    env: process.env,
+  });
+
+  child.unref();
+}
 
 export default {
   name: "update",
-  description: "Sincroniza os arquivos e reinicia o bot.",
-  commands: ["update", "sync"],
+  description: "Atualiza o bot pelo GitHub e reinicia.",
+  commands: ["update", "sync", "atualizar"],
   usage: `${PREFIX}update`,
 
   handle: async ({ sendReply }) => {
-    await sendReply("🔄 Sincronizando arquivos do XIC-BOT...");
+    await sendReply("🔄 Buscando atualização no GitHub...");
 
     try {
-      await exec(
-        `rsync -a --delete --exclude=node_modules --exclude=assets/auth "${SOURCE_DIR}/" "${BOT_DIR}/"`
-      );
-
-      await sendReply("♻️ Arquivos sincronizados. Reiniciando o bot...");
-
-      const child = spawn("npm", ["start"], {
+      const { stdout } = await execFile("git", ["pull", "--ff-only"], {
         cwd: BOT_DIR,
-        detached: true,
-        stdio: "ignore",
-        env: process.env,
+        timeout: 60000,
+        maxBuffer: 1024 * 1024,
       });
 
-      child.unref();
+      if (stdout.includes("Already up to date")) {
+        await sendReply("✅ O bot já está atualizado. Reiniciando...");
+      } else {
+        await sendReply("✅ Atualização concluída. Reiniciando o bot...");
+      }
+
+      restartBot();
 
       setTimeout(() => process.exit(0), 1200);
     } catch (error) {
-      await sendReply(`❌ Falha ao atualizar.\n\n${error.message}`);
+      await sendReply(`❌ Falha ao atualizar pelo GitHub.\n\n${error.message}`);
     }
   },
 };

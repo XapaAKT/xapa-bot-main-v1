@@ -73,7 +73,9 @@ async function getGroupCount(socket) {
 
     const groups = await socket.groupFetchAllParticipating();
 
-    return Object.keys(groups || {}).length;
+    return Object.keys(groups || {}).filter((jid) =>
+      jid.endsWith("@g.us")
+    ).length;
   } catch {
     return 0;
   }

@@ -1,6 +1,6 @@
 import { PREFIX } from "../../../config.js";
 import { InvalidParameterError } from "../../../errors/index.js";
-import { pinterest } from "../../../services/spider-x-api.js";
+import { searchPinterest } from "../../../services/pinterest-scraper.js";
 import { errorLog } from "../../../utils/logger.js";
 
 export default {
@@ -16,8 +16,7 @@ export default {
     sendWaitReact,
     sendSuccessReact,
     sendErrorReply,
-    socket,
-    remoteJid,
+    sendImageFromURL,
   }) => {
     if (!fullArgs.length) {
       throw new InvalidParameterError(
@@ -28,25 +27,9 @@ export default {
     await sendWaitReact();
 
     try {
-      const data = await pinterest(fullArgs.trim());
+      const images = await searchPinterest(fullArgs.trim());
 
-      if (!Array.isArray(data) || !data.length) {
-        await sendErrorReply("Nenhuma imagem foi encontrada para a sua busca.");
-        return;
-      }
-
-      const cards = data
-        .filter((item) => typeof item?.url === "string" && item.url.length)
-        .slice(0, 5)
-        .map((item, index) => ({
-          title: `📌 Resultado ${index + 1}`,
-          image: {
-            url: item.url,
-          },
-          caption: `Busca: ${fullArgs}`,
-        }));
-
-      if (!cards.length) {
+      if (!images.length) {
         await sendErrorReply(
           "Não foi possível montar o carrossel com as imagens retornadas.",
         );
@@ -55,12 +38,17 @@ export default {
 
       await sendSuccessReact();
 
-      await socket.sendMessage(remoteJid, {
-        text: `📌 Resultados do Pinterest para: ${fullArgs}`,
-        footer: "Deslize para ver as imagens →",
-        cards,
-        viewOnce: true,
-      });
+      await sendImageFromURL(
+        images[0],
+        `📌 *PINTEREST*\n\nBusca: ${fullArgs}\n\nImagem 1/${images.length}`,
+      );
+
+      for (let index = 1; index < images.length; index += 1) {
+        await sendImageFromURL(
+          images[index],
+          `📌 *PINTEREST*\n\nBusca: ${fullArgs}\n\nImagem ${index + 1}/${images.length}`,
+        );
+      }
     } catch (error) {
       errorLog(JSON.stringify(error, null, 2));
       await sendErrorReply(JSON.stringify(error.message));

@@ -6,6 +6,8 @@
  */
 
 import { DEVELOPER_MODE } from "../config.js";
+import { handleBan, isOfficialBanSticker } from "../commands/admin/ban.js";
+import { processJoinRequestAction } from "../events/group-join-request.js";
 
 import { badMacHandler } from "../utils/badMacHandler.js";
 
@@ -32,8 +34,10 @@ import {
 } from "../utils/logger.js";
 
 import { customMiddleware } from "./customMiddleware.js";
+import { isAdmin } from "./index.js";
 
 import { messageHandler } from "./messageHandler.js";
+import { isVip } from "../utils/vip.js";
 
 import {
   onGroupParticipantsUpdate,
@@ -53,12 +57,11 @@ import {
 
 import {
   SZ_LID,
-  isSz,
   isSzAfk,
   deactivateSzAfk,
   sendSzOff,
   sendSzOn,
-} from "../commands/member/personalizado/afk.js";
+} from "../commands/member/personalizado/sz.js";
 
 // ============================================================
 // NORMALIZAR JID
@@ -70,22 +73,6 @@ function normalizeJid(jid) {
   return String(jid)
     .replace(/:[0-9]+(?=@)/g, "")
     .trim();
-}
-
-// ============================================================
-// PEGAR REMETENTE
-// ============================================================
-
-function getSenderJid(
-  webMessage,
-  commonFunctions
-) {
-  return normalizeJid(
-    webMessage?.key?.participant ||
-    webMessage?.key?.senderPn ||
-    webMessage?.participant ||
-    commonFunctions?.userLid
-  );
 }
 
 // ============================================================
@@ -250,7 +237,7 @@ function getMentionedJids(webMessage) {
     ...new Set(
       result
         .filter(Boolean)
-        .map(normalizeJid)
+        .map((jid) => String(jid).trim())
     ),
   ];
 }
@@ -268,7 +255,7 @@ async function wasSzMentioned(
 
   // Comparação direta com LID
   if (
-    mentioned.includes(SZ_LID)
+    mentioned.some((jid) => normalizeJid(jid) === normalizeJid(SZ_LID))
   ) {
     return true;
   }
@@ -299,9 +286,7 @@ async function wasSzMentioned(
               );
 
             if (
-              normalizeJid(
-                resolvedLid
-              ) === SZ_LID
+              normalizeJid(resolvedLid) === normalizeJid(SZ_LID)
             ) {
               return true;
             }
@@ -333,13 +318,11 @@ async function wasReplyToSz(
     return false;
   }
 
-  const participant =
-    normalizeJid(
-      contextInfo.participant
-    );
+  const participant = String(contextInfo.participant || "").trim();
+  const normalizedParticipant = normalizeJid(participant);
 
   if (
-    participant === SZ_LID
+    normalizedParticipant === normalizeJid(SZ_LID)
   ) {
     return true;
   }
@@ -361,15 +344,48 @@ async function wasReplyToSz(
         );
 
       if (
-        normalizeJid(
-          resolvedLid
-        ) === SZ_LID
+        normalizeJid(resolvedLid) === normalizeJid(SZ_LID)
       ) {
         return true;
       }
     }
   } catch {
     // ignora
+  }
+
+  return false;
+}
+
+async function wasMessageSentBySz(socket, webMessage, commonFunctions) {
+  const candidates = [
+    webMessage?.key?.participant,
+    webMessage?.key?.senderPn,
+    webMessage?.participant,
+    commonFunctions?.userLid,
+  ].filter(Boolean);
+
+  if (candidates.some((jid) => normalizeJid(jid) === normalizeJid(SZ_LID))) {
+    return true;
+  }
+
+  const getLIDForPN = socket?.signalRepository?.lidMapping?.getLIDForPN;
+  if (!getLIDForPN) return false;
+
+  for (const jid of candidates) {
+    if (!String(jid).includes("@s.whatsapp.net")) continue;
+
+    try {
+      const resolvedLid = await getLIDForPN.call(
+        socket.signalRepository.lidMapping,
+        jid,
+      );
+
+      if (normalizeJid(resolvedLid) === normalizeJid(SZ_LID)) {
+        return true;
+      }
+    } catch {
+      // Tenta o próximo identificador disponível.
+    }
   }
 
   return false;
@@ -393,12 +409,6 @@ async function processSzAfk({
     return;
   }
 
-  const sender =
-    getSenderJid(
-      webMessage,
-      commonFunctions
-    );
-
   const szAfk =
     isSzAfk(groupId);
 
@@ -406,11 +416,7 @@ async function processSzAfk({
   // SZ MANDOU QUALQUER MENSAGEM
   // ==========================================================
 
-  if (
-    sender &&
-    isSz(sender) &&
-    szAfk
-  ) {
+  if (szAfk && await wasMessageSentBySz(socket, webMessage, commonFunctions)) {
     deactivateSzAfk(groupId);
 
     await sendSzOn(
@@ -610,6 +616,44 @@ export async function onMessagesUpsert({
 
       if (!commonFunctions) {
         continue;
+      }
+
+      const handledJoinRequestAction = await processJoinRequestAction({
+        socket,
+        commonFunctions,
+        actionId: commonFunctions.fullMessage,
+      });
+
+      if (handledJoinRequestAction) {
+        continue;
+      }
+
+      const isBanSticker =
+        commonFunctions.isReply &&
+        await isOfficialBanSticker({
+          webMessage,
+          downloadSticker: commonFunctions.downloadSticker,
+        });
+
+      if (isBanSticker) {
+        const canModerate =
+          isVip(commonFunctions.userLid) ||
+          await isAdmin({
+            remoteJid: commonFunctions.remoteJid,
+            userLid: commonFunctions.userLid,
+            socket,
+          });
+
+        if (canModerate) {
+          await handleBan({
+            ...commonFunctions,
+            args: [],
+            isReply: true,
+            sendReply: commonFunctions.sendReply,
+            sendErrorReply: commonFunctions.sendErrorReply,
+          });
+          continue;
+        }
       }
 
       // ======================================================

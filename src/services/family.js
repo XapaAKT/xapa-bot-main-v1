@@ -459,11 +459,14 @@ export async function getPendingProposalFor(jid) {
   return state.proposals.find((proposal) => normalizeJid(proposal.to) === target) || null;
 }
 
-export async function acceptPendingProposal(jid) {
+export async function acceptPendingProposal(jid, proposalId = "") {
   const state = await loadState();
   const target = normalizeJid(jid);
 
-  const index = state.proposals.findIndex((proposal) => normalizeJid(proposal.to) === target);
+  const index = state.proposals.findIndex((proposal) =>
+    normalizeJid(proposal.to) === target &&
+    (!proposalId || proposal.id === proposalId)
+  );
   if (index < 0) throw new Error("Você não tem nenhum pedido pendente.");
 
   const proposal = state.proposals[index];
@@ -553,11 +556,14 @@ export async function acceptPendingProposal(jid) {
   throw new Error("Tipo de pedido desconhecido.");
 }
 
-export async function rejectPendingProposal(jid) {
+export async function rejectPendingProposal(jid, proposalId = "") {
   const state = await loadState();
   const target = normalizeJid(jid);
 
-  const index = state.proposals.findIndex((proposal) => normalizeJid(proposal.to) === target);
+  const index = state.proposals.findIndex((proposal) =>
+    normalizeJid(proposal.to) === target &&
+    (!proposalId || proposal.id === proposalId)
+  );
   if (index < 0) throw new Error("Você não tem nenhum pedido pendente.");
 
   const proposal = state.proposals.splice(index, 1)[0];

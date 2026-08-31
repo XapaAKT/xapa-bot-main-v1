@@ -7,6 +7,7 @@
 
 import fs from "node:fs";
 
+import { BOT_LID } from "../config.js";
 import { exitMessage, welcomeMessage } from "../messages.js";
 import { getProfileImageData } from "../services/baileys.js";
 import { getBlacklistEntry } from "../services/blacklist.js";
@@ -15,6 +16,7 @@ import {
   isActiveExitGroup,
   isActiveGroup,
   isActiveWelcomeGroup,
+  deactivateGroup,
 } from "../utils/database.js";
 
 import {
@@ -38,6 +40,16 @@ export async function onGroupParticipantsUpdate({
   try {
     if (!remoteJid.endsWith("@g.us")) {
       return;
+    }
+
+    const normalizedBotLid = String(BOT_LID).replace(/:[0-9]+(?=@)/g, "");
+    const normalizedUserLid = String(extractUserLid(data)).replace(
+      /:[0-9]+(?=@)/g,
+      "",
+    );
+
+    if (action === "add" && normalizedUserLid === normalizedBotLid) {
+      deactivateGroup(remoteJid);
     }
 
     if (!isActiveGroup(remoteJid)) {

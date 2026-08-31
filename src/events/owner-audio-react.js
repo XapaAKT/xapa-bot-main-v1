@@ -2,7 +2,7 @@ import { delay } from "baileys";
 import path from "node:path";
 import { ASSETS_DIR } from "../config.js";
 
-const OWNER_LID = "SEU_NUMERO_AQUI@lid"; // troque pelo seu número
+const OWNER_LID = "227886971789349@lid"; // troque pelo seu número
 const COOLDOWN_MS = 30_000;
 
 let lastRunAt = 0;
@@ -15,11 +15,11 @@ const AUDIO_FILE = path.join(
 );
 
 const TEXTS = [
-  "sei que não to aqui mais, mas para de marcar ae porra kk",
+  "para de marcar ae porra kk",
   "bcetao, ja falei para parar ja carai",
   "olha ocs todo errado me marcando ai tmnc viu",
   "para de responder as minhas msg porraaa",
-  "não é só pq eu sai, que eu deixei vcs me marcar slk",
+  "não é só pq to off,que eu deixei vcs me marcar slk",
 ];
 
 function pickRandom(list) {

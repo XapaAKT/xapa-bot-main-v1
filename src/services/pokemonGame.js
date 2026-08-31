@@ -140,7 +140,16 @@ function getUser(state, jid) {
   if (!state.users[key]) {
     state.users[key] = createDefaultUser();
   }
-  return state.users[key];
+
+  const user = state.users[key];
+  user.coins = Number(user.coins) || 0;
+  user.packs = { ...createDefaultUser().packs, ...(user.packs || {}) };
+  user.pokemons = Array.isArray(user.pokemons) ? user.pokemons : [];
+  user.stats = { ...createDefaultUser().stats, ...(user.stats || {}) };
+  user.fishingCount = Number(user.fishingCount) || 0;
+  user.lastFishingAt = Number(user.lastFishingAt) || 0;
+
+  return user;
 }
 
 function normalizePackType(value = "") {
@@ -166,9 +175,7 @@ function drawPokemon(catalog, allowedRarities = null) {
     const filtered = pool.filter((pokemon) =>
       rarityMatches(pokemon.raridade || pokemon.rarity || "", allowedRarities)
     );
-    if (filtered.length) {
-      pool = filtered;
-    }
+    pool = filtered;
   }
 
   return pickRandom(pool);
@@ -226,6 +233,11 @@ export function buildCollectionText(user, jid) {
   const collection = Array.isArray(user?.pokemons) ? user.pokemons : [];
   const bestPokemon = getBestPokemon(collection);
   const totalValue = collection.reduce((acc, item) => acc + (Number(item.value) || 0), 0);
+  const rarityCounts = collection.reduce((counts, item) => {
+    const rarity = item.rarity || "comum";
+    counts[rarity] = (counts[rarity] || 0) + 1;
+    return counts;
+  }, {});
 
   const lines = collection.length
     ? collection.slice(0, 20).map((item, index) => {
@@ -244,8 +256,32 @@ export function buildCollectionText(user, jid) {
 │ 🧩 𝐏𝐎𝐊É𝐌𝐎𝐍𝐒 :: ${collection.length}
 │ 💎 𝐕𝐀𝐋𝐎𝐑 𝐓𝐎𝐓𝐀𝐋 :: ${formatBRL(totalValue)}
 │ ⭐ 𝐌𝐀𝐈𝐒 𝐕𝐀𝐋𝐈𝐎𝐒𝐎 :: ${bestPokemon?.name || "-"}
+│ 📊 𝐑𝐀𝐑𝐈𝐃𝐀𝐃𝐄𝐒 :: C:${rarityCounts.comum || 0} I:${rarityCounts.incomum || 0} R:${rarityCounts.raro || 0} E:${rarityCounts.epico || 0} L:${rarityCounts.lendario || 0}
 │
 ${lines.map((line) => `│ ${line.replace(/\n/g, "\n│ ")}`).join("\n│\n")}
+╰━━━━━━━━━━━━━━━━━━`;
+}
+
+export function buildPokedexText(catalog = [], collection = [], jid = "") {
+  const ownedCounts = collection.reduce((counts, item) => {
+    const key = item.id || normalizeText(item.name);
+    counts[key] = (counts[key] || 0) + 1;
+    return counts;
+  }, {});
+  const entries = catalog.map((pokemon) => {
+    const key = pokemon.id || normalizeText(pokemon.nome || pokemon.name);
+    const name = pokemon.nome || pokemon.name || "Pokémon";
+    const rarity = pokemon.raridade || pokemon.rarity || "comum";
+    const value = Number(pokemon.valor ?? pokemon.value ?? 0) || 0;
+    return `│ ${ownedCounts[key] ? "✅" : "⬜"} ${name} (${rarity}) :: ${ownedCounts[key] || 0}x :: ${formatBRL(value)}`;
+  });
+
+  return `╭━━━━━━━━━━━━━⛓️
+│ 『 POKÉDEX XAPA 』
+│ 👤 @${normalizeJid(jid)}
+│ ✅ Descobertos: ${Object.keys(ownedCounts).filter((key) => ownedCounts[key] > 0).length}/${catalog.length}
+│
+${entries.length ? entries.join("\n") : "│ Nenhum Pokémon cadastrado."}
 ╰━━━━━━━━━━━━━━━━━━`;
 }
 
@@ -255,7 +291,12 @@ export async function buyPack(jid, packTypeInput, amountInput = 1) {
     throw new Error("Pack inválido. Use: comum, raro, épico ou lendário.");
   }
 
-  const amount = Math.max(1, Math.min(100, Number(amountInput) || 1));
+  const amountText = String(amountInput).trim();
+  if (!/^\d+$/.test(amountText) || Number(amountText) < 1 || Number(amountText) > 100) {
+    throw new Error("A quantidade deve ser um número inteiro entre 1 e 100.");
+  }
+
+  const amount = Number(amountText);
   const price = (PACK_PRICES[packType] || 0) * amount;
 
   const state = await loadState();
@@ -278,7 +319,7 @@ export async function buyPack(jid, packTypeInput, amountInput = 1) {
   };
 }
 
-export async function openPack(jid, packTypeInput) {
+export async function openPack(jid, packTypeInput, amountInput = 1) {
   const packType = normalizePackType(packTypeInput);
   if (!packType) {
     throw new Error("Pack inválido. Use: comum, raro, épico ou lendário.");
@@ -288,26 +329,36 @@ export async function openPack(jid, packTypeInput) {
   const catalog = await loadCatalog();
   const user = getUser(state, jid);
 
-  if ((user.packs[packType] || 0) <= 0) {
-    throw new Error(`Você não tem packs do tipo ${packType}.`);
+  const amount = Number(amountInput);
+  if (!Number.isInteger(amount) || amount < 1 || amount > 10) {
+    throw new Error("Você pode abrir entre 1 e 10 packs por vez.");
   }
 
-  user.packs[packType] -= 1;
-
-  const pokemon = drawPokemon(catalog, PACK_RARITY_POOLS[packType]);
-  if (!pokemon) {
-    throw new Error("Não há pokémons cadastrados em pokemons.json.");
+  if ((user.packs[packType] || 0) < amount) {
+    throw new Error(`Você precisa ter ${amount} packs do tipo ${packType}.`);
   }
 
-  const caught = addPokemonToUser(user, pokemon, `pack:${packType}`);
-  user.stats.packs += 1;
+  const caught = [];
+  for (let index = 0; index < amount; index += 1) {
+    const pokemon = drawPokemon(catalog, PACK_RARITY_POOLS[packType]);
+    if (!pokemon) {
+      throw new Error("Não há pokémons cadastrados em pokemons.json.");
+    }
+
+    user.packs[packType] -= 1;
+    caught.push(addPokemonToUser(user, pokemon, `pack:${packType}`));
+  }
+
+  user.stats.packs += amount;
 
   await saveState(state);
 
   return {
     packType,
-    pokemon: caught,
-    imagePath: resolvePokemonImagePath(pokemon),
+    amount,
+    pokemons: caught,
+    pokemon: caught[0],
+    imagePath: resolvePokemonImagePath(caught[0]),
   };
 }
 
@@ -410,10 +461,19 @@ export async function sellPokemon(jid, query) {
   if (/^\d+$/.test(normalizedQuery)) {
     index = Number(normalizedQuery) - 1;
   } else {
-    index = collection.findIndex((item) => {
+    const matches = collection.reduce((found, item, itemIndex) => {
       const name = normalizeText(item.name);
-      return name === normalizedQuery || name.includes(normalizedQuery);
-    });
+      if (name === normalizedQuery || name.includes(normalizedQuery) || item.uid === query.trim()) {
+        found.push(itemIndex);
+      }
+      return found;
+    }, []);
+
+    if (matches.length > 1) {
+      throw new Error("Encontrei mais de um Pokémon. Venda pelo número mostrado na coleção.");
+    }
+
+    index = matches[0] ?? -1;
   }
 
   if (index < 0 || index >= collection.length) {
@@ -438,14 +498,18 @@ export async function sellPokemon(jid, query) {
 export async function getUserSummary(jid) {
   const state = await loadState();
   const user = getUser(state, jid);
+  const catalog = await loadCatalog();
   const bestPokemon = getBestPokemon(user.pokemons);
 
   return {
     coins: user.coins,
     packs: { ...user.packs },
+    pokemons: [...user.pokemons],
     totalPokemons: user.pokemons.length,
     totalValue: user.pokemons.reduce((acc, item) => acc + (Number(item.value) || 0), 0),
     fishingCount: user.fishingCount,
+    stats: { ...user.stats },
+    catalog,
     bestPokemon,
   };
 }

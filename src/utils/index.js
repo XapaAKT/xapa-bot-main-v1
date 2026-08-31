@@ -58,6 +58,13 @@ export function extractDataFromMessage(webMessage) {
   const msg = webMessage.message || {};
   const textMessage = msg.conversation;
   const extendedTextMessage = msg.extendedTextMessage;
+  const contextInfo =
+    extendedTextMessage?.contextInfo ||
+    msg.imageMessage?.contextInfo ||
+    msg.videoMessage?.contextInfo ||
+    msg.documentMessage?.contextInfo ||
+    msg.audioMessage?.contextInfo ||
+    msg.stickerMessage?.contextInfo;
   const imageTextMessage = msg.imageMessage?.caption;
   const videoTextMessage = msg.videoMessage?.caption;
   const buttonsResponseMessage = msg.buttonsResponseMessage?.selectedButtonId;
@@ -78,10 +85,10 @@ export function extractDataFromMessage(webMessage) {
     interactiveResponseId ||
     "#auto-command";
 
-  const isReply =!!extendedTextMessage?.contextInfo?.quotedMessage;
-  const replyLid = extendedTextMessage?.contextInfo?.participant || null;
+  const isReply = !!contextInfo?.quotedMessage;
+  const replyLid = contextInfo?.participant || null;
 
-  const quoted = extendedTextMessage?.contextInfo?.quotedMessage;
+  const quoted = contextInfo?.quotedMessage;
   const replyText =
     quoted?.conversation ||
     quoted?.extendedTextMessage?.text ||
