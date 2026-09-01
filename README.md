@@ -26,7 +26,7 @@ Feito pra quem não quer aqueles bots genéricos cheio de trava.
 - ✅ Figurinha, HD, TTP, Toimg
 - ✅ Anti-link, Bem-vindo, Antilink hard
 - ✅ Sistema de Cases limpo e organizado
-- ✅ Edição de mensagem (efeito Sarah) 😏
+- ✅ Edição de mensagem personalizado
 
 ### 🚀 COMO RODAR?
 
