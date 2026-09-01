@@ -1,312 +1,124 @@
-# ⛓️ XAPA BOT — MAIN V1
+# ⛓️ XAPA BOT
 
-> **Não é só um bot. É o caos organizado.**
-
-<p align="center">
-  <img src="https://img.shields.io/badge/STATUS-ONLINE-00C853?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/BAILEYS-6.7.18-1976D2?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/NODE-%3E%3D18-111111?style=for-the-badge&logo=node.js&logoColor=white" />
-  <img src="https://img.shields.io/github/stars/XapaAKT/xapa-bot-main-v1?style=for-the-badge&label=STARS" />
-</p>
-
-<p align="center">
-  <strong>🩸 Modular • ⚡ Rápido • ⛓️ Personalizável • ☠️ Sem frescura</strong>
-</p>
+> **Não é um bot.**
+> **É uma extensão de mim.**
 
 ---
 
-## ⛧ SOBRE O PROJETO
+<div align="center">
 
-O **Xapa Bot** é um bot de WhatsApp desenvolvido em **Node.js**, utilizando **Baileys**, com foco em modularidade, velocidade e personalização.
+### ⛧ 𝐗𝐀𝐏𝐀 𝐈𝐍 𝐂𝐇𝐀𝐈𝐍𝐒 ⛧
 
-A ideia não é criar apenas mais um bot de WhatsApp cheio de comandos aleatórios.
+**𝑀𝑒𝑢 𝑐𝑎𝑜𝑠.  
+𝑀𝑒𝑢 𝑐𝑜𝑑𝑖𝑔𝑜.  
+𝑀𝑒𝑢 𝑠𝑖𝑠𝑡𝑒𝑚𝑎.**
 
-A proposta é construir uma estrutura organizada onde novas funções, sistemas e comandos possam ser adicionados sem transformar o projeto em uma bagunça.
-
-> **Xapa Bot não pede permissão. Ele executa.**
-
----
-
-## 🔥 FUNCIONALIDADES
-
-### 🎛️ Interface & Mensagens
-
-* ✅ Botões
-* ✅ Listas interativas
-* ✅ Cards
-* ✅ Edição de mensagens
-* ✅ Reações personalizadas
-* ✅ Mensagens estilizadas
-* ✅ Sistema de `read more`
-* ✅ Menus personalizados
-
-### 📥 Downloads
-
-* 🎵 YouTube
-* 📱 TikTok
-* 📸 Instagram
-* ⬇️ Outros sistemas de download
-
-### 🖼️ Mídia
-
-* 🖼️ Figurinha
-* 🔥 Figurinha em HD
-* 📝 TTP
-* 🖼️ ToImg
-* 🎞️ GIF
-* 🎵 Áudio
-* 📹 Vídeo
-
-### 🛡️ Administração
-
-* 🔗 Anti-link
-* ☠️ Anti-link Hard
-* 🔇 Sistema de mute
-* 👑 Controle de administradores
-* 🚫 Banimento
-* ⚠️ Sistema de permissões
-* 🟢 Ativar/desativar bot por grupo
-
-### 🤖 Automação
-
-* 💬 Auto-responder
-* 🖼️ Auto-sticker
-* 👋 Sistema de boas-vindas
-* 🚪 Sistema de saída
-* ⚙️ Restrições personalizadas por grupo
-
-### 🧠 Estrutura
-
-* 📁 Sistema modular de comandos
-* 🔌 Carregamento dinâmico
-* 🗄️ Banco de dados local
-* 🧩 Middlewares
-* 🛠️ Tratamento de erros
-* 🔄 Sistemas independentes
-* ⚡ Arquitetura baseada em serviços
+</div>
 
 ---
 
-## 🩸 ESTRUTURA
+## 🩸 𝐎 𝐐𝐔𝐄 𝐄𝐒𝐓𝐄 𝐁𝐎𝐓 𝐒𝐈𝐆𝐍𝐈𝐅𝐈𝐂𝐀
+
+Este projeto não foi feito para ser distribuído.
+
+Não foi feito para agradar ninguém.  
+Não foi feito para seguir padrão.  
+Não foi feito para ser mais um bot perdido entre milhares.
+
+**Foi feito para mim.**
+
+Cada comando, cada sistema, cada erro corrigido,
+cada gambiarra que virou código e cada ideia que saiu do papel
+faz parte da construção deste projeto.
+
+Ele não precisa ser perfeito.
+
+Ele só precisa ser **meu**.
+
+---
+
+## ⛓️ 𝐗𝐀𝐏𝐀 𝐁𝐎𝐓
+
+Um projeto construído aos poucos,
+entre códigos quebrados, testes, ideias aleatórias,
+madrugadas e aquela vontade de fazer funcionar
+mesmo quando parecia que não ia.
+
+> **O código pode mudar.**
+>
+> **O projeto pode crescer.**
+>
+> **Mas a essência continua a mesma.**
+
+---
+
+## ⚙️ 𝐎 𝐒𝐈𝐒𝐓𝐄𝐌𝐀
 
 ```text
-XAPA-BOT
-│
-├── 📁 assets/
-│   ├── images/
-│   ├── videos/
-│   └── stickers/
-│
-├── 📁 database/
-│
-├── 📁 src/
-│   ├── commands/
-│   ├── middlewares/
-│   ├── services/
-│   ├── utils/
-│   └── config.js
-│
-├── 📄 database.json
-├── 📄 package.json
-└── 📄 README.md
-```
+                 ⛧ XAPA BOT ⛧
+                       │
+          ┌────────────┼────────────┐
+          │            │            │
+       COMMANDS    SERVICES     MIDDLEWARES
+          │            │            │
+          └────────────┼────────────┘
+                       │
+                    XAPA
+                       │
+                 ───────────
+                 Meu sistema.
 
-A estrutura foi pensada para que cada parte do bot tenha sua própria responsabilidade.
+Downloader.
+Figurinhas.
+Administração.
+Automação.
+Diversão.
+Sistemas próprios.
+Experimentos.
 
----
+Tudo dentro de um único lugar.
 
-## 🚀 INSTALAÇÃO
+🕯️ 𝐀𝐑𝐐𝐔𝐈𝐕𝐎 𝐏𝐄𝐒𝐒𝐎𝐀𝐋
 
-### 1. Clone o projeto
+Este repositório não representa um produto.
 
-```bash
-git clone https://github.com/XapaAKT/xapa-bot-main-v1.git
-```
+Não representa uma empresa.
 
-### 2. Entre na pasta
+Não representa uma equipe.
 
-```bash
-cd xapa-bot-main-v1
-```
+Representa uma fase.
 
-### 3. Instale as dependências
+É um registro de tudo aquilo que eu fui aprendendo,
+criando e destruindo para construir algo que funcionasse
+do meu jeito.
 
-```bash
-npm install
-```
+Talvez algum dia eu olhe para esse código e ache tudo horrível.
 
-### 4. Configure o bot
+Talvez eu reescreva metade dele.
 
-Edite o arquivo:
+Talvez eu abandone tudo e comece outro projeto.
 
-```text
-src/config.js
-```
+Mas este continuará sendo o lugar onde tudo começou.
 
-Adicione suas configurações, tokens e demais informações necessárias.
+🩸 𝐏𝐀𝐑𝐀 𝐌𝐈𝐌
 
-### 5. Inicie
+Palavras mentem. Padrões não.
 
-```bash
-npm start
-```
+Não preciso que entendam o código.
+Só preciso saber por que eu o escrevi.
 
----
+O caos também pode ser organizado.
 
-## ⚙️ REQUISITOS
+E aquilo que começou como uma ideia
+pode acabar se tornando parte de quem eu sou.
 
-Antes de iniciar, tenha instalado:
+<div align="center">
+⛓️ ━━━━━━━━━━━━━━━━━━━━━ ⛓️
+𝐗𝐀𝐏𝐀 𝐈𝐍 𝐂𝐇𝐀𝐈𝐍𝐒
 
-* 🟢 **Node.js 18 ou superior**
-* 📦 **npm**
-* 📱 Uma conta do WhatsApp
-* 🌐 Conexão com a internet
+Built by me.
+For me.
+My way.
 
----
-
-## 🧩 COMANDOS
-
-O bot possui um sistema modular de comandos.
-
-Exemplo:
-
-```text
-/menu
-/ping
-/play
-/sticker
-/ban
-/mute
-/antilink
-```
-
-Os comandos podem ser adicionados ou modificados dentro da estrutura:
-
-```text
-src/commands/
-```
-
----
-
-## 🛡️ SISTEMA DE GRUPOS
-
-Cada grupo pode possuir suas próprias configurações.
-
-Entre elas:
-
-```text
-🟢 Bot ativo
-🔗 Anti-link
-🔊 Anti-áudio
-🎭 Anti-sticker
-💬 Auto-responder
-🖼️ Auto-sticker
-👋 Welcome
-🚪 Exit
-👑 Only Admins
-🔇 Mute
-```
-
-Isso permite que diferentes grupos utilizem configurações diferentes sem interferir uns nos outros.
-
----
-
-## 🧠 DESENVOLVIMENTO
-
-O projeto utiliza uma estrutura baseada em módulos, permitindo separar:
-
-```text
-COMMANDS
-   ↓
-MIDDLEWARES
-   ↓
-SERVICES
-   ↓
-UTILS
-   ↓
-DATABASE
-```
-
-Isso facilita a manutenção e a criação de novos sistemas.
-
----
-
-## ⚠️ AVISO
-
-Este projeto está em desenvolvimento.
-
-Algumas funções podem sofrer alterações, receber melhorias ou ser completamente modificadas conforme o desenvolvimento continuar.
-
-Se alguma função parar de funcionar, verifique primeiro:
-
-* Dependências
-* Tokens/API
-* Configuração
-* Versão do Node.js
-* Alterações nas APIs utilizadas
-
----
-
-## 🩸 ROADMAP
-
-### 🔨 Em desenvolvimento
-
-* [ ] Melhorias no sistema de permissões
-* [ ] Mais comandos de administração
-* [ ] Melhorias no sistema de downloads
-* [ ] Novos sistemas de automação
-* [ ] Melhorias no banco de dados
-* [ ] Mais personalização por grupo
-* [ ] Otimização geral
-
-### ☠️ Futuro
-
-* [ ] Painel de gerenciamento
-* [ ] Sistema de logs avançado
-* [ ] Mais integração com APIs
-* [ ] Sistema de plugins
-* [ ] Melhor gerenciamento de usuários
-
----
-
-## ⛓️ CONTRIBUIÇÃO
-
-Quer contribuir?
-
-Faça um fork do projeto, implemente sua alteração e envie um Pull Request.
-
-```text
-Fork
- ↓
-Clone
- ↓
-Modify
- ↓
-Test
- ↓
-Pull Request
-```
-
-Sugestões, correções e melhorias são bem-vindas.
-
----
-
-## 📜 LICENÇA
-
-Este projeto é destinado a fins de estudo, desenvolvimento e experimentação.
-
-Utilize o código de forma responsável e respeite os termos das APIs e serviços utilizados.
-
----
-
-<p align="center">
-
-### ⛧━━━━━༺𖤐༻━━━━━⛓️━━━━━༺𖤐༻━━━━━⛧
-
-**𝐗𝐈𝐂-𝐁𝐎𝐓 • 𝐗𝐀𝐏𝐀 𝐈𝐍 𝐂𝐇𝐀𝐈𝐍𝐒**
-
-*O caos também pode ser organizado.*
-
-### ⛧━━━━━༺𖤐༻━━━━━⛓️━━━━━༺𖤐༻━━━━━⛧
-
-</p>
+⛓️ ━━━━━━━━━━━━━━━━━━━━━ ⛓️
+</div> ```
