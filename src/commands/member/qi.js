@@ -55,7 +55,7 @@ export default {
 
   handle: async ({ sendReply, socket, webMessage, mentionedJidList }) => {
     try {
-      let alvoJid = sender = webMessage.key.participant || webMessage.key.remoteJid;
+      let alvoJid = webMessage.key.participant || webMessage.key.remoteJid;
       let alvoNome = "𝐕𝐨𝐜𝐞̂";
 
       if (mentionedJidList?.length) {

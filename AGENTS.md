@@ -1,4 +1,4 @@
-# TAKESHI BOT AGENT GUIDE
+# XIC BOT AGENT GUIDE
 
 This file is the single source of truth for agents and contributors who need fast, reliable project context.
 
@@ -15,7 +15,7 @@ For installation walkthroughs and end-user tutorials, see `README.md`.
 
 ## PROJECT_OVERVIEW
 
-**Takeshi Bot** is a modular WhatsApp bot framework built on the Baileys ecosystem.
+**XIC BOT** is a modular WhatsApp bot framework built on the Baileys ecosystem.
 
 Core principles:
 

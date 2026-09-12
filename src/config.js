@@ -39,7 +39,7 @@ export const TOKITO_INSTANCE_NAME = "usr_ff6f0147-f38a-4211-aa86-230ac2f0a0c9";
 
 // ========== LINKER API ==========
 // Serviço para encurtar/linkar imagens
-export const LINKER_BASE_URL = "https://linker.devgui.dev/api";
+export const LINKER_BASE_URL = "https://linker.xapa.dev/api";
 export const LINKER_API_KEY = "COLOCA_AQUI_O_TOKEN_DO_LINKER";
 
 // Caso queira responder apenas um grupo específico,

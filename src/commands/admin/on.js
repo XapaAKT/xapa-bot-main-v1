@@ -15,7 +15,7 @@ export default {
     sendSuccessReply,
     remoteJid,
     isGroup,
-    sender,
+    userLid,
   }) => {
     if (!isGroup) {
       throw new WarningError(
@@ -23,8 +23,8 @@ export default {
       );
     }
 
-    // MESMA VERIFICAÇÃO DO /OFF
-    const isOwner = sender === OWNER_LID;
+    // Verifica se é o DONO DO BOT
+    const isOwner = userLid === OWNER_LID;
 
     // ATIVA O BOT
     activateGroup(remoteJid);

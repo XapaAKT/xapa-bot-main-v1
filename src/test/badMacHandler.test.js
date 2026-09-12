@@ -1,7 +1,7 @@
 /**
  * Testes para badMacHandler.js
  *
- * @author Dev Gui
+ * @author Xapa
  */
 import assert from "node:assert";
 import { beforeEach, describe, it } from "node:test";

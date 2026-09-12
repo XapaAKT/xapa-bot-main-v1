@@ -20,13 +20,28 @@ commands:["processo"],
 
 usage:`${PREFIX}processo`,
 
-handle:async({sendReply,user})=>{
+handle:async({sendReply, webMessage, mentionedJidList, socket})=>{
 
 await sendReply(`⚖️ 𝐀𝐂𝐄𝐒𝐒𝐀𝐍𝐃𝐎 𝐓𝐑𝐈𝐁𝐔𝐍𝐀𝐋...
 
 ████████`);
 
 await delay(3000);
+
+let alvoJid = webMessage.key.participant || webMessage.key.remoteJid;
+let alvoNome = "Você";
+
+if (mentionedJidList?.length) {
+  alvoJid = mentionedJidList[0];
+  try {
+    const contato = await socket.onWhatsApp(alvoJid);
+    alvoNome = contato?.[0]?.notify || contato?.[0]?.verifiedName || "Usuário";
+  } catch {
+    alvoNome = "Usuário";
+  }
+} else {
+  alvoNome = webMessage.pushName || "Você";
+}
 
 const crime=crimes[Math.floor(Math.random()*crimes.length)];
 
@@ -36,7 +51,7 @@ await sendReply(`⚖️━━━━━━━━━━━━━━━━━━⚖
 
 🏛️ 𝐓𝐑𝐈𝐁𝐔𝐍𝐀𝐋 𝐅𝐄𝐃𝐄𝐑𝐀𝐋
 
-👤 ${user.pushName}
+👤 ${alvoNome}
 
 ❌ 𝐏𝐞𝐫𝐝𝐞𝐮 𝐨 𝐩𝐫𝐨𝐜𝐞𝐬𝐬𝐨.
 

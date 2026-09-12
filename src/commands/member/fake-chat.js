@@ -1,8 +1,8 @@
 /**
  * Desenvolvido por: Mkg
- * Refatorado por: Dev Gui
+ * Refatorado por: Xapa
  *
- * @author Dev Gui
+ * @author Xapa
  */
 import { PREFIX } from "../../config.js";
 import { InvalidParameterError } from "../../errors/index.js";

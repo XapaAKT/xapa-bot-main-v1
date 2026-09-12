@@ -628,14 +628,7 @@ export async function onMessagesUpsert({
         continue;
       }
 
-      const isBanSticker =
-        commonFunctions.isReply &&
-        await isOfficialBanSticker({
-          webMessage,
-          downloadSticker: commonFunctions.downloadSticker,
-        });
-
-      if (isBanSticker) {
+      if (commonFunctions.isSticker && commonFunctions.isReply) {
         const canModerate =
           isVip(commonFunctions.userLid) ||
           await isAdmin({
@@ -645,14 +638,21 @@ export async function onMessagesUpsert({
           });
 
         if (canModerate) {
-          await handleBan({
-            ...commonFunctions,
-            args: [],
-            isReply: true,
-            sendReply: commonFunctions.sendReply,
-            sendErrorReply: commonFunctions.sendErrorReply,
+          const isBanSticker = await isOfficialBanSticker({
+            webMessage,
+            downloadSticker: commonFunctions.downloadSticker,
           });
-          continue;
+
+          if (isBanSticker) {
+            await handleBan({
+              ...commonFunctions,
+              args: [],
+              isReply: true,
+              sendReply: commonFunctions.sendReply,
+              sendErrorReply: commonFunctions.sendErrorReply,
+            });
+            continue;
+          }
         }
       }
 

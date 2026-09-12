@@ -1,50 +1,24 @@
 import { PREFIX } from "../../config.js";
-import { extractMentionedJids } from "../../utils/economy.js";
-
-function shuffle(array) {
-  return [...array].sort(() => Math.random() - 0.5);
-}
+import { registerPppPoll } from "../../events/ppp-poll.js";
 
 export default {
   name: "ppp",
   description: "Pego, penso, passo",
   commands: ["ppp"],
-  usage: `${PREFIX}ppp @a @b @c`,
+  usage: `${PREFIX}ppp`,
 
-  handle: async ({ sendReply, sendSuccessReact, webMessage, socket, remoteJid }) => {
-    const mentions = [...new Set(extractMentionedJids(webMessage))].slice(0, 3);
+  handle: async ({ socket, remoteJid, sendPoll }) => {
+    await socket.groupSettingUpdate(remoteJid, "announcement");
 
-    if (mentions.length < 3) {
-      return sendReply(`
-╭━━━〔 🎯 PPP 〕━━━╮
+    const pollMessage = await sendPoll(
+      "╭━━━〔 🎯🔥 𝐏𝐏𝐏 🔥🎯 〕━━━╮\n┃ 🃏 𝐏𝐄𝐆𝐎 • 𝐏𝐄𝐍𝐒𝐎 • 𝐏𝐀𝐒𝐒𝐎\n┃ 👀 Quem vai participar?\n╰━━━━━━━━━━━━━━━━━━━━━━╯",
+      [
+        { optionName: "✅ Vou participar 😈" },
+        { optionName: "❌ Não vou participar 🙅" },
+      ],
+      true
+    );
 
-Marque 3 pessoas para usar o comando.
-
-Exemplo:
-${PREFIX}ppp @a @b @c
-
-╰━━━━━━━━━━━━━━━━╯
-`);
-    }
-
-    const people = shuffle(mentions);
-    const roles = ["🥇 PEGO", "🥈 PENSO", "🥉 PASSO"];
-
-    const result = roles
-      .map((role, index) => `${role} :: @${people[index].split("@")[0]}`)
-      .join("\n");
-
-    await sendSuccessReact();
-
-    await socket.sendMessage(remoteJid, {
-      text: `
-╭━━━〔 🎯 PPP 〕━━━╮
-
-${result}
-
-╰━━━━━━━━━━━━━━━━╯
-`,
-      mentions: people,
-    });
+    registerPppPoll(pollMessage, socket);
   },
 };

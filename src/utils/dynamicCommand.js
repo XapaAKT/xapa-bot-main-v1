@@ -5,7 +5,7 @@
  * ⛧━━━━━༺𖤐༻━━━━━⛓️━━━━━༺𖤐༻━━━━━⛧
  * @author Xapa
  */
-import { BOT_EMOJI, ONLY_GROUP_ID } from "../config.js";
+import { BOT_EMOJI, ONLY_GROUP_ID, OWNER_LID } from "../config.js";
 import {
   DangerError,
   InvalidParameterError,
@@ -36,6 +36,64 @@ import { isVip } from "./vip.js";
 
 // READMORE PADRÃO OCULTO
 const rm = '\u200e'.repeat(4001);
+
+// ============================================================
+// CONTROLE DE NOTIFICAÇÃO DE GRUPOS DESATIVADOS
+// ============================================================
+
+const inactiveGroupNotificationCooldown = new Map(); // Cooldown por grupo
+const COOLDOWN_NOTIFICATION_MS = 60000; // 1 minuto entre notificações
+
+async function notifyOwnerInactiveGroup(socket, remoteJid, userLid, fullMessage) {
+  try {
+    // Verifica cooldown para não spammar o owner
+    const now = Date.now();
+    const lastNotification = inactiveGroupNotificationCooldown.get(remoteJid) || 0;
+    
+    if (now - lastNotification < COOLDOWN_NOTIFICATION_MS) {
+      return; // Ainda está em cooldown
+    }
+
+    inactiveGroupNotificationCooldown.set(remoteJid, now);
+
+    // Tira o nome do grupo
+    let groupName = remoteJid;
+    try {
+      const groupMetadata = await socket.groupMetadata(remoteJid);
+      groupName = groupMetadata?.subject || remoteJid;
+    } catch (error) {
+      console.error("[NOTIFY GROUP] Erro ao pegar nome do grupo", error.message);
+    }
+
+    // Tira o nome/número de quem tentou usar o comando
+    let participantName = userLid || "Desconhecido";
+    try {
+      const groupMetadata = await socket.groupMetadata(remoteJid);
+      const participant = groupMetadata?.participants?.find((p) => p.id === userLid);
+      participantName = participant?.name || userLid || "Desconhecido";
+    } catch (error) {
+      console.error("[NOTIFY GROUP] Erro ao pegar nome do participante", error.message);
+    }
+
+    // Formata a mensagem
+    const message = `⛧━━━━━<⛧>━━━━━⛓️
+╠━━━፝֟━̷━🩸━━╮
+┃ 🚫 𝐁𝐎𝐓 𝐃𝐄𝐒𝐀𝐓𝐈𝐕𝐀𝐃𝐎
+┃
+┃ 📍 𝐆𝐫𝐮𝐩𝐨: ${groupName}
+┃ 👤 𝐔𝐬𝐮𝐚́𝐫𝐢𝐨: ${participantName}
+┃ 💬 𝐂𝐨𝐦𝐚𝐧𝐝𝐨: ${fullMessage}
+┃
+┃ 🔧 𝐀𝐭𝐢𝐯𝐞 𝐜𝐨𝐦 /${getPrefix(remoteJid)}on
+╰━━━፝֟━̷━🩸━━╯
+⛧━━━━━<⛧>━━━━━⛓️`;
+
+    // Envia para o owner via privado
+    await socket.sendMessage(OWNER_LID, { text: message });
+  } catch (error) {
+    console.error("[NOTIFY GROUP ERROR]", error.message);
+  }
+}
 
 export async function dynamicCommand(paramsHandler, startProcess) {
   const {
@@ -153,9 +211,8 @@ export async function dynamicCommand(paramsHandler, startProcess) {
   if (!isBotOwner({ userLid }) &&!activeGroup) {
     if ((messageHasPrefix || isNoPrefixCommand) && hasTypeAndCommand({ type, command })) {
       if (command.name!== "on") {
-       await sendWarningReply(
-`hum`
-);
+        // Notifica o owner que o bot está desativado neste grupo (sem enviar mensagem no grupo)
+        await notifyOwnerInactiveGroup(socket, remoteJid, userLid, fullMessage);
         return;
       }
 

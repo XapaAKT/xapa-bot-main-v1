@@ -1,7 +1,7 @@
 /**
  * Testes para database.js
  *
- * @author Dev Gui
+ * @author Xapa
  */
 import assert from "node:assert";
 import fs from "node:fs";

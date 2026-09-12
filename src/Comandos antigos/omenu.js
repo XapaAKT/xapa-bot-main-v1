@@ -14,7 +14,7 @@ export default {
     await sendSuccessReact();
 
     await sendImageFromFile(
-      path.join(ASSETS_DIR, "images", "takeshi-bot.png"),
+      path.join(ASSETS_DIR, "images", "xic-bot.png"),
       `
 ▓▒░ 𝕏𝕀ℂ://𝕺𝖂𝕹𝕰𝕽_𝕸𝕰𝕹𝖀 ░▒▓
 

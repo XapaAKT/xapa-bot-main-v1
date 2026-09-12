@@ -2,7 +2,7 @@
  * Classe de erro customizada para
  * avisos.
  *
- * @author Dev Gui
+ * @author Xapa
  */
 export default class WarningError extends Error {
   constructor(message) {

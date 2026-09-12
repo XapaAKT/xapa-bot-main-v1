@@ -3,10 +3,10 @@
     "227886971789349": {
       "coins": 66666666654613670,
       "packs": {
-        "common": 673,
-        "rare": 658,
+        "common": 672,
+        "rare": 657,
         "epic": 656,
-        "legendary": 760
+        "legendary": 759
       },
       "pokemons": [
         {
@@ -338,15 +338,55 @@
           "image": "FuckVenusaur.webp",
           "source": "pack:rare",
           "caughtAt": "2026-08-27T15:09:46.715Z"
+        },
+        {
+          "uid": "poke_mthmj7xa_xqki0m",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-08-31T19:21:11.134Z"
+        },
+        {
+          "uid": "poke_mtq9ny63_6i6va7",
+          "id": "oddish",
+          "name": "Oddish",
+          "rarity": "comum",
+          "value": 1500,
+          "image": "3doddish.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-09-06T20:30:52.347Z"
+        },
+        {
+          "uid": "poke_mtt5jc30_1xyvme",
+          "id": "venusaur",
+          "name": "Venusaur",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "FuckVenusaur.webp",
+          "source": "fishing",
+          "caughtAt": "2026-09-08T20:58:37.164Z"
+        },
+        {
+          "uid": "poke_mtt5pmkw_b1fqvw",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-09-08T21:03:30.704Z"
         }
       ],
-      "fishingCount": 14,
-      "lastFishingAt": 1787883587207,
+      "fishingCount": 16,
+      "lastFishingAt": 1788901117163,
       "stats": {
-        "nothing": 5,
+        "nothing": 6,
         "money": 2001,
-        "packs": 31,
-        "pokemons": 33,
+        "packs": 34,
+        "pokemons": 37,
         "sold": 0
       }
     },
@@ -419,7 +459,7 @@
       }
     },
     "150139943551199": {
-      "coins": 536,
+      "coins": 1183,
       "packs": {
         "common": 0,
         "rare": 0,
@@ -438,11 +478,11 @@
           "caughtAt": "2026-08-27T02:55:49.536Z"
         }
       ],
-      "fishingCount": 2,
-      "lastFishingAt": 1787799349536,
+      "fishingCount": 4,
+      "lastFishingAt": 1788901545375,
       "stats": {
-        "nothing": 0,
-        "money": 536,
+        "nothing": 1,
+        "money": 1183,
         "packs": 0,
         "pokemons": 1,
         "sold": 0
@@ -650,6 +690,25 @@
       "stats": {
         "nothing": 1,
         "money": 1818,
+        "packs": 0,
+        "pokemons": 0,
+        "sold": 0
+      }
+    },
+    "146360154206349": {
+      "coins": 0,
+      "packs": {
+        "common": 0,
+        "rare": 0,
+        "epic": 0,
+        "legendary": 0
+      },
+      "pokemons": [],
+      "fishingCount": 2,
+      "lastFishingAt": 1788901457346,
+      "stats": {
+        "nothing": 2,
+        "money": 0,
         "packs": 0,
         "pokemons": 0,
         "sold": 0

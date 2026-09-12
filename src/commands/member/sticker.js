@@ -1,5 +1,5 @@
 /**
- * Desenvolvido por: Dev Gui
+ * Desenvolvido por: Xapa
  * Implementação dos metadados feita por: MRX
  *
  * @author Xapa

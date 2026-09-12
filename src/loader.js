@@ -8,6 +8,7 @@
  */
 import { TIMEOUT_IN_MILLISECONDS_BY_EVENT } from "./config.js";
 import { notifyJoinRequest } from "./events/group-join-request.js";
+import { handlePppPollUpdate, handlePppPollVote } from "./events/ppp-poll.js";
 import { onMessagesUpsert } from "./middlewares/onMesssagesUpsert.js";
 import { badMacHandler } from "./utils/badMacHandler.js";
 import { errorLog } from "./utils/logger.js";
@@ -28,6 +29,16 @@ export function load(socket) {
   };
 
   socket.ev.on("messages.upsert", async (data) => {
+    for (const message of data.messages || []) {
+      if (message?.message?.pollUpdateMessage) {
+        await safeEventHandler(
+          () => handlePppPollVote({ socket, message }),
+          message,
+          "ppp.poll-vote",
+        );
+      }
+    }
+
     const startProcess = Date.now();
     setTimeout(() => {
       safeEventHandler(
@@ -41,6 +52,16 @@ export function load(socket) {
         "messages.upsert"
       );
     }, TIMEOUT_IN_MILLISECONDS_BY_EVENT);
+  });
+
+  socket.ev.on("messages.update", async (updates) => {
+    for (const update of updates || []) {
+      await safeEventHandler(
+        () => handlePppPollUpdate({ socket, update }),
+        update,
+        "ppp.poll-update",
+      );
+    }
   });
 
   socket.ev.on("group.join-request", async (data) => {

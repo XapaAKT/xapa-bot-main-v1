@@ -1,6 +1,6 @@
 /**
  * Desenvolvido por: MRX
- * Refatorado por: Dev Gui
+ * Refatorado por: Xapa
  *
  * @author Xapa
  */

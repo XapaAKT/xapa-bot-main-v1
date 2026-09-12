@@ -6,7 +6,7 @@ import { PREFIX } from "../../config.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const THAY_ID = "18039483441156";
+const THAY_ID = " 211300294635597";
 const GIFS_DIR = path.resolve(__dirname, "../../../assets/images/personalizado");
 const GIFS = ["thay1.mp4", "thay2.mp4", "thay3.mp4"];
 

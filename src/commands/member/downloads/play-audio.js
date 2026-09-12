@@ -1,9 +1,11 @@
-import { PREFIX } from "../../../config.js";
+import { PREFIX, ASSETS_DIR } from "../../../config.js";
 import { InvalidParameterError } from "../../../errors/index.js";
 import {
   removeScrapedAudio,
   scrapeMusic,
 } from "../../../services/music-scraper.js";
+import path from "node:path";
+import fs from "node:fs/promises";
 
 export default {
   name: "play-audio",
@@ -57,6 +59,28 @@ export default {
       }
 
       await sendAudioFromFile(scrapedFile.filePath, false, false);
+
+      // 50% de chance de enviar um áudio de evento
+      if (Math.random() < 0.5) {
+        try {
+          const eventAudiosDir = path.join(ASSETS_DIR, "audios", "eventos");
+          const files = await fs.readdir(eventAudiosDir);
+          const audioFiles = files.filter(f => /\.(mp3|ogg|wav)$/i.test(f));
+          
+          if (audioFiles.length > 0) {
+            const randomAudio = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+            const audioPath = path.join(eventAudiosDir, randomAudio);
+            
+            // Pequeno delay antes de enviar o áudio de evento
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            await sendAudioFromFile(audioPath, false, false);
+          }
+        } catch (eventError) {
+          // Silenciosamente falha se não conseguir enviar o áudio de evento
+          console.error("[PLAY-AUDIO EVENT ERROR]", eventError.message);
+        }
+      }
     } catch (error) {
       console.error("[PLAY-AUDIO ERROR]", error);
       await sendErrorReact();

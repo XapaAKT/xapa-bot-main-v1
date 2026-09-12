@@ -19,31 +19,46 @@ function restartBot() {
 
 export default {
   name: "update",
-  description: "Atualiza o bot pelo GitHub e reinicia.",
-  commands: ["update", "sync", "atualizar"],
-  usage: `${PREFIX}update`,
+  description: "Envia as alterações do bot para o GitHub.",
+  commands: ["update", "push", "enviar"],
+  usage: `${PREFIX}update <motivo da atualização>`,
 
-  handle: async ({ sendReply }) => {
-    await sendReply("🔄 Buscando atualização no GitHub...");
+  handle: async ({ sendReply, fullArgs }) => {
+    const motivo = fullArgs?.trim() || "Atualização do bot";
+    
+    await sendReply(`📤 Enviando alterações para o GitHub...\n\n📝 *Motivo:* ${motivo}`);
 
     try {
-      const { stdout } = await execFile("git", ["pull", "--ff-only"], {
+      // Stage all changes
+      await execFile("git", ["add", "."], {
+        cwd: BOT_DIR,
+        timeout: 30000,
+      });
+
+      // Commit with the provided message
+      await execFile("git", ["commit", "-m", motivo], {
+        cwd: BOT_DIR,
+        timeout: 30000,
+      });
+
+      // Push to GitHub
+      const { stdout } = await execFile("git", ["push"], {
         cwd: BOT_DIR,
         timeout: 60000,
         maxBuffer: 1024 * 1024,
       });
 
-      if (stdout.includes("Already up to date")) {
-        await sendReply("✅ O bot já está atualizado. Reiniciando...");
-      } else {
-        await sendReply("✅ Atualização concluída. Reiniciando o bot...");
-      }
-
-      restartBot();
-
-      setTimeout(() => process.exit(0), 1200);
+      await sendReply(`✅ Alterações enviadas para o GitHub com sucesso!\n\n📝 *Commit:* ${motivo}\n\n🔗 Verifique seu repositório para confirmar.`);
     } catch (error) {
-      await sendReply(`❌ Falha ao atualizar pelo GitHub.\n\n${error.message}`);
+      const errorMsg = error.message || error.toString();
+      
+      if (errorMsg.includes("nothing to commit")) {
+        await sendReply(`⚠️ Nenhuma alteração para enviar.\n\n📝 *Motivo:* ${motivo}`);
+      } else if (errorMsg.includes("ENOENT") || errorMsg.includes("git")) {
+        await sendReply(`❌ Git não está instalado ou configurado corretamente.\n\n⚠️ *Erro:* ${errorMsg}`);
+      } else {
+        await sendReply(`❌ Falha ao enviar para o GitHub.\n\n📝 *Motivo da tentativa:* ${motivo}\n\n⚠️ *Erro:* ${errorMsg}`);
+      }
     }
   },
 };

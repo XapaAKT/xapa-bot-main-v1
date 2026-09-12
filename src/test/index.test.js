@@ -1,7 +1,7 @@
 /**
  * Testes para index.js (funções utilitárias)
  *
- * @author Dev Gui
+ * @author Xapa
  */
 import assert from "node:assert";
 import { describe, it } from "node:test";
