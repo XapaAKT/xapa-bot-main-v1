@@ -29,9 +29,12 @@ ${readMore()}
 ╚═ೋ༺☠️༻ೋ═╝
 
 ◈ addvip
+◈ addblacklist
+◈ blacklist
 ◈ viplist
 ◈ get-group-id
 ◈ lsugestoes
+◈ puxbanfig
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 
@@ -42,6 +45,12 @@ ${readMore()}
 ◈ on
 ◈ off
 ◈ set-prefix
+◈ set-menu-image
+◈ SMT (1=botoes|2=lista)
+◈ SMC (1=ativar|0=desativar)
+◈ test-carousel
+◈ test-menu (testa 1 a 7 cards)
+◈ set-spider-api-token
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 
@@ -51,6 +60,16 @@ ${readMore()}
 
 ◈ catalogo
 ◈ alugar
+◈ backupgrupo
+◈ exec
+◈ gitbot
+◈ metaai
+◈ restart
+◈ update
+◈ void
+◈ xic
+◈ ip
+◈ tel
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 
@@ -58,9 +77,7 @@ ${readMore()}
 ┃ 🔒 𝐀𝐑𝐐𝐔𝐈𝐕𝐎𝐒 𝐎𝐂𝐔𝐋𝐓𝐎𝐒
 ╚═ೋ༺⛓️༻ೋ═╝
 
-◈ revelar
 ◈ nuke
-◈ nias
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 

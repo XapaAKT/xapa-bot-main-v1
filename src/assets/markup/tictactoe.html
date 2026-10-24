@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XAPA IN CHAINS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Fredoka:wght@600&display=swap');
+body{
+  box-sizing:border-box; margin:0; min-height:100vh; padding:10px 12px 16px;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+  background: radial-gradient(circle at center, #1a0a0a 0%, #050000 70%), url('https://www.transparenttextures.com/patterns/dark-matter.png');
+  color:#e7e7e7; font-family:'Fredoka', Arial; overflow-x:hidden; overflow-y:auto;
+}
+body::before{
+  content:'⛧'; position:fixed; font-size:60vh; opacity:0.04; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none;
+}
+h1{font-family:'Cinzel Decorative'; font-size:30px; line-height:1.05; margin:4px 0 8px; letter-spacing:2px; color:#ff1a1a; text-shadow:0 0 14px #ff0000, 0 0 28px #7a0000, 2px 2px 0 #000;}
+h1 span{color:#c9c9c9; font-size:15px; line-height:1.1; display:block; letter-spacing:4px; margin-top:-2px;}
+#placar{display:flex; justify-content:center; gap:14px; max-width:100%; box-sizing:border-box; margin:4px 0 8px; padding:7px 12px; border:1px solid #ff000044; background:#00000088; border-radius:6px; box-shadow:0 0 12px #ff000022; font-size:14px;}
+#dificuldade{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:7px; width:min(100%, 420px); margin:4px 0 6px;}
+.dif{
+  min-width:0; padding:7px 5px; border:1px solid #ff000066; background:#0a0a0a; color:#aaa; cursor:pointer;
+  font-family:'Cinzel Decorative'; font-size:10px; letter-spacing:0; transition:0.2s;
+}
+.dif.ativo{background:#ff0000; color:#000; box-shadow:0 0 10px #ff0000; border-color:#ff0000;}
+#msg{min-height:20px; margin:5px 0 8px; font-size:14px; line-height:1.25; text-align:center; color:#ffcc00; text-shadow:0 0 8px #ffcc00aa; font-family:'Cinzel Decorative';}
+#tabuleiro{
+  display:grid; grid-template-columns: repeat(3, 68px); grid-template-rows: repeat(3, 68px); gap:8px;
+  background:#000000cc; padding:10px; border:2px solid #3a0000; border-radius:4px;
+  box-shadow:0 0 20px #000, inset 0 0 14px #ff000011;
+  position:relative;
+}
+#tabuleiro::before{
+  content:''; position:absolute; inset:-2px; border:1px solid #ff000033; pointer-events:none;
+  background: linear-gradient(45deg, transparent 40%, #ff000011 50%, transparent 60%);
+}
+.cel{
+  width:68px; height:68px; background: radial-gradient(#1a1a1a, #0a0a0a); border:1px solid #2a0000;
+  display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:900;
+  cursor:pointer; position:relative; transition:0.15s; font-family:'Cinzel Decorative';
+}
+.cel:hover{ background:#1f0000; box-shadow:0 0 15px #ff000033; }
+.cel.x{color:#ff2222; text-shadow:0 0 15px #ff0000, 0 0 30px #ff0000;}
+.cel.o{color:#9ca3af; text-shadow:0 0 15px #ffffff, 0 0 25px #888;}
+.cel.win{background:#ff0000!important; color:#000!important; box-shadow:0 0 25px #ff0000; animation: treme 0.2s infinite;}
+@keyframes treme{ 0%{transform:translate(1px,1px)} 50%{transform:translate(-1px,-1px)} 100%{transform:translate(1px,-1px)} }
+#correntes{font-size:15px; line-height:1; letter-spacing:6px; opacity:0.3; margin-bottom:2px;}
+button#reset{
+  margin-top:10px; padding:8px 18px; background:#0a0a0a; border:1px solid #ff0000; color:#ff0000;
+  font-family:'Cinzel Decorative'; font-size:11px; letter-spacing:1px; cursor:pointer; box-shadow:0 0 10px #ff000033;
+}
+button#reset:hover{ background:#ff0000; color:#000; box-shadow:0 0 25px #ff0000; }
+@media (max-width:380px){
+  #placar{gap:8px; padding:7px 8px; font-size:12px;}
+  #tabuleiro{grid-template-columns:repeat(3, 58px); grid-template-rows:repeat(3, 58px); gap:6px; padding:8px;}
+  .cel{width:58px; height:58px; font-size:31px;}
+}
+@media (max-height:620px){
+  body{padding-top:6px;}
+  #tabuleiro{grid-template-columns:repeat(3, 56px); grid-template-rows:repeat(3, 56px); gap:6px; padding:8px;}
+  .cel{width:56px; height:56px; font-size:29px;}
+}
+</style>
+</head>
+<body>
+<div id="correntes">⛓️ ⛓️ ⛓️</div>
+<h1>XAPA <span>IN CHAINS</span></h1>
+<div id="placar"><span id="pv">ALMAS: 0</span><span id="pe">PACTOS: 0</span><span id="pc">ABISMO: 0</span></div>
+<div id="dificuldade">
+  <div class="dif ativo" onclick="setDif('facil')">HEREGE</div>
+  <div class="dif" onclick="setDif('normal')">POSSESSO</div>
+  <div class="dif" onclick="setDif('dificil')">ARCHDEMON</div>
+</div>
+<div id="msg">Faça sua oferenda, Xapa... Você é o ⛧</div>
+<div id="tabuleiro"></div>
+<button id="reset" onclick="novoJogo()">QUEBRAR CORRENTES</button>
+
+<script>
+const tabEl=document.getElementById('tabuleiro'), msgEl=document.getElementById('msg');
+let tab=Array(9).fill(''), fim=false, dif='facil', placar={v:0,e:0,c:0};
+
+const winX=["O ABISMO CEDEU","ALMA COLETADA","XAPA DOMINOU O RITUAL","O SELO QUEBROU"];
+const loseX=["VOCÊ FOI ACORRENTADO","O ABISMO TE ENGOLIU","SUA ALMA É MINHA","JOELHOS AO ARCHDEMON"];
+const velhaX=["PACTO SELADO EM EMPATE","NENHUM SANGUE DERRAMADO"];
+
+function setDif(d){
+  dif=d;
+  document.querySelectorAll('.dif').forEach(b=>b.classList.remove('ativo'));
+  document.querySelector(`.dif[onclick="setDif('${d}')"]`).classList.add('ativo');
+  novoJogo();
+}
+function novoJogo(){
+  tab=Array(9).fill(''); fim=false;
+  msgEl.innerText = dif=='facil'? 'Um herege fraco...' : dif=='normal'? 'Um possesso te observa...' : 'ARCHDEMON DESPERTOU...';
+  render();
+}
+function render(){
+  tabEl.innerHTML='';
+  tab.forEach((v,i)=>{
+    let d=document.createElement('div'); d.className='cel '+(v=='X'?'x':v=='O'?'o':'');
+    d.innerText=v==''?'': v=='X'?'⛧':'†'; d.onclick=()=>jogada(i); tabEl.appendChild(d);
+  });
+}
+function jogada(i){
+  if(tab[i]!='' || fim) return;
+  tab[i]='X'; if(checaFim()) return;
+  msgEl.innerText='O abismo responde...';
+  setTimeout(botJoga, 500);
+}
+function botJoga(){
+  if(fim) return;
+  let pos = dif=='facil'? aleatorio() : dif=='normal'? (Math.random()<0.5? melhor():aleatorio()) : melhor();
+  if(pos!=-1) tab[pos]='O'; checaFim(); render();
+}
+function aleatorio(){ let l=tab.map((v,i)=>v==''?i:null).filter(v=>v!==null); return l.length? l[Math.floor(Math.random()*l.length)]:-1; }
+function melhor(){
+  for(let i=0;i<9;i++) if(tab[i]==''){ tab[i]='O'; if(venc()=='O'){tab[i]=''; return i;} tab[i]='';}
+  for(let i=0;i<9;i++) if(tab[i]==''){ tab[i]='X'; if(venc()=='X'){tab[i]=''; return i;} tab[i]='';}
+  return minimax(tab,'O').index;
+}
+function minimax(nt,jog){
+  let livres=nt.map((v,i)=>v==''?i:null).filter(v=>v!==null);
+  if(vencTab(nt)=='X') return {score:-10}; if(vencTab(nt)=='O') return {score:10}; if(livres.length==0) return {score:0};
+  let moves=[];
+  for(let i=0;i<livres.length;i++){
+    let m={}; m.index=livres[i]; nt[livres[i]]=jog;
+    m.score = jog=='O'? minimax(nt,'X').score : minimax(nt,'O').score;
+    nt[livres[i]]=''; moves.push(m);
+  }
+  let melhorIdx=0;
+  if(jog=='O'){ let b=-10000; moves.forEach((m,i)=>{ if(m.score>b){b=m.score; melhorIdx=i;}});}
+  else { let b=10000; moves.forEach((m,i)=>{ if(m.score<b){b=m.score; melhorIdx=i;}});}
+  return moves[melhorIdx];
+}
+function venc(){ return vencTab(tab); }
+function vencTab(t){ const w=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]; for(let c of w) if(t[c[0]] && t[c[0]]==t[c[1]] && t[c[0]]==t[c[2]]) return t[c[0]]; return null; }
+function checaFim(){
+  let v=venc();
+  if(v){
+    fim=true; if(v=='X'){ placar.v++; msgEl.innerText=winX[Math.floor(Math.random()*winX.length)]; }
+    else { placar.c++; msgEl.innerText=loseX[Math.floor(Math.random()*loseX.length)]; }
+    pinta(); atualiza(); return true;
+  }
+  if(!tab.includes('')){ fim=true; placar.e++; msgEl.innerText=velhaX[Math.floor(Math.random()*velhaX.length)]; atualiza(); return true; }
+  render(); msgEl.innerText='Sua oferenda, Xapa...'; return false;
+}
+function pinta(){ const w=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]; for(let c of w) if(tab[c[0]] && tab[c[0]]==tab[c[1]] && tab[c[0]]==tab[c[2]]) c.forEach(i=>document.querySelectorAll('.cel')[i].classList.add('win')); }
+function atualiza(){ document.getElementById('pv').innerText=`ALMAS: ${placar.v}`; document.getElementById('pe').innerText=`PACTOS: ${placar.e}`; document.getElementById('pc').innerText=`ABISMO: ${placar.c}`; }
+novoJogo();
+</script>
+</body>
+</html>

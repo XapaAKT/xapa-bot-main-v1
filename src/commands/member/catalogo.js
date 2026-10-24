@@ -3,7 +3,7 @@ import { readMore } from "../../utils/index.js";
 
 export default {
   name: "catalogo",
-  description: "Catálogo oficial do XIC BOT",
+  description: "Catálogo oficial do ULQUIORRA BOT",
   commands: ["catalogo", "catalog", "precos", "preços"],
   usage: `${PREFIX}catalogo`,
 

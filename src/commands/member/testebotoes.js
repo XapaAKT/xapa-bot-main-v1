@@ -98,7 +98,7 @@ export default {
       if (test === "1") {
         await socket.sendMessage(remoteJid, {
           text: "🩸 TESTE 1 — BOTÕES ANTIGOS\n\nSe isso aparecer clicável, o teu bot ainda aceita `buttons:`.",
-          footer: "Xapa in Chains",
+          footer: "ULQUIORRA BOT",
           buttons: [
             {
               buttonId: `${PREFIX}mmenu`,
@@ -128,7 +128,7 @@ export default {
       if (test === "2") {
         await socket.sendMessage(remoteJid, {
           text: "⛓️ TESTE 2 — LISTA\n\nSe isso abrir uma lista, o menu por lista funciona.",
-          footer: "Xapa in Chains",
+          footer: "ULQUIORRA BOT",
           title: "MENU TESTE",
           buttonText: "ABRIR MENU",
           sections: [
@@ -164,7 +164,7 @@ export default {
       if (test === "3") {
         const interactiveMessage = buildQuickReplyInteractive({
           text: "☠ TESTE 3 — NATIVE FLOW / QUICK REPLY\n\nSe isso aparecer, o novo sistema está vivo.",
-          footer: "Xapa in Chains",
+          footer: "ULQUIORRA BOT",
           buttons: [
             {
               name: "quick_reply",
@@ -206,7 +206,7 @@ export default {
       if (test === "4") {
         const interactiveMessage = buildSingleSelectInteractive({
           text: "🩸 TESTE 4 — SINGLE SELECT\n\nSe isso abrir uma lista dentro do botão, é sinal de Native Flow funcionando.",
-          footer: "Xapa in Chains",
+          footer: "ULQUIORRA BOT",
           title: "Escolha uma opção",
           sections: [
             {
@@ -375,7 +375,7 @@ export default {
       if (test === "11") {
         const interactiveMessage = buildQuickReplyInteractive({
           text: "🧪 TESTE 11\n\nMensagem interativa mínima.",
-          footer: "Xapa in Chains",
+          footer: "ULQUIORRA BOT",
           buttons: [
             {
               name: "quick_reply",

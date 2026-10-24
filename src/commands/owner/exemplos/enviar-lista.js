@@ -107,7 +107,7 @@ export default {
         "• `useLegacyList: true` força o formato antigo `listMessage`\n" +
         "• Cada seção pode ter várias linhas\n" +
         "• Use `rowId` para identificar a opção escolhida\n" +
-        "⚠️ Importante: a baileys do Xapa-bot foi modificada para suportar listas!",
+        "⚠️ Importante: a baileys do ULQUIORRA BOT foi modificada para suportar listas!",
     );
   },
 };

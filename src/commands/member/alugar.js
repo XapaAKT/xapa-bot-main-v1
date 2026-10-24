@@ -4,7 +4,7 @@ import path from "node:path";
 
 export default {
   name: "alugar",
-  description: "Informações sobre aluguel do Xapa-BOT.",
+  description: "Informações sobre aluguel do ULQUIORRA BOT.",
   commands: ["alugar", "rent", "host"],
   usage: `${PREFIX}alugar`,
 
@@ -34,7 +34,7 @@ ${readMore()}
 ┃  ⚙️ 𝐃𝐄𝐒𝐄𝐍𝐕𝐎𝐋𝐕𝐈𝐌𝐄𝐍𝐓𝐎
 ┗━━━━━━━━━━━━━━━━━━━━━━┛
 
-O *Xapa-BOT* ainda está em constante desenvolvimento.
+O *ULQUIORRA BOT* ainda está em constante desenvolvimento.
 
 Novos comandos, sistemas e melhorias estão sendo adicionados para entregar uma experiência completa e estável.
 
@@ -58,7 +58,7 @@ Envie usando:
 
 */sugestao sua-sugestao-aqui*
 
-Sua sugestão pode fazer parte das próximas versões do Xapa-BOT.
+Sua sugestão pode fazer parte das próximas versões do ULQUIORRA BOT.
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -71,7 +71,7 @@ Caso tenha alguma dúvida ou queira acompanhar o desenvolvimento:
 
 ━━━━━━━━━━━━━━━━━━
 
-𖤐 *XAPA IN CHAINS*
+𖤐 *ULQUIORRA BOT*
 *"As Above, So Below."*
 `
     );

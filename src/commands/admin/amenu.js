@@ -50,9 +50,13 @@ ${readMore()}
 ◈ ban
 ◈ delete
 ◈ mute
+◈ unmute
 ◈ warn
 ◈ unwarn
 ◈ warn-reactivate
+◈ bafk
+◈ lafk
+◈ registrou
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 
@@ -63,6 +67,7 @@ ${readMore()}
 ◈ promover
 ◈ rebaixar
 ◈ exit
+◈ block-wpp
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 
@@ -71,10 +76,18 @@ ${readMore()}
 ╚═ೋ༺🩸༻ೋ═╝
 
 ◈ limpar-chat
+◈ agendar-mensagem
 ◈ abrir
 ◈ fechar
+◈ hide-tag
+◈ link-grupo
 ◈ only-admin
+◈ set-name
 ◈ welcome
+◈ audio-evento
+◈ auto-responder
+◈ list-auto-responder
+◈ auto-sticker
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 
@@ -82,8 +95,10 @@ ${readMore()}
 ┃ 🔥 𝐒𝐈𝐒𝐓𝐄𝐌𝐀𝐒
 ╚═ೋ༺⛓️༻ೋ═╝
 
-◈ blacklist
-◈ ant-plv
+◈ on
+◈ off
+◈ def
+◈ set-proxy
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 

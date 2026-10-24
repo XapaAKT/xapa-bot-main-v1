@@ -41,7 +41,7 @@ export default {
 
     await sendImageFromURL(
       "https://api.spiderx.com.br/storage/samples/sample-image.jpg",
-      `Logo do XIC BOT para você ${userLid.split("@")[0]}!`,
+      `Logo do ULQUIORRA BOT para você ${userLid.split("@")[0]}!`,
       [userLid]
     );
 

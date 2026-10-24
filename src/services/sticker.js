@@ -151,7 +151,7 @@ export async function processAnimatedGifToSticker(inputPath, metadata) {
   });
 }
 
-export async function createSticker(paramsHandler) {
+export async function createSticker(paramsHandler, metadataOverrides = {}) {
   const {
     isImage,
     isVideo,
@@ -165,6 +165,7 @@ export async function createSticker(paramsHandler) {
   const metadata = {
     username: getUserName(webMessage, userLid),
     botName: `${BOT_EMOJI} ${BOT_NAME}`,
+    ...metadataOverrides,
   };
 
   const outputTempPath = path.resolve(TEMP_DIR, getRandomName("webp"));

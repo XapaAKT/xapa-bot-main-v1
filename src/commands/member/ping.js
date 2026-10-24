@@ -89,9 +89,9 @@ function readMore(count = 4000) {
 export default {
   name: "ping",
 
-  description: "Exibe informações e status do XIC-BOT.",
+  description: "Exibe informações e status do ULQUIORRA BOT.",
 
-  commands: ["ping", "status", "stt"],
+  commands: ["ping", "pong"],
 
   usage: `${PREFIX}ping`,
 

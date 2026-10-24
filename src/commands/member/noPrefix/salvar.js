@@ -1,6 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { downloadContentFromMessage } from "baileys";
+import { OWNER_LID } from "../../../config.js";
+import { errorLog } from "../../../utils/logger.js";
 
 const SAVE_DIR = path.resolve(process.cwd(), "videos");
 
@@ -30,6 +32,70 @@ function getExtension(mimetype = "", type = "image") {
   return type === "video" ? "mp4" : "jpg";
 }
 
+function sanitizeFolderName(name, fallback) {
+  let folderName = String(name || "")
+    .replace(/[<>:"/\\|?*\u0000-\u001f]/g, "_")
+    .replace(/[. ]+$/g, "")
+    .trim()
+    .slice(0, 80);
+
+  if (!folderName) {
+    folderName = String(fallback || "Desconhecido").replace(
+      /[^a-zA-Z0-9_-]/g,
+      "_",
+    );
+  }
+
+  if (/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(folderName)) {
+    folderName = `_${folderName}`;
+  }
+
+  return folderName;
+}
+
+async function getMediaSenderName({ socket, webMessage }) {
+  const message = webMessage?.message || {};
+  const contextInfo = message?.extendedTextMessage?.contextInfo;
+  const quotedMessage = contextInfo?.quotedMessage;
+  const isQuotedMedia = Boolean(
+    quotedMessage?.imageMessage || quotedMessage?.videoMessage,
+  );
+
+  if (isQuotedMedia && webMessage?.key?.remoteJid?.endsWith("@g.us")) {
+    const participantJid = contextInfo?.participant;
+
+    if (participantJid) {
+      try {
+        const metadata = await socket.groupMetadata(webMessage.key.remoteJid);
+        const participant = metadata?.participants?.find(
+          (item) =>
+            item.id?.replace(/:[0-9]+(?=@)/g, "") ===
+            participantJid.replace(/:[0-9]+(?=@)/g, ""),
+        );
+        const participantName =
+          participant?.name || participant?.notify || participant?.verifiedName;
+
+        if (participantName) {
+          return sanitizeFolderName(participantName, participantJid);
+        }
+      } catch (error) {
+        errorLog(
+          `[SALVAR] Não foi possível consultar o nome de quem enviou a mídia: ${error?.message || String(error)}`,
+        );
+      }
+
+      return sanitizeFolderName("", participantJid);
+    }
+  }
+
+  const senderJid =
+    webMessage?.key?.participant || webMessage?.key?.remoteJid;
+  return sanitizeFolderName(
+    webMessage?.pushName || webMessage?.notifyName,
+    senderJid,
+  );
+}
+
 async function streamToBuffer(stream) {
   const chunks = [];
   for await (const chunk of stream) {
@@ -46,13 +112,22 @@ async function downloadMedia(messageData, type) {
 export default {
   name: "salvar",
   description: "Salva imagem ou vídeo sem prefixo",
-  commands: ["rsrskk", "olocokk", "salvar", "dlc", "amor...", "pqp"],
+  commands: [
+    "rsrskk",
+    "olocokk",
+    "salvar",
+    "dlc",
+    "amor...",
+    "pqp",
+    "❤️",
+  ],
   noPrefix: true,
   isEmojiCommand: true,
   usage: "Responda qualquer imagem/foto com um das mensagens ai e depois cheque os arquivos do bot.",
 
   handle: async ({
     webMessage,
+    socket,
   }) => {
     const media = pickQuotedOrCurrentMedia(webMessage);
 
@@ -61,17 +136,38 @@ export default {
     }
 
     try {
-      await fs.mkdir(SAVE_DIR, { recursive: true });
-
+      const memberName = await getMediaSenderName({
+        socket,
+        webMessage,
+      });
+      const memberDir = path.join(SAVE_DIR, memberName);
+      const mediaFolder = media.type === "image" ? "Fotos" : "Videos";
+      const mediaDir = path.join(memberDir, mediaFolder);
       const mimetype = media.data.mimetype || "";
       const ext = getExtension(mimetype, media.type);
       const fileName = `midia_${Date.now()}.${ext}`;
-      const filePath = path.join(SAVE_DIR, fileName);
+      const filePath = path.join(mediaDir, fileName);
 
+      await fs.mkdir(path.join(memberDir, "Fotos"), { recursive: true });
+      await fs.mkdir(path.join(memberDir, "Videos"), { recursive: true });
       const buffer = await downloadMedia(media.data, media.type);
       await fs.writeFile(filePath, buffer);
     } catch (error) {
-      return;
+      const details = error?.stack || error?.message || String(error);
+      errorLog(`[SALVAR] Erro ao salvar mídia: ${details}`);
+
+      try {
+        await socket.sendMessage(OWNER_LID, {
+          text:
+            `❌ Erro no comando salvar.\n` +
+            `Chat: ${webMessage?.key?.remoteJid || "desconhecido"}\n` +
+            `Detalhes: ${error?.message || String(error)}`,
+        });
+      } catch (notificationError) {
+        errorLog(
+          `[SALVAR] Não foi possível avisar o proprietário no privado: ${notificationError?.stack || notificationError?.message || String(notificationError)}`,
+        );
+      }
     }
   },
 };

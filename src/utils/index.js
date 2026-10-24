@@ -304,8 +304,8 @@ export async function ajustAudioByBuffer(audioBuffer, isPtt = true) {
   const outputPath = path.resolve(TEMP_DIR, getRandomName(isPtt? "ogg" : "mp3"));
 
   const command = isPtt
- ? `ffmpeg -i "${tempPath}" -vn -c:a libopus -b:a 48k -ac 1 -y "${outputPath}"`
-    : `ffmpeg -i "${tempPath}" -vn -c:a libmp3lame -ar 44100 -ac 2 -b:a 128k -y "${outputPath}"`;
+    ? `ffmpeg -hide_banner -loglevel error -i "${tempPath}" -map 0:a:0 -vn -sn -dn -map_metadata -1 -c:a libopus -application voip -frame_duration 20 -vbr on -b:a 64k -ar 48000 -ac 1 -f ogg -y "${outputPath}"`
+    : `ffmpeg -hide_banner -loglevel error -i "${tempPath}" -map 0:a:0 -vn -sn -dn -map_metadata -1 -c:a libmp3lame -ar 44100 -ac 2 -b:a 128k -f mp3 -y "${outputPath}"`;
 
   try {
     await execAsync(command);

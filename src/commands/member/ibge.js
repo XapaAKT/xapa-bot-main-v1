@@ -14,21 +14,21 @@ export default {
   description: "Consulta o cadastro secreto do IBGE.",
   commands: ["ibge"],
   usage: `${PREFIX}ibge @mencao`,
-  handle: async ({ sendReply, sender, mentionedJidList, socket, webMessage }) => {
+  handle: async ({ sendReply, sendEditedText, userLid, socket, webMessage }) => {
+    const mentionedJid =
+      webMessage?.message?.extendedTextMessage?.contextInfo?.mentionedJid?.[0];
+    const alvoJid =
+      mentionedJid || userLid || webMessage?.key?.remoteJid || "";
+    let alvoNome = mentionedJid
+      ? `@${mentionedJid.split("@")[0]}`
+      : getUserName(webMessage, userLid, "Você");
 
-    let alvoJid = sender;
-    let alvoNome = "Você";
-
-    if (mentionedJidList?.length) {
-      alvoJid = mentionedJidList[0];
+    if (mentionedJid) {
       try {
-        const contato = await socket.onWhatsApp(alvoJid);
-        alvoNome = contato?.[0]?.notify || contato?.[0]?.verifiedName || getUserName(webMessage, alvoJid, "Usuário");
-      } catch {
-        alvoNome = getUserName(webMessage, alvoJid, "Usuário");
-      }
-    } else {
-      alvoNome = getUserName(webMessage, sender, "Você");
+        const contato = await socket.onWhatsApp(mentionedJid);
+        alvoNome =
+          contato?.[0]?.notify || contato?.[0]?.verifiedName || alvoNome;
+      } catch {}
     }
 
     const especies = [
@@ -67,7 +67,7 @@ export default {
     for (let i = 1; i < etapas.length; i++) {
       await delay(1800);
       msg = `📡 *IBGE - CADASTRO NACIONAL*\n\n${etapas[i].txt}\n${barra(etapas[i].pct)} ${etapas[i].pct}%`;
-      await socket.sendMessage(webMessage.key.remoteJid, { text: msg, edit: sent.key });
+      await sendEditedText(msg, sent);
     }
 
     await delay(1800);
@@ -96,6 +96,6 @@ export default {
 ✅ *Registro atualizado com sucesso*
 > Use ${PREFIX}ibge @alguem pra consultar outra pessoa`;
 
-    await socket.sendMessage(webMessage.key.remoteJid, { text: resultado, edit: sent.key });
+    await sendEditedText(resultado, sent);
   },
 };

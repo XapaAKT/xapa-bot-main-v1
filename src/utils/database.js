@@ -13,6 +13,8 @@ const defaultDatabase = () => ({
     autoresponder: [],
     settings: {
         prefix: PREFIX,
+        menuType: "buttons",
+        menuCarousel: false,
     },
 });
 
@@ -28,6 +30,8 @@ const readDB = () => {
         data.autoresponder??= [];
         data.settings??= {};
         data.settings.prefix??= PREFIX;
+        data.settings.menuType??= "buttons";
+        data.settings.menuCarousel??= false;
         return data;
     } catch (error) {
         console.error("Erro ao ler database.json:", error);
@@ -146,6 +150,34 @@ export function setPrefix(groupJid, newPrefix) {
     db.groups[groupJid].prefix = newPrefix;
     writeDB(db);
     return true;
+}
+
+export function getMenuSettings() {
+    const settings = readDB().settings;
+    return {
+        type: settings.menuType === "list" ? "list" : "buttons",
+        carousel: settings.menuCarousel === true,
+    };
+}
+
+export function setMenuType(type) {
+    if (type !== "buttons" && type !== "list") {
+        throw new TypeError("O tipo do menu deve ser 'buttons' ou 'list'.");
+    }
+
+    const db = readDB();
+    db.settings.menuType = type;
+    writeDB(db);
+}
+
+export function setMenuCarousel(enabled) {
+    if (typeof enabled !== "boolean") {
+        throw new TypeError("O estado do carrossel deve ser booleano.");
+    }
+
+    const db = readDB();
+    db.settings.menuCarousel = enabled;
+    writeDB(db);
 }
 
 export function getSpiderApiToken() { return readDB().settings?.tokitoApiToken || TOKITO_API_TOKEN; }

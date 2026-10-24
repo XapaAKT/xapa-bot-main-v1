@@ -33,7 +33,7 @@ Você aceita?`;
       await sendInteractiveButtons(socket, targetJid, {
         title: "💍 Pedido de Casamento",
         text: text,
-        footer: "XIC-BOT Family",
+        footer: "ULQUIORRA BOT Family",
         buttons: [
           { id: `${PREFIX}aceitar ${proposalId}`, text: "✅ Aceitar" },
           { id: `${PREFIX}recusar ${proposalId}`, text: "❌ Recusar" },

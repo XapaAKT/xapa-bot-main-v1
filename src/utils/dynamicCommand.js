@@ -117,17 +117,24 @@ export async function dynamicCommand(paramsHandler, startProcess) {
 
   const activeGroup = isActiveGroup(remoteJid);
   const normalizedFullMessage = fullMessage?.trim();
-  let foundCommand = await findCommandImport(commandName);
+  const isHeartSaveTrigger =
+    normalizedFullMessage?.replace(/\uFE0F/g, "") === "❤";
+  let foundCommand = await findCommandImport(
+    isHeartSaveTrigger ? "rsrskk" : commandName,
+  );
 
   if (
     (!foundCommand?.command ||!hasTypeAndCommand(foundCommand)) &&
-    normalizedFullMessage
+    normalizedFullMessage &&
+    !isHeartSaveTrigger
   ) {
     foundCommand = await findCommandImport(normalizedFullMessage);
   }
 
   const { type, command } = foundCommand;
   const isNoPrefixCommand = command?.noPrefix === true || command?.isEmojiCommand === true;
+  const worksWhenGroupInactive =
+    command?.name === "salvar" && command?.noPrefix === true;
   const messageHasPrefix = verifyPrefix(prefix, remoteJid);
 
   // ANTI-LINK OCULTO
@@ -160,7 +167,7 @@ export async function dynamicCommand(paramsHandler, startProcess) {
 
   const vipCanUseBan = command?.name === "ban" && isVip(userLid);
 
-  if (ONLY_GROUP_ID && ONLY_GROUP_ID!== remoteJid) return;
+  if (ONLY_GROUP_ID && ONLY_GROUP_ID!== remoteJid && !worksWhenGroupInactive) return;
 
   if (activeGroup) {
     if ((!messageHasPrefix &&!isNoPrefixCommand) ||!hasTypeAndCommand({ type, command })) {
@@ -208,7 +215,7 @@ export async function dynamicCommand(paramsHandler, startProcess) {
   }
 
   // GRUPO DESATIVADO
-  if (!isBotOwner({ userLid }) &&!activeGroup) {
+  if (!isBotOwner({ userLid }) &&!activeGroup && !worksWhenGroupInactive) {
     if ((messageHasPrefix || isNoPrefixCommand) && hasTypeAndCommand({ type, command })) {
       if (command.name!== "on") {
         // Notifica o owner que o bot está desativado neste grupo (sem enviar mensagem no grupo)

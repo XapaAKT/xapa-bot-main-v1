@@ -122,6 +122,7 @@ Use it for:
 - custom logs
 - extra validations
 - automatic reactions
+- automatic voice-note replies to laughter and "Oie" messages
 - per-group behavior
 - custom participant hooks
 

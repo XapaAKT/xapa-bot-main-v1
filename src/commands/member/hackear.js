@@ -22,7 +22,7 @@ export default {
 
     const alvos = [
       "NASA", "Pentágono", "CIA", "WhatsApp", "Facebook", "Google",
-      "Xapa-BOT", "Pix do Nubank", "Servidor do GOV", "Instagram",
+      "ULQUIORRA BOT", "Pix do Nubank", "Servidor do GOV", "Instagram",
       "Banco Central", "PC do Vizinho", "Roteador da Claro", "Netflix"
     ];
 
@@ -76,7 +76,7 @@ export default {
     await delay(1000);
 
     const resultado = deuCerto
-     ? `✅ *INVASÃO CONCLUÍDA*\n\n${sucessos[Math.floor(Math.random() * sucessos.length)]}\n\n☠️ *Xapa-BOT foi o melhor hacker do bairro*`
+     ? `✅ *INVASÃO CONCLUÍDA*\n\n${sucessos[Math.floor(Math.random() * sucessos.length)]}\n\n☠️ *ULQUIORRA BOT foi o melhor hacker do bairro*`
       : `❌ *FALHA NA INVASÃO*\n\n${falhas[Math.floor(Math.random() * falhas.length)]}\n\n😭 *Volta pra hackear WiFi do vizinho*`;
 
     await socket.sendMessage(webMessage.key.remoteJid, { text: resultado, edit: sent.key });

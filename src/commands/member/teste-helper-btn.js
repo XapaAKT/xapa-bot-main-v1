@@ -10,9 +10,9 @@ export default {
   handle: async ({ socket, remoteJid, sendReply }) => {
     try {
       await sendInteractiveButtons(socket, remoteJid, {
-        title: "⛧ Xapa in Chains ⛧",
+        title: "⛧ ULQUIORRA BOT ⛧",
         text: "Escolha uma opção abaixo:",
-        footer: "XIC-BOT",
+        footer: "ULQUIORRA BOT",
         buttons: [
           { id: `${PREFIX}mmenu`, text: "👤 Membro" },
           { id: `${PREFIX}amenu`, text: "🛡 Admin" },

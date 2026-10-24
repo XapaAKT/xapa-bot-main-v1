@@ -36,7 +36,7 @@ export default {
       await sendSuccessReply(
 `⛧━━━━━༺𖤐༻━━━━━⛓️━━━━━༺𖤐༻━━━━━⛧
 ┃
-┃  🩸 *XIC-BOT ESTÁ DE VOLTA*
+┃  🩸 *ULQUIORRA BOT ESTÁ DE VOLTA*
 ┃
 ┃  O próprio Xapa resolveu
 ┃  sair da aposentadoria. 💀
@@ -64,7 +64,7 @@ export default {
 ┃  🤡 *COMUNICADO OFICIAL* 🤡
 ┃
 ┃  O ADM não aguentou 5 min
-┃  sem o XIC-BOT e veio chorar
+┃  sem o ULQUIORRA BOT e veio chorar
 ┃  no meu PV.
 ┃
 ┃  "mano volta com o bot pfv,

@@ -25,7 +25,7 @@ export default {
       await sendInteractiveButtons(socket, targetJid, {
         title: "👶 Pedido de Adoção",
         text: `👶 @${userLid.replace(/\D/g, "")} quer te adotar.\n\nVocê aceita ser adotado(a)?`,
-        footer: "XIC-BOT Family",
+        footer: "ULQUIORRA BOT Family",
         buttons: [
           { id: `${PREFIX}aceitar ${proposalId}`, text: "✅ Aceitar" },
           { id: `${PREFIX}recusar ${proposalId}`, text: "❌ Recusar" },

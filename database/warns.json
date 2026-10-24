@@ -195,5 +195,17 @@
         }
       ]
     }
+  },
+  "120363411623599216@g.us": {
+    "warnLimit": 3,
+    "warns": {
+      "20320312377517@lid": [
+        {
+          "reason": "Advertência genérica",
+          "timestamp": 1789527973243,
+          "valid": true
+        }
+      ]
+    }
   }
 }

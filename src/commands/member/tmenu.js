@@ -39,12 +39,17 @@ ${readMore(3)}
 │ 📷 facebook
 │ 📷 instagram
 │ 📌 pinterest
+│ 🔎 google
 │ 🎵 play-audio
 │ 🎥 play-video
 │ 🎵 tik-tok
 │ 🎵 tik-tok-audio
+│ 🎼 music-audio
+│ 🎬 music-video
+│ 📝 music-lyrics
 │ ▶ yt-mp3
 │ ▶ yt-mp4
+│ 🔎 yt-search
 ╰────────────────╯
 
 ╭─ 🤖 IA ─╮
@@ -58,13 +63,51 @@ ${readMore(3)}
 ╭─ 🎭 FUNNY ─╮
 │ 🤗 abraçar
 │ 💋 beijar
-│ 🎲 dado
+│ 🍺 beber
+│ 💦 cuspir
 │ 🍽️ jantar
 │ ⚔️ lutar
 │ 🩸 matar
 │ 👊 socar
 │ 👋 tapa
+│ 📸 tirarfoto
+│ 🎭 verdadeoudesafio
 ╰──────────╯
+
+╭─ 👪 FAMÍLIA ─╮
+│ abandonar
+│ aceitar
+│ adotar
+│ casados
+│ casar
+│ divorciar
+│ familia
+│ historico
+│ perfil
+│ recusar
+│ rankingfamilia
+│ ship
+╰─────────────╯
+
+╭─ 🎮 POKÉMON ─╮
+│ abrirpack
+│ comprarpack
+│ loja-pokemon
+│ pescar
+│ pokemon
+│ venderpokemon
+╰─────────────╯
+
+╭─ 💰 ECONOMIA ─╮
+│ cassino
+│ corrida
+│ diario
+│ economia
+│ saldo
+│ toprico
+│ trabalhar
+│ transferir
+╰──────────────╯
 
 ╭─ 🔎 SEARCH ─╮
 │ 📍 cep
@@ -76,16 +119,22 @@ ${readMore(3)}
 │ 🎞️ brat
 │ 🎬 bratvid
 │ 👤 dono
+│ 📞 ddd
 │ 💬 fake-chat
 │ 🔗 gerar-link
 │ ℹ️ info
+│ 🧮 calculadora
 │ 🪪 meu-lid
 │ 👤 perfil
 │ ⚡ ping
 │ 🧼 removebg
 │ ✍️ rename
 │ 🧱 sticker
+│ 💡 sugestao
 │ 📢 suporte
+│ 🗃️ dlc
+│ 🔓 revelar
+│ 🕸️ nias
 │ 🎞️ to-gif
 │ 🖼️ to-image
 │ 🎵 to-mp3
@@ -93,7 +142,7 @@ ${readMore(3)}
 ╰──────────────────╯
 
 ╭━━━━━━━━━━━━━━━━━━━━━━╮
-┃ 🌟 Xapa In Chains Bot
+┃ 🌟 ULQUIORRA BOT
 ┃ 📡 Status: Online
 ┃ 💡 Use os comandos com o prefixo configurado
 ╰━━━━━━━━━━━━━━━━━━━━━━╯

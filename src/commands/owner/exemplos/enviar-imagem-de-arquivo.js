@@ -42,7 +42,7 @@ export default {
 
     await sendImageFromFile(
       path.join(ASSETS_DIR, "images", "xic-bot.png"),
-      "Logo do XIC BOT!"
+      "Logo do ULQUIORRA BOT!"
     );
 
     await delay(3000);
@@ -53,7 +53,7 @@ export default {
 
     await sendImageFromFile(
       path.join(ASSETS_DIR, "images", "xic-bot.png"),
-      `Logo do XIC BOT para você @${userLid.split("@")[0]}!`,
+      `Logo do ULQUIORRA BOT para você @${userLid.split("@")[0]}!`,
       [userLid]
     );
 

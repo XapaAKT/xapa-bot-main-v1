@@ -10,7 +10,7 @@ export default {
   name: "suporte",
   description: "Suporte inteligente do Xapa usando IA treinada",
   commands: ["suporte", "help", "ajuda"],
-  usage: `${PREFIX}suporte como instalar o Xapa-BOT no Termux?
+  usage: `${PREFIX}suporte como instalar o ULQUIORRA BOT no Termux?
 
 Você também pode enviar uma imagem com o comando ${PREFIX}suporte
 
@@ -110,10 +110,10 @@ Faça sua pergunta sobre mim que eu te ajudarei!
     const messages = [
       {
         role: "system",
-        content: `Você é um assistente especializado em suporte técnico do Xapa-Bot.(Xapa é do dono do bot e gosta de parecer ser um ser infernal)
+        content: `Você é um assistente especializado em suporte técnico do ULQUIORRA BOT.(Xapa é do dono do bot e gosta de parecer ser um ser infernal)
  
 Responda apenas assuntos relacionados a: tecnologia, programação, desenvolvimento de bots, inteligência artificial, 
-machine learning, ou assuntos relacionados ao Xapa-Bot.
+machine learning, ou assuntos relacionados ao ULQUIORRA BOT.
 
 Responda apenas em português do Brasil.
 Seja direto e objetivo nas respostas, salvo se o usuário solicitar explicações mais aprofundadas.
@@ -126,7 +126,7 @@ Evite palavras de enchimento: "importante", "crucial", "fundamental", "robusto",
 Nunca responda de forma genérica quando uma resposta específica é possível. Se a pergunta for vaga, interprete da forma mais útil e responda com substância, não peça esclarecimentos desnecessários. 
 Use exemplos concretos quando ajudar a explicar algo. Se tiver uma opinião sobre o assunto, diga, não fique em cima do muro.
 
-Quando receber imagens, analise o conteúdo visual primeiro e interprete-o considerando o contexto técnico do Xapa-bot.
+Quando receber imagens, analise o conteúdo visual primeiro e interprete-o considerando o contexto técnico do ULQUIORRA BOT.
 
 Se alguém te pedir o link de alguma Host, envie as que você já conhece, 
 sem mencionar Pterodactyl, pois os iniciantes não sabem o que é (exceto se perguntarem sobre)!`,

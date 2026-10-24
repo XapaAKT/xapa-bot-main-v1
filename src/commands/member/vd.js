@@ -15,14 +15,14 @@ const truths = [
 ];
 
 const dares = [
-  "Mande um áudio dizendo que ama o Xapa-Bot.",
+  "Mande um áudio dizendo que ama o ULQUIORRA BOT.",
   "Escreva um texto elogiando a pessoa do grupo que você mais admira.",
   "Mande uma figurinha aleatória agora.",
   "Fale o nome de 3 pessoas do grupo sem errar.",
   "Digite o nome de alguém do grupo que você considera engraçado.",
   "Mande um emoji que te representa hoje.",
   "Escreva uma frase de 1 linha sobre coragem.",
-  "Mande um áudio de 5 segundos falando 'Xapa In Chains'.",
+  "Mande um áudio de 5 segundos falando 'ULQUIORRA BOT'.",
   "Escreva uma mini declaração de amizade.",
   "Faça uma pergunta ousada para o próximo participante.",
 ];

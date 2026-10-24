@@ -29,19 +29,23 @@ ${readMore()}
 ╚═ೋ༺🌊༻ೋ═╝
 
 ◈ animal
+◈ aura
+◈ beber
 ◈ cancelar
 ◈ cpf
+◈ cuspir
 ◈ eununca
 ◈ fofoca
 ◈ hackear
 ◈ ibge
+◈ oraculo
 ◈ morte
 ◈ ppp
 ◈ prisao
 ◈ processo
 ◈ qi
-◈ dado 
-◈ tirarfoto
+◈ estilizar
+◈ verdadeoudesafio
 
 ✦━━━━━━━━━━━━✦
 
@@ -61,7 +65,7 @@ ${readMore()}
 ◈ socar
 ◈ suicidio
 ◈ tapa
-◈ foto
+◈ tirarfoto
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 
@@ -86,9 +90,18 @@ ${readMore()}
 ◈ corrida
 ◈ diario
 ◈ economia
+◈ saldo
 ◈ toprico
 ◈ trabalhar
 ◈ transferir
+
+✦━━━━━━━━━━━━✦
+
+╔═ೋ༺🎮༻ೋ═╗
+┃ 🎮 『 𝐉𝐎𝐆𝐎𝐒 』
+╚═ೋ༺🎮༻ೋ═╝
+
+◈ doom
 
 ✦━━━━━━━━━━━━✦
 
@@ -110,9 +123,12 @@ ${readMore()}
 ╚═ೋ༺🫧༻ೋ═╝
 
 ◈ blur
+◈ contraste
 ◈ espelhar
+◈ gray
 ◈ inverter
 ◈ pixel
+◈ imagem (pb, sepia, blur, girar, espelhar, virar, nitidez, brilho, contraste, saturacao, redimensionar)
 
 ✦━━━━━━━━━━━━✦
 
@@ -133,12 +149,60 @@ ${readMore()}
 ◈ facebook
 ◈ instagram
 ◈ pinterest
+◈ google
 ◈ play-audio
 ◈ play-video
 ◈ tik-tok
 ◈ tik-tok-audio
+◈ music-audio
+◈ music-video
+◈ music-lyrics
 ◈ yt-mp3
 ◈ yt-mp4
+◈ yt-search
+
+✦━━━━━━━━━━━━✦
+
+╔═ೋ༺🤖༻ೋ═╗
+┃ 🤖 『 𝐈𝐍𝐓𝐄𝐋𝐈𝐆𝐄̂𝐍𝐂𝐈𝐀 𝐀𝐑𝐓𝐈𝐅𝐈𝐂𝐈𝐀𝐋 』
+╚═ೋ༺🤖༻ೋ═╝
+
+◈ deepseek
+◈ flux
+◈ gemini
+◈ gpt-5-mini
+
+✦━━━━━━━━━━━━✦
+
+╔═ೋ༺👪༻ೋ═╗
+┃ 👪 『 𝐅𝐀𝐌𝐈́𝐋𝐈𝐀 』
+╚═ೋ༺👪༻ೋ═╝
+
+◈ abandonar
+◈ aceitar
+◈ adotar
+◈ casados
+◈ casar
+◈ divorciar
+◈ familia
+◈ historico
+◈ perfil
+◈ recusar
+◈ rankingfamilia
+◈ ship
+
+✦━━━━━━━━━━━━✦
+
+╔═ೋ༺🎮༻ೋ═╗
+┃ 🎮 『 𝐏𝐎𝐊𝐄́𝐌𝐎𝐍 』
+╚═ೋ༺🎮༻ೋ═╝
+
+◈ abrirpack
+◈ comprarpack
+◈ loja-pokemon
+◈ pescar
+◈ pokemon
+◈ venderpokemon
 
 ✦━━━━━━━━━━━━✦
 
@@ -148,9 +212,20 @@ ${readMore()}
 
 ◈ alugar
 ◈ catalogo
+◈ calculadora
 ◈ dono
 ◈ ping
 ◈ ddd
+◈ cep
+◈ fake-chat
+◈ gerar-link
+◈ info
+◈ meu-lid
+◈ removebg
+◈ rename
+◈ sugestao
+◈ suporte
+◈ revelar
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 

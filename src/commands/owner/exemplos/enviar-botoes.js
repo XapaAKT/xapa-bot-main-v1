@@ -140,7 +140,7 @@ export default {
         "• `useLegacyButtons: true` força o formato antigo `buttonsMessage`\n" +
         "• `templateButtons` permite resposta rápida, URL e chamada\n" +
         "• `interactiveButtons` usa native flow e normalmente precisa de `viewOnce: true`\n" +
-        "⚠️ Importante: a baileys do Xapa-bot foi modificada para suportar esses formatos!",
+        "⚠️ Importante: a baileys do ULQUIORRA BOT foi modificada para suportar esses formatos!",
     );
   },
 };

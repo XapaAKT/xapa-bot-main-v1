@@ -5,7 +5,7 @@
       "packs": {
         "common": 672,
         "rare": 657,
-        "epic": 656,
+        "epic": 654,
         "legendary": 759
       },
       "pokemons": [
@@ -378,6 +378,26 @@
           "image": "TsareenaGX.webp",
           "source": "pack:rare",
           "caughtAt": "2026-09-08T21:03:30.704Z"
+        },
+        {
+          "uid": "poke_mv7739g3_52c13m",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-10-13T21:30:35.283Z"
+        },
+        {
+          "uid": "poke_mv773aaz_0qfn1p",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-10-13T21:30:36.395Z"
         }
       ],
       "fishingCount": 16,
@@ -385,8 +405,8 @@
       "stats": {
         "nothing": 6,
         "money": 2001,
-        "packs": 34,
-        "pokemons": 37,
+        "packs": 36,
+        "pokemons": 39,
         "sold": 0
       }
     },
