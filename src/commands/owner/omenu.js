@@ -51,6 +51,7 @@ ${readMore()}
 ◈ test-carousel
 ◈ test-menu (testa 1 a 7 cards)
 ◈ set-spider-api-token
+◈ termux-tutorial
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 

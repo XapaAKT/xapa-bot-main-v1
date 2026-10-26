@@ -5,17 +5,10 @@
  */
 import { BOT_NAME, PREFIX } from "../../config.js";
 import { InvalidParameterError } from "../../errors/index.js";
-import { createSticker } from "../../services/sticker.js";
-import { getUserName } from "../../utils/index.js";
-
-const BOT_PACK = "꧁༺𖤐⃟𝆺𝅥⃝🩸𝙐𝙇𝙌𝙐𝙄𝙊𝙍𝙍𝘼-𝘽𝙊𝙏🩸⃝𝆺𝅥⃟𖤐༻꧂";
-const OWNER_NICK = "༺🌹⃟𝐗𝐀𝐏𝐀𝅯🫠༺";
-
-const PACK_NAME = `🌑 Cuarta Espada
-↳ ${BOT_PACK}
-
-⤓ 🦇 Rᴇsᴜʀʀᴇᴄᴄɪᴏ́ɴ: Mᴜʀᴄɪᴇ́ʟᴀɢᴏ
-↳ "Nada tem significado" • ⤓ 🖤 ${OWNER_NICK} `;
+import {
+  createSticker,
+  getUlquiorraStickerMetadata,
+} from "../../services/sticker.js";
 
 export default {
   name: "sticker",
@@ -35,15 +28,10 @@ export default {
     }
 
     await sendWaitReact();
-    const requesterName = getUserName(
-      paramsHandler.webMessage,
-      paramsHandler.userLid,
+    await createSticker(
+      paramsHandler,
+      getUlquiorraStickerMetadata(paramsHandler),
     );
-
-    await createSticker(paramsHandler, {
-      username: PACK_NAME,
-      botName: `⤓ 🩸 Cᴇʀᴏ Osᴄᴜʀᴀs\n↳ Feita por: ${requesterName}`,
-    });
 
     await sendSuccessReact();
   },

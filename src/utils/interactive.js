@@ -157,13 +157,29 @@ export async function sendInteractiveCarousel(sock, jid, data, options = {}) {
       }
 
       let header = card.title ? { title: card.title } : undefined;
-      if (card.imagePath || card.videoPath) {
+      if (card.imagePath || card.imageUrl || card.videoPath) {
+        let image;
+
+        if (card.imagePath) {
+          image = fs.readFileSync(card.imagePath);
+        } else if (card.imageUrl) {
+          const response = await fetch(card.imageUrl, {
+            signal: AbortSignal.timeout(15000),
+          });
+          if (!response.ok) {
+            throw new Error(
+              `Não foi possível carregar a capa do carrossel: HTTP ${response.status}`,
+            );
+          }
+          image = Buffer.from(await response.arrayBuffer());
+        }
+
         const media = card.videoPath
           ? {
               video: fs.readFileSync(card.videoPath),
               gifPlayback: true,
             }
-          : { image: fs.readFileSync(card.imagePath) };
+          : { image };
         const mediaContent = await generateWAMessageContent(media, {
           upload: sock.waUploadToServer.bind(sock),
         });

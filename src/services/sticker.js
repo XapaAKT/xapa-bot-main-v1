@@ -10,6 +10,27 @@ import path from "node:path";
 import { BOT_EMOJI, BOT_NAME, TEMP_DIR } from "../config.js";
 import { getRandomName, getRandomNumber, getUserName } from "../utils/index.js";
 
+const BOT_PACK =
+  "꧁༺𖤐⃟𝆺𝅥⃝🩸𝙐𝙇𝙌𝙐𝙄𝙊𝙍𝙍𝘼-𝘽𝙊𝙏🩸⃝𝆺𝅥⃟𖤐༻꧂";
+const OWNER_NICK = "༺🌹⃟𝐗𝐀𝐏𝐀𝅯🫠༺";
+
+export function getUlquiorraStickerMetadata(paramsHandler) {
+  const requesterName = getUserName(
+    paramsHandler.webMessage,
+    paramsHandler.userLid,
+  );
+
+  return {
+    username: `🌑 Cuarta Espada
+↳ ${BOT_PACK}
+
+⤓ 🦇 Rᴇsᴜʀʀᴇᴄᴄɪᴏ́ɴ: Mᴜʀᴄɪᴇ́ʟᴀɢᴏ
+↳ "Nada tem significado" • ⤓ 🖤 ${OWNER_NICK} `,
+    botName: `⤓ 🩸 Cᴇʀᴏ Osᴄᴜʀᴀs
+↳ Feita por: ${requesterName}`,
+  };
+}
+
 export async function addStickerMetadata(media, metadata) {
   const tmpFileIn = getRandomName("webp");
   const tmpFileOut = getRandomName("webp");
@@ -334,7 +355,10 @@ export async function processAutoSticker(paramsHandler) {
   }
 
   try {
-    await createSticker(paramsHandler);
+    await createSticker(
+      paramsHandler,
+      getUlquiorraStickerMetadata(paramsHandler),
+    );
     await sendSuccessReact();
 
     return true;

@@ -893,11 +893,6 @@
           "lastMessage": 1788895974137,
           "registered": false
         },
-        "207361490813059@lid": {
-          "joinedAt": 1788898743395,
-          "lastMessage": 1790212286599,
-          "registered": false
-        },
         "153554392248450@lid": {
           "joinedAt": 1788901586769,
           "lastMessage": 1788902859929,
@@ -950,7 +945,7 @@
         },
         "4376823341079@lid": {
           "joinedAt": 1790256288719,
-          "lastMessage": 1791486427519,
+          "lastMessage": 1792966112513,
           "registered": false
         },
         "254464648847407@lid": {
@@ -991,6 +986,11 @@
         "89310170742828@lid": {
           "joinedAt": 1792188764514,
           "lastMessage": 1792188764514,
+          "registered": false
+        },
+        "59730680643692@lid": {
+          "joinedAt": 1792964493888,
+          "lastMessage": 1792964493888,
           "registered": false
         }
       }
@@ -1382,7 +1382,7 @@
         },
         "150345464443102@lid": {
           "joinedAt": 1787671959929,
-          "lastMessage": 1792183080179,
+          "lastMessage": 1792965741232,
           "registered": false
         },
         "142382880321674@lid": {
@@ -2104,7 +2104,7 @@
         },
         "202791427506273@lid": {
           "joinedAt": 1787005321983,
-          "lastMessage": 1791474827690,
+          "lastMessage": 1792976036947,
           "registered": false
         },
         "19181860864004@lid": {
@@ -2114,7 +2114,7 @@
         },
         "227886971789349@lid": {
           "joinedAt": 1787006157210,
-          "lastMessage": 1791476795189,
+          "lastMessage": 1792978063921,
           "registered": false
         },
         "126805486866505@lid": {
@@ -2124,12 +2124,12 @@
         },
         "272498797109319@lid": {
           "joinedAt": 1787007716507,
-          "lastMessage": 1789688945962,
+          "lastMessage": 1792976467068,
           "registered": false
         },
         "13916449022202@lid": {
           "joinedAt": 1787517125179,
-          "lastMessage": 1791476808203,
+          "lastMessage": 1792976344069,
           "registered": false
         },
         "88218796077289@lid": {
@@ -2144,7 +2144,7 @@
         },
         "65086068678709@lid": {
           "joinedAt": 1787703715039,
-          "lastMessage": 1789688585058,
+          "lastMessage": 1792976357728,
           "registered": false
         },
         "18473157697637@lid": {
@@ -2159,7 +2159,7 @@
         },
         "34480047833263@lid": {
           "joinedAt": 1787706028250,
-          "lastMessage": 1790283853790,
+          "lastMessage": 1792978018525,
           "registered": false
         },
         "210616807616596@lid": {
@@ -2847,6 +2847,11 @@
           "joinedAt": 1792114035459,
           "lastMessage": 1792114035459,
           "registered": false
+        },
+        "125078775832810@lid": {
+          "joinedAt": 1792978345615,
+          "lastMessage": 1792978345615,
+          "registered": false
         }
       }
     },
@@ -3009,27 +3014,27 @@
       "members": {
         "112137468940337@lid": {
           "joinedAt": 1787650589944,
-          "lastMessage": 1789987599983,
+          "lastMessage": 1792973012612,
           "registered": false
         },
         "270028888908017@lid": {
           "joinedAt": 1787651161340,
-          "lastMessage": 1790245998676,
+          "lastMessage": 1792973718397,
           "registered": false
         },
         "252471146500293@lid": {
           "joinedAt": 1787739393133,
-          "lastMessage": 1790245574521,
+          "lastMessage": 1792974152080,
           "registered": false
         },
         "135296117129378@lid": {
           "joinedAt": 1788302570027,
-          "lastMessage": 1790157447775,
+          "lastMessage": 1792973738176,
           "registered": false
         },
         "234157993136352@lid": {
           "joinedAt": 1790245721942,
-          "lastMessage": 1790251444798,
+          "lastMessage": 1792973019392,
           "registered": false
         }
       }
@@ -3105,17 +3110,17 @@
       "members": {
         "227886971789349@lid": {
           "joinedAt": 1787923891238,
-          "lastMessage": 1792187738358,
+          "lastMessage": 1792975647916,
           "registered": false
         },
         "101150808404203@lid": {
           "joinedAt": 1787923979315,
-          "lastMessage": 1792164680418,
+          "lastMessage": 1792976614408,
           "registered": false
         },
         "13916449022202@lid": {
           "joinedAt": 1787925864439,
-          "lastMessage": 1792186940958,
+          "lastMessage": 1792976594593,
           "registered": false
         },
         "156126909886719@lid": {
@@ -6988,7 +6993,7 @@
       "members": {
         "227886971789349@lid": {
           "joinedAt": 1789753976803,
-          "lastMessage": 1792187104388,
+          "lastMessage": 1792887390730,
           "registered": false
         },
         "197238169022533@lid": {
@@ -7067,22 +7072,22 @@
       "members": {
         "18039483441156@lid": {
           "joinedAt": 1790533601015,
-          "lastMessage": 1792189127483,
+          "lastMessage": 1792975820699,
           "registered": false
         },
         "146360154206349@lid": {
           "joinedAt": 1790557242434,
-          "lastMessage": 1792188721587,
+          "lastMessage": 1792975859229,
           "registered": false
         },
         "227886971789349@lid": {
           "joinedAt": 1790559442719,
-          "lastMessage": 1792878226856,
+          "lastMessage": 1792978521939,
           "registered": false
         },
         "150139943551199@lid": {
           "joinedAt": 1791847243697,
-          "lastMessage": 1792188501025,
+          "lastMessage": 1792970986248,
           "registered": false
         },
         "155663204380683@lid": {
@@ -7113,6 +7118,16 @@
         "211587772207245@lid": {
           "joinedAt": 1792170798945,
           "lastMessage": 1792187782798,
+          "registered": false
+        },
+        "219881035280560@lid": {
+          "joinedAt": 1792878750551,
+          "lastMessage": 1792975918803,
+          "registered": false
+        },
+        "16824158654512@lid": {
+          "joinedAt": 1792878997911,
+          "lastMessage": 1792975951185,
           "registered": false
         }
       }
@@ -7498,17 +7513,17 @@
         },
         "269273628991549@lid": {
           "joinedAt": 1791432273738,
-          "lastMessage": 1792182646108,
+          "lastMessage": 1792960248093,
           "registered": false
         },
         "227886971789349@lid": {
           "joinedAt": 1791432358693,
-          "lastMessage": 1792182578766,
+          "lastMessage": 1792953882137,
           "registered": false
         },
         "18786774171680@lid": {
           "joinedAt": 1791453655668,
-          "lastMessage": 1792011536259,
+          "lastMessage": 1792966885915,
           "registered": false
         },
         "139758990786734@lid": {
@@ -7543,7 +7558,7 @@
         },
         "4376823341079@lid": {
           "joinedAt": 1791484888895,
-          "lastMessage": 1791486426758,
+          "lastMessage": 1792955951474,
           "registered": false
         },
         "228145106006026@lid": {
@@ -7558,7 +7573,7 @@
         },
         "164794338382012@lid": {
           "joinedAt": 1791501089135,
-          "lastMessage": 1791501108665,
+          "lastMessage": 1792955269448,
           "registered": false
         },
         "157187867459684@lid": {
@@ -7588,7 +7603,7 @@
         },
         "280728390607101@lid": {
           "joinedAt": 1791926049336,
-          "lastMessage": 1791938500748,
+          "lastMessage": 1792953903050,
           "registered": false
         },
         "266172696137898@lid": {
@@ -7613,7 +7628,7 @@
         },
         "247764533407981@lid": {
           "joinedAt": 1792016503898,
-          "lastMessage": 1792105114593,
+          "lastMessage": 1792960360777,
           "registered": false
         },
         "232525955891258@lid": {
@@ -7638,12 +7653,32 @@
         },
         "11863370768527@lid": {
           "joinedAt": 1792174822834,
-          "lastMessage": 1792174822834,
+          "lastMessage": 1792960359333,
           "registered": false
         },
         "209796837982367@lid": {
           "joinedAt": 1792175869622,
           "lastMessage": 1792175872743,
+          "registered": false
+        },
+        "193269921251432@lid": {
+          "joinedAt": 1792953902512,
+          "lastMessage": 1792953902512,
+          "registered": false
+        },
+        "280754026193141@lid": {
+          "joinedAt": 1792953908372,
+          "lastMessage": 1792953908372,
+          "registered": false
+        },
+        "12902702575840@lid": {
+          "joinedAt": 1792960347125,
+          "lastMessage": 1792960367166,
+          "registered": false
+        },
+        "4501863923725@lid": {
+          "joinedAt": 1792977964361,
+          "lastMessage": 1792977964361,
           "registered": false
         }
       }
@@ -7741,12 +7776,12 @@
       "members": {
         "142348403081448@lid": {
           "joinedAt": 1791419057839,
-          "lastMessage": 1791424256001,
+          "lastMessage": 1792957331677,
           "registered": false
         },
         "227886971789349@lid": {
           "joinedAt": 1791419092542,
-          "lastMessage": 1791905197842,
+          "lastMessage": 1792957325240,
           "registered": false
         }
       }
@@ -7783,7 +7818,7 @@
       "members": {
         "227886971789349@lid": {
           "joinedAt": 1791842180977,
-          "lastMessage": 1792878143655,
+          "lastMessage": 1792975958758,
           "registered": false
         },
         "35752129908743@lid": {
@@ -7798,7 +7833,7 @@
         },
         "269273628991549@lid": {
           "joinedAt": 1791842341394,
-          "lastMessage": 1792187511159,
+          "lastMessage": 1792975020832,
           "registered": false
         },
         "71507514499083@lid": {
@@ -7818,27 +7853,27 @@
         },
         "41056330588278@lid": {
           "joinedAt": 1791843177926,
-          "lastMessage": 1792186530471,
+          "lastMessage": 1792973419508,
           "registered": false
         },
         "191491754430595@lid": {
           "joinedAt": 1791843570638,
-          "lastMessage": 1792185643416,
+          "lastMessage": 1792892584976,
           "registered": false
         },
         "4501863923725@lid": {
           "joinedAt": 1791846905773,
-          "lastMessage": 1792189243371,
+          "lastMessage": 1792977872836,
           "registered": false
         },
         "241777399328845@lid": {
           "joinedAt": 1791847785893,
-          "lastMessage": 1792186200961,
+          "lastMessage": 1792974238259,
           "registered": false
         },
         "139308052828391@lid": {
           "joinedAt": 1791847879126,
-          "lastMessage": 1792167236139,
+          "lastMessage": 1792977778389,
           "registered": false
         },
         "12013258432513@lid": {
@@ -7853,7 +7888,7 @@
         },
         "33368204964027@lid": {
           "joinedAt": 1791850152491,
-          "lastMessage": 1792186177815,
+          "lastMessage": 1792973640390,
           "registered": false
         },
         "219632531169343@lid": {
@@ -7863,7 +7898,7 @@
         },
         "258037994504444@lid": {
           "joinedAt": 1791856803046,
-          "lastMessage": 1792187148206,
+          "lastMessage": 1792975181881,
           "registered": false
         },
         "50689757728972@lid": {
@@ -7888,12 +7923,12 @@
         },
         "145888110489600@lid": {
           "joinedAt": 1791860033824,
-          "lastMessage": 1792107611818,
+          "lastMessage": 1792892374369,
           "registered": false
         },
         "192136117006495@lid": {
           "joinedAt": 1791860034321,
-          "lastMessage": 1792188901653,
+          "lastMessage": 1792976092126,
           "registered": false
         },
         "148804091301956@lid": {
@@ -7903,7 +7938,7 @@
         },
         "242601865277625@lid": {
           "joinedAt": 1791924276578,
-          "lastMessage": 1792184840927,
+          "lastMessage": 1792977843375,
           "registered": false
         },
         "187003631042741@lid": {
@@ -7918,7 +7953,7 @@
         },
         "123773206429699@lid": {
           "joinedAt": 1791945541730,
-          "lastMessage": 1791959956362,
+          "lastMessage": 1792973601714,
           "registered": false
         },
         "103827260895251@lid": {
@@ -7933,7 +7968,7 @@
         },
         "244337065611451@lid": {
           "joinedAt": 1792014776430,
-          "lastMessage": 1792186473785,
+          "lastMessage": 1792975880747,
           "registered": false
         },
         "256315091845210@lid": {
@@ -7944,6 +7979,21 @@
         "264613656588327@lid": {
           "joinedAt": 1792096416333,
           "lastMessage": 1792107963470,
+          "registered": false
+        },
+        "12902702575840@lid": {
+          "joinedAt": 1792878355233,
+          "lastMessage": 1792975839250,
+          "registered": false
+        },
+        "179345788297338@lid": {
+          "joinedAt": 1792882212391,
+          "lastMessage": 1792975976820,
+          "registered": false
+        },
+        "224769194627307@lid": {
+          "joinedAt": 1792890582227,
+          "lastMessage": 1792890582227,
           "registered": false
         }
       }
@@ -8025,7 +8075,7 @@
         },
         "192136117006495@lid": {
           "joinedAt": 1792114317439,
-          "lastMessage": 1792114424755,
+          "lastMessage": 1792881439015,
           "registered": false
         },
         "35752129908743@lid": {
@@ -8050,7 +8100,7 @@
         },
         "4501863923725@lid": {
           "joinedAt": 1792184772472,
-          "lastMessage": 1792184772472,
+          "lastMessage": 1792885754007,
           "registered": false
         }
       }
@@ -8065,6 +8115,316 @@
         "142773453901911@lid": {
           "joinedAt": 1792189163244,
           "lastMessage": 1792189163244,
+          "registered": false
+        }
+      }
+    },
+    "120363431429064602@g.us": {
+      "members": {
+        "18039483441156@lid": {
+          "joinedAt": 1792884199536,
+          "lastMessage": 1792963949879,
+          "registered": false
+        },
+        "146360154206349@lid": {
+          "joinedAt": 1792884260247,
+          "lastMessage": 1792959561715,
+          "registered": false
+        },
+        "227886971789349@lid": {
+          "joinedAt": 1792886573976,
+          "lastMessage": 1792963707334,
+          "registered": false
+        }
+      }
+    },
+    "120363430893096663@g.us": {
+      "members": {
+        "227886971789349@lid": {
+          "joinedAt": 1792887418158,
+          "lastMessage": 1792887835291,
+          "registered": false
+        }
+      }
+    },
+    "120363432770058640@g.us": {
+      "members": {
+        "281423672008762@lid": {
+          "joinedAt": 1792958960917,
+          "lastMessage": 1792974566614,
+          "registered": false
+        },
+        "176313038020842@lid": {
+          "joinedAt": 1792959384934,
+          "lastMessage": 1792962333336,
+          "registered": false
+        },
+        "227886971789349@lid": {
+          "joinedAt": 1792959424463,
+          "lastMessage": 1792962318726,
+          "registered": false
+        },
+        "169711505551598@lid": {
+          "joinedAt": 1792959814014,
+          "lastMessage": 1792973584352,
+          "registered": false
+        },
+        "145732619223191@lid": {
+          "joinedAt": 1792961497277,
+          "lastMessage": 1792961884918,
+          "registered": false
+        },
+        "125594222203009@lid": {
+          "joinedAt": 1792968683928,
+          "lastMessage": 1792968722690,
+          "registered": false
+        },
+        "279989572341841@lid": {
+          "joinedAt": 1792972186309,
+          "lastMessage": 1792972201565,
+          "registered": false
+        }
+      }
+    },
+    "120363413264946746@g.us": {
+      "members": {
+        "32977480319003@lid": {
+          "joinedAt": 1792961083092,
+          "lastMessage": 1792964867833,
+          "registered": false
+        },
+        "90336701472900@lid": {
+          "joinedAt": 1792961084740,
+          "lastMessage": 1792965544028,
+          "registered": false
+        },
+        "5863251169308@lid": {
+          "joinedAt": 1792961084987,
+          "lastMessage": 1792965584653,
+          "registered": false
+        },
+        "58274669977791@lid": {
+          "joinedAt": 1792961085479,
+          "lastMessage": 1792965545493,
+          "registered": false
+        },
+        "23897835630736@lid": {
+          "joinedAt": 1792961085637,
+          "lastMessage": 1792965526036,
+          "registered": false
+        },
+        "264561529716779@lid": {
+          "joinedAt": 1792961086539,
+          "lastMessage": 1792965567330,
+          "registered": false
+        },
+        "159073458765917@lid": {
+          "joinedAt": 1792961105493,
+          "lastMessage": 1792965444024,
+          "registered": false
+        },
+        "227886971789349@lid": {
+          "joinedAt": 1792961114478,
+          "lastMessage": 1792964124912,
+          "registered": false
+        },
+        "278430381801678@lid": {
+          "joinedAt": 1792961188142,
+          "lastMessage": 1792964208557,
+          "registered": false
+        },
+        "11657313022064@lid": {
+          "joinedAt": 1792961247404,
+          "lastMessage": 1792961319619,
+          "registered": false
+        },
+        "277872170250401@lid": {
+          "joinedAt": 1792961286649,
+          "lastMessage": 1792963687423,
+          "registered": false
+        },
+        "280290203312258@lid": {
+          "joinedAt": 1792961472056,
+          "lastMessage": 1792964618177,
+          "registered": false
+        },
+        "81016588869855@lid": {
+          "joinedAt": 1792961578477,
+          "lastMessage": 1792965516843,
+          "registered": false
+        },
+        "12915537088556@lid": {
+          "joinedAt": 1792961695693,
+          "lastMessage": 1792962822284,
+          "registered": false
+        },
+        "271369757544603@lid": {
+          "joinedAt": 1792961735578,
+          "lastMessage": 1792964134099,
+          "registered": false
+        },
+        "128115284152511@lid": {
+          "joinedAt": 1792961804610,
+          "lastMessage": 1792964610320,
+          "registered": false
+        },
+        "10033580515419@lid": {
+          "joinedAt": 1792962156380,
+          "lastMessage": 1792965253075,
+          "registered": false
+        },
+        "83696732385405@lid": {
+          "joinedAt": 1792962849755,
+          "lastMessage": 1792965315302,
+          "registered": false
+        },
+        "228540310098167@lid": {
+          "joinedAt": 1792963244848,
+          "lastMessage": 1792963805567,
+          "registered": false
+        },
+        "209152576061579@lid": {
+          "joinedAt": 1792964458607,
+          "lastMessage": 1792964458636,
+          "registered": false
+        }
+      }
+    },
+    "120363411654588552@g.us": {
+      "members": {
+        "156642373038098@lid": {
+          "joinedAt": 1792963178944,
+          "lastMessage": 1792963926640,
+          "registered": false
+        },
+        "150766421586012@lid": {
+          "joinedAt": 1792963181156,
+          "lastMessage": 1792965123924,
+          "registered": false
+        },
+        "87841140908062@lid": {
+          "joinedAt": 1792963182070,
+          "lastMessage": 1792965233701,
+          "registered": false
+        },
+        "21789006667882@lid": {
+          "joinedAt": 1792963182075,
+          "lastMessage": 1792964163716,
+          "registered": false
+        },
+        "214495666413571@lid": {
+          "joinedAt": 1792963182327,
+          "lastMessage": 1792963182327,
+          "registered": false
+        },
+        "75033816907960@lid": {
+          "joinedAt": 1792963204206,
+          "lastMessage": 1792965296110,
+          "registered": false
+        },
+        "143912341647567@lid": {
+          "joinedAt": 1792963207732,
+          "lastMessage": 1792965156353,
+          "registered": false
+        },
+        "169673421275311@lid": {
+          "joinedAt": 1792963226861,
+          "lastMessage": 1792964545788,
+          "registered": false
+        },
+        "227886971789349@lid": {
+          "joinedAt": 1792963230351,
+          "lastMessage": 1792963839918,
+          "registered": false
+        },
+        "54813228298492@lid": {
+          "joinedAt": 1792963239088,
+          "lastMessage": 1792963239088,
+          "registered": false
+        },
+        "53421390487713@lid": {
+          "joinedAt": 1792963254812,
+          "lastMessage": 1792965218940,
+          "registered": false
+        },
+        "120156692992098@lid": {
+          "joinedAt": 1792963275354,
+          "lastMessage": 1792964450260,
+          "registered": false
+        },
+        "270157771460804@lid": {
+          "joinedAt": 1792963293819,
+          "lastMessage": 1792963568580,
+          "registered": false
+        },
+        "180929993654478@lid": {
+          "joinedAt": 1792963352193,
+          "lastMessage": 1792963778392,
+          "registered": false
+        },
+        "44401908838478@lid": {
+          "joinedAt": 1792963395231,
+          "lastMessage": 1792963598337,
+          "registered": false
+        },
+        "32633597722836@lid": {
+          "joinedAt": 1792963480809,
+          "lastMessage": 1792964449080,
+          "registered": false
+        },
+        "77099746496708@lid": {
+          "joinedAt": 1792963480824,
+          "lastMessage": 1792964262642,
+          "registered": false
+        },
+        "179448666189960@lid": {
+          "joinedAt": 1792963670461,
+          "lastMessage": 1792963800713,
+          "registered": false
+        },
+        "90006089646161@lid": {
+          "joinedAt": 1792963677085,
+          "lastMessage": 1792963876998,
+          "registered": false
+        },
+        "84121900564545@lid": {
+          "joinedAt": 1792963766929,
+          "lastMessage": 1792964060237,
+          "registered": false
+        },
+        "104003253862423@lid": {
+          "joinedAt": 1792963777662,
+          "lastMessage": 1792963973911,
+          "registered": false
+        },
+        "101949923966977@lid": {
+          "joinedAt": 1792964225625,
+          "lastMessage": 1792964225625,
+          "registered": false
+        },
+        "76739019542636@lid": {
+          "joinedAt": 1792964333980,
+          "lastMessage": 1792965179716,
+          "registered": false
+        },
+        "16686719709200@lid": {
+          "joinedAt": 1792964685805,
+          "lastMessage": 1792964685805,
+          "registered": false
+        },
+        "71340128264343@lid": {
+          "joinedAt": 1792964884489,
+          "lastMessage": 1792964884489,
+          "registered": false
+        },
+        "184134324510813@lid": {
+          "joinedAt": 1792965032436,
+          "lastMessage": 1792965237289,
+          "registered": false
+        },
+        "188957857980653@lid": {
+          "joinedAt": 1792965264308,
+          "lastMessage": 1792965264325,
           "registered": false
         }
       }

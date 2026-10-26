@@ -1,94 +1,93 @@
-import { PREFIX, ASSETS_DIR } from "../../../config.js";
-import { InvalidParameterError } from "../../../errors/index.js";
 import {
-  removeScrapedAudio,
-  scrapeMusic,
-} from "../../../services/music-scraper.js";
-import path from "node:path";
-import fs from "node:fs/promises";
+  BOT_EMOJI,
+  BOT_NAME,
+  PREFIX,
+} from "../../../config.js";
+import { InvalidParameterError } from "../../../errors/index.js";
+import { searchMusic } from "../../../services/music-scraper.js";
+import { sendInteractiveCarousel } from "../../../utils/interactive.js";
+import { errorLog } from "../../../utils/logger.js";
 
 export default {
   name: "play-audio",
   description: "Baixa e envia músicas em MP3.",
   commands: ["play-audio", "play", "p", "musica"],
-  usage: `${PREFIX}play-audio nome da música`,
+  usage: `${PREFIX}play nome da música`,
 
   handle: async ({
     fullArgs,
+    socket,
+    remoteJid,
+    prefix,
+    webMessage,
     sendWaitReact,
     sendSuccessReact,
     sendErrorReact,
     sendErrorReply,
-    sendImageFromURL,
-    sendReply,
-    sendAudioFromFile,
   }) => {
     if (!fullArgs?.trim()) {
       throw new InvalidParameterError(
-        `Me fala o nome da música mano.\n\nExemplo:\n${PREFIX}play Alice in Chains`
+        `⛧━━━━━༺𖤐༻━━━━━⛧\n┃ 🩸 Diga o nome da música que procura.\n┃\n┃ Exemplo: ${PREFIX}play Alice in Chains\n╰━━━━━━━⛓️━━━━━━━╯`,
       );
     }
 
     if (/https?:\/\//i.test(fullArgs)) {
       throw new InvalidParameterError(
-        `Isso aí é link 😂\nUse ${PREFIX}yt-mp3 <link>`
+        `⛧━━━━━༺𖤐༻━━━━━⛧\n┃ Este comando procura pelo nome da música.\n┃ Para usar um link, invoque ${PREFIX}yt-mp3 <link>.\n╰━━━━━━━⛓️━━━━━━━╯`,
       );
     }
 
     await sendWaitReact();
-    let scrapedFile;
 
     try {
-      scrapedFile = await scrapeMusic(fullArgs.trim());
-      const title = scrapedFile.title || "Música";
-      const caption = `╭─❏ 🎵 *XAPA MUSIC*
-│
-├ *Título:* ${title}
-├ *Artista:* ${scrapedFile.author || "Desconhecido"}
-├ *Duração:* ${scrapedFile.duration || "Desconhecida"}
-│
-├ ▁▂▃▄▅▆▇█▇▆▅▄▃▂▁
-╰───────────────❏`;
+      const results = await searchMusic(fullArgs.trim());
 
+      if (results.length === 0) {
+        await sendErrorReact();
+        await sendErrorReply(
+          `⛧ Não encontrei essa faixa nas sombras do YouTube.\nTente outra busca com ${PREFIX}play <nome da música>.`,
+        );
+        return;
+      }
+
+      const activePrefix = prefix || PREFIX;
+      const cards = results.map((track, index) => ({
+        title: `${BOT_EMOJI} Faixa ${index + 1}/${results.length}`,
+        ...(track.thumbnail && { imageUrl: track.thumbnail }),
+        text: `⛧━━━━━༺𖤐༻━━━━━⛧
+┃ 🎵 *${track.title}*
+┃
+┃ ☠ Artista: ${track.author}
+┃ ⏱ Duração: ${track.duration}
+╰━━━━━━━🩸━━━━━━━╯`,
+        footer: BOT_NAME,
+        buttons: [
+          {
+            id: `${activePrefix}music-audio https://youtu.be/${track.videoId}`,
+            text: "Ouvir faixa",
+          },
+        ],
+      }));
+
+      await sendInteractiveCarousel(
+        socket,
+        remoteJid,
+        {
+          text: `⛓️ *${BOT_NAME}* ⛓️
+🩸 A busca terminou. Escolha sua faixa e deixe a noite tocar.
+Deslize para percorrer os resultados.`,
+          footer: `✦ ${results.length} faixa(s) encontrada(s) ✦`,
+          cards,
+        },
+        { quoted: webMessage },
+      );
       await sendSuccessReact();
-
-      if (scrapedFile.thumbnail) {
-        await sendImageFromURL(scrapedFile.thumbnail, caption);
-      } else {
-        await sendReply(caption);
-      }
-
-      await sendAudioFromFile(scrapedFile.filePath, false, false);
-
-      // 50% de chance de enviar um áudio de evento
-      if (Math.random() < 0.5) {
-        try {
-          const eventAudiosDir = path.join(ASSETS_DIR, "audios", "eventos");
-          const files = await fs.readdir(eventAudiosDir);
-          const audioFiles = files.filter(f => /\.(mp3|ogg|wav)$/i.test(f));
-          
-          if (audioFiles.length > 0) {
-            const randomAudio = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-            const audioPath = path.join(eventAudiosDir, randomAudio);
-            
-            // Pequeno delay antes de enviar o áudio de evento
-            await new Promise(resolve => setTimeout(resolve, 500));
-            
-            await sendAudioFromFile(audioPath, false, false);
-          }
-        } catch (eventError) {
-          // Silenciosamente falha se não conseguir enviar o áudio de evento
-          console.error("[PLAY-AUDIO EVENT ERROR]", eventError.message);
-        }
-      }
     } catch (error) {
-      console.error("[PLAY-AUDIO ERROR]", error);
+      errorLog(`[PLAY-AUDIO ERROR] ${error.stack || error.message || error}`);
       await sendErrorReact();
-      await sendErrorReply(`❌ Deu ruim ao baixar a música.\n\n${error.message}`);
-    } finally {
-      if (scrapedFile?.filePath) {
-        await removeScrapedAudio(scrapedFile.filePath);
-      }
+      await sendErrorReply(
+        "⛧ A busca foi interrompida antes de revelar as faixas. Tente novamente em instantes.",
+      );
     }
   },
 };

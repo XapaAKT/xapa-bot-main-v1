@@ -8,25 +8,26 @@ import {
 
 export default {
   name: "auto-sticker",
-  description: "Ativa/desativa o recurso de auto-figurinha no grupo.",
+  description:
+    "Ativa/desativa figurinhas automáticas com a mesma assinatura do comando sticker.",
   commands: ["auto-sticker", "auto-figu", "auto-fig", "auto-stick"],
-  usage: `${PREFIX}auto-sticker (1/0)`,
+  usage: `${PREFIX}auto-sticker <1|0>`,
   /**
    * @param {CommandHandleProps} props
    */
   handle: async ({ args, sendReply, sendSuccessReact, remoteJid }) => {
     if (!args.length) {
       throw new InvalidParameterError(
-        "Você precisa digitar 1 ou 0 (ligar ou desligar)!"
+        `Use ${PREFIX}auto-sticker 1 para ativar ou ${PREFIX}auto-sticker 0 para desativar.`,
       );
     }
 
-    const autoStickerOn = args[0] == "1";
-    const autoStickerOff = args[0] == "0";
+    const autoStickerOn = args[0] === "1";
+    const autoStickerOff = args[0] === "0";
 
     if (!autoStickerOn && !autoStickerOff) {
       throw new InvalidParameterError(
-        "Você precisa digitar 1 ou 0 (ligar ou desligar)!"
+        `Use ${PREFIX}auto-sticker 1 para ativar ou ${PREFIX}auto-sticker 0 para desativar.`,
       );
     }
 
@@ -35,7 +36,7 @@ export default {
 
     if (hasActive || hasInactive) {
       throw new WarningError(
-        `O recurso de auto-figurinha já está ${
+        `O auto-sticker já está ${
           autoStickerOn ? "ativado" : "desativado"
         }!`
       );
@@ -49,7 +50,14 @@ export default {
 
     await sendSuccessReact();
 
-    const context = autoStickerOn ? "ativado" : "desativado";
-    await sendReply(`Recurso de auto-figurinha ${context} com sucesso!`);
+    if (autoStickerOn) {
+      await sendReply(
+        "⛓️ Auto-sticker ativado!\n" +
+          "As imagens e os vídeos permitidos serão convertidos automaticamente em figurinha com a mesma assinatura do comando sticker.",
+      );
+      return;
+    }
+
+    await sendReply("⛓️ Auto-sticker desativado com sucesso.");
   },
 };

@@ -98,6 +98,7 @@ Command authoring rules:
 - keep commands focused and readable
 - prefer existing helpers and services over duplicating code
 - if a command needs persistence, go through `src/utils/database.js`
+- for a step-by-step guide with examples of commands, buttons, carousels, and polls, see `docs/tutoriais/README.md`
 
 ## TYPING_AND_MIDDLEWARE
 

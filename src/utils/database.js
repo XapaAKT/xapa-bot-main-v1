@@ -15,6 +15,7 @@ const defaultDatabase = () => ({
         prefix: PREFIX,
         menuType: "buttons",
         menuCarousel: false,
+        youtubeSearchCarousel: false,
     },
 });
 
@@ -32,6 +33,7 @@ const readDB = () => {
         data.settings.prefix??= PREFIX;
         data.settings.menuType??= "buttons";
         data.settings.menuCarousel??= false;
+        data.settings.youtubeSearchCarousel??= false;
         return data;
     } catch (error) {
         console.error("Erro ao ler database.json:", error);
@@ -177,6 +179,20 @@ export function setMenuCarousel(enabled) {
 
     const db = readDB();
     db.settings.menuCarousel = enabled;
+    writeDB(db);
+}
+
+export function getYoutubeSearchCarousel() {
+    return readDB().settings.youtubeSearchCarousel === true;
+}
+
+export function setYoutubeSearchCarousel(enabled) {
+    if (typeof enabled !== "boolean") {
+        throw new TypeError("O estado do carrossel da busca do YouTube deve ser booleano.");
+    }
+
+    const db = readDB();
+    db.settings.youtubeSearchCarousel = enabled;
     writeDB(db);
 }
 

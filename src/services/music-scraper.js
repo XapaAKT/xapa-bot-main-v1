@@ -17,6 +17,7 @@ let ytDlpPromise;
 
 function toVideoData(video) {
   return {
+    videoId: video.videoId,
     url: video.url,
     title: video.title || "Música",
     author: video.author?.name || "Desconhecido",
@@ -27,11 +28,20 @@ function toVideoData(video) {
   };
 }
 
+export async function searchMusic(query, limit = 5) {
+  const searchResult = await yts(query);
+
+  return (searchResult.videos || [])
+    .filter((video) => video.url && video.videoId)
+    .slice(0, limit)
+    .map(toVideoData);
+}
+
 async function findVideo(query) {
   const videoId = getVideoId(query);
 
   if (videoId) {
-    return { url: query, videoId };
+    return { ...toVideoData({ url: query, videoId }), videoId };
   }
 
   const searchResult = await yts(query);
@@ -41,7 +51,7 @@ async function findVideo(query) {
     throw new Error("Nenhuma música foi encontrada.");
   }
 
-  return { ...toVideoData(video), videoId: video.videoId };
+  return toVideoData(video);
 }
 
 function getVideoId(value) {

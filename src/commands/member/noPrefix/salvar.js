@@ -53,47 +53,149 @@ function sanitizeFolderName(name, fallback) {
   return folderName;
 }
 
-async function getMediaSenderName({ socket, webMessage }) {
-  const message = webMessage?.message || {};
-  const contextInfo = message?.extendedTextMessage?.contextInfo;
+function normalizeJid(jid) {
+  return typeof jid === "string"
+    ? jid.replace(/:\d+(?=@)/g, "").trim()
+    : "";
+}
+
+function getDisplayName(contact) {
+  return (
+    contact?.name ||
+    contact?.notify ||
+    contact?.verifiedName ||
+    contact?.username ||
+    ""
+  );
+}
+
+function getContextInfo(message) {
+  if (!message) return null;
+
+  const contextInfo =
+    message.extendedTextMessage?.contextInfo ||
+    message.imageMessage?.contextInfo ||
+    message.videoMessage?.contextInfo;
+  if (contextInfo) return contextInfo;
+
+  return getContextInfo(
+    message.ephemeralMessage?.message ||
+      message.viewOnceMessage?.message ||
+      message.viewOnceMessageV2?.message,
+  );
+}
+
+export async function getMediaSenderName({ socket, webMessage }) {
+  const contextInfo = getContextInfo(webMessage?.message);
   const quotedMessage = contextInfo?.quotedMessage;
   const isQuotedMedia = Boolean(
     quotedMessage?.imageMessage || quotedMessage?.videoMessage,
   );
 
-  if (isQuotedMedia && webMessage?.key?.remoteJid?.endsWith("@g.us")) {
-    const participantJid = contextInfo?.participant;
+  if (isQuotedMedia) {
+    const participantIdentifiers = [
+      contextInfo?.participantPn,
+      contextInfo?.participantAlt,
+      contextInfo?.participant,
+    ]
+      .map(normalizeJid)
+      .filter(Boolean);
+    let participantName = contextInfo?.participantName || "";
+    let phoneJid = participantIdentifiers.find((jid) =>
+      jid.endsWith("@s.whatsapp.net"),
+    ) || "";
+    const groupJid = webMessage?.key?.remoteJid;
 
-    if (participantJid) {
+    if (groupJid?.endsWith("@g.us") && participantIdentifiers.length) {
       try {
-        const metadata = await socket.groupMetadata(webMessage.key.remoteJid);
+        const metadata = await socket.groupMetadata(groupJid);
         const participant = metadata?.participants?.find(
-          (item) =>
-            item.id?.replace(/:[0-9]+(?=@)/g, "") ===
-            participantJid.replace(/:[0-9]+(?=@)/g, ""),
+          (item) => {
+            const identifiers = [
+              item.id,
+              item.lid,
+              item.phoneNumber,
+            ].map(normalizeJid);
+            return identifiers.some((identifier) =>
+              participantIdentifiers.includes(identifier),
+            );
+          },
         );
-        const participantName =
-          participant?.name || participant?.notify || participant?.verifiedName;
-
-        if (participantName) {
-          return sanitizeFolderName(participantName, participantJid);
+        if (participant) {
+          participantName = getDisplayName(participant);
+          phoneJid ||= [
+            participant.phoneNumber,
+            participant.id,
+          ]
+            .map(normalizeJid)
+            .find((jid) => jid.endsWith("@s.whatsapp.net")) || "";
         }
       } catch (error) {
         errorLog(
-          `[SALVAR] Não foi possível consultar o nome de quem enviou a mídia: ${error?.message || String(error)}`,
+          `[SALVAR] Não foi possível consultar os dados de quem enviou a mídia: ${error?.message || String(error)}`,
         );
       }
+    }
 
-      return sanitizeFolderName("", participantJid);
+    const participantLid = participantIdentifiers.find((jid) =>
+      jid.endsWith("@lid"),
+    );
+    if (!phoneJid && participantLid) {
+      try {
+        const getPNForLID = socket?.signalRepository?.lidMapping?.getPNForLID;
+        phoneJid = normalizeJid(
+          getPNForLID
+            ? await getPNForLID.call(
+                socket.signalRepository.lidMapping,
+                participantLid,
+              )
+            : "",
+        );
+      } catch (error) {
+        errorLog(
+          `[SALVAR] Não foi possível converter o LID em JID: ${error?.message || String(error)}`,
+        );
+      }
+    }
+
+    const folderLabel = [participantName, phoneJid].filter(Boolean).join(" - ");
+    return sanitizeFolderName(folderLabel, phoneJid || "Desconhecido");
+  }
+
+  const key = webMessage?.key || {};
+  const senderIdentifiers = [
+    key.participantAlt,
+    key.senderPn,
+    key.remoteJidAlt,
+    key.participant,
+    key.remoteJid,
+  ].map(normalizeJid);
+  let phoneJid =
+    senderIdentifiers.find((jid) => jid.endsWith("@s.whatsapp.net")) || "";
+
+  const senderLid =
+    senderIdentifiers.find((jid) => jid.endsWith("@lid")) || "";
+  if (!phoneJid && senderLid) {
+    try {
+      const getPNForLID = socket?.signalRepository?.lidMapping?.getPNForLID;
+      phoneJid = normalizeJid(
+        getPNForLID
+          ? await getPNForLID.call(
+              socket.signalRepository.lidMapping,
+              senderLid,
+            )
+          : "",
+      );
+    } catch (error) {
+      errorLog(
+        `[SALVAR] Não foi possível converter o LID em JID: ${error?.message || String(error)}`,
+      );
     }
   }
 
-  const senderJid =
-    webMessage?.key?.participant || webMessage?.key?.remoteJid;
-  return sanitizeFolderName(
-    webMessage?.pushName || webMessage?.notifyName,
-    senderJid,
-  );
+  const senderName = webMessage?.pushName || webMessage?.notifyName || "";
+  const folderLabel = [senderName, phoneJid].filter(Boolean).join(" - ");
+  return sanitizeFolderName(folderLabel, senderName || "Desconhecido");
 }
 
 async function streamToBuffer(stream) {

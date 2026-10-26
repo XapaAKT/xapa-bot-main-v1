@@ -2076,7 +2076,7 @@
       "antiSticker": false,
       "antiLink": false,
       "autoResponder": false,
-      "autoSticker": false,
+      "autoSticker": true,
       "ownerReplyAudio": false,
       "exit": true,
       "welcome": true,
@@ -2252,13 +2252,13 @@
       "muted": []
     },
     "120363412034468029@g.us": {
-      "active": false,
+      "active": true,
       "prefix": "!",
       "antiAudio": false,
       "antiSticker": false,
       "antiLink": false,
       "autoResponder": false,
-      "autoSticker": false,
+      "autoSticker": true,
       "ownerReplyAudio": false,
       "exit": true,
       "welcome": false,
@@ -2747,12 +2747,83 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": []
+    },
+    "120363431429064602@g.us": {
+      "active": true,
+      "prefix": "/",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": []
+    },
+    "120363430893096663@g.us": {
+      "active": false,
+      "prefix": "/",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": []
+    },
+    "120363432770058640@g.us": {
+      "active": false,
+      "prefix": "/",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": []
+    },
+    "120363413264946746@g.us": {
+      "active": false,
+      "prefix": "/",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": []
+    },
+    "120363411654588552@g.us": {
+      "active": false,
+      "prefix": "/",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": []
     }
   },
   "autoresponder": [],
   "settings": {
     "prefix": "!",
     "menuType": "list",
-    "menuCarousel": true
+    "menuCarousel": true,
+    "youtubeSearchCarousel": true
   }
 }
