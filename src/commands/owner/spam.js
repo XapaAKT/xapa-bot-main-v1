@@ -9,8 +9,8 @@ import {
   removeFileIfExists,
 } from "../../utils/index.js";
 
-const MAX_MESSAGES = 100;
-const MESSAGE_INTERVAL_MS = 500;
+const MAX_MESSAGES = 250;
+const MESSAGE_INTERVAL_MS = 350;
 
 function getContextInfo(message) {
   const candidates = [

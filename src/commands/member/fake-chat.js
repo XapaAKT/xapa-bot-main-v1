@@ -1,5 +1,5 @@
 /**
- * Desenvolvido por: Mkg
+ * Desenvolvido por: Xapolin colorado
  * Refatorado por: Xapa
  *
  * @author Xapa

@@ -9,6 +9,9 @@ import { errorLog } from "../../utils/logger.js";
 const FDROID_APK_URL = "https://f-droid.org/F-Droid.apk";
 const TERMUX_FDROID_URL = "https://f-droid.org/en/packages/com.termux/";
 const TERMUX_NODE_URL = "https://wiki.termux.com/wiki/Node.js";
+const BOT_REPOSITORY_URL = "https://github.com/XapaAKT/xapa-bot-main-v1.git";
+const BOT_ARCHIVE_URL =
+  "https://github.com/XapaAKT/xapa-bot-main-v1/archive/refs/heads/main.zip";
 
 const STEPS = [
   {
@@ -55,9 +58,10 @@ const STEPS = [
   {
     title: "Passo 4/5: colocar os arquivos do bot",
     text:
-      "Obtenha os arquivos somente do repositório oficial fornecido por quem mantém o bot. No comando abaixo, substitua URL_DO_REPOSITORIO pela URL HTTPS real:\n\n" +
-      "git clone URL_DO_REPOSITORIO bot\n" +
+      "Clone o repositório do XIC BOT com estes comandos:\n\n" +
+      `git clone ${BOT_REPOSITORY_URL} bot\n` +
       "cd bot\n\n" +
+      "Ou use o botão abaixo para receber o projeto em um arquivo ZIP neste chat.\n\n" +
       "Se recebeu um ZIP: execute termux-setup-storage, permita o acesso aos arquivos, instale unzip com pkg install unzip -y e extraia o ZIP da pasta Downloads para ~/bot. Depois entre na pasta do projeto com cd ~/bot.\n\n" +
       "Não compartilhe arquivos de sessão, tokens ou credenciais.",
   },
@@ -91,6 +95,15 @@ function makeStepButtons(stepIndex, prefix) {
       url,
     }),
   );
+
+  if (stepIndex === 4) {
+    buttons.push(
+      makeButton("quick_reply", {
+        display_text: "📦 Baixar bot (.zip)",
+        id: `${prefix}termux-tutorial download`,
+      }),
+    );
+  }
 
   if (stepIndex > 0) {
     buttons.push(
@@ -135,11 +148,44 @@ export default {
     prefix,
     webMessage,
     sendErrorReply,
+    sendDocumentFromBuffer,
   }) => {
-    if (args.length > 1 || (args.length === 1 && !/^\d+$/.test(args[0]))) {
+    const isDownloadRequest = args.length === 1 && args[0] === "download";
+    if (
+      args.length > 1 ||
+      (args.length === 1 && !isDownloadRequest && !/^\d+$/.test(args[0]))
+    ) {
       throw new InvalidParameterError(
         `Use ${prefix || PREFIX}termux-tutorial para abrir o tutorial ou escolha uma etapa pelos botões.`,
       );
+    }
+
+    if (isDownloadRequest) {
+      try {
+        const response = await fetch(BOT_ARCHIVE_URL, {
+          signal: AbortSignal.timeout(30_000),
+        });
+        if (!response.ok) {
+          throw new Error(`Download do ZIP retornou HTTP ${response.status}.`);
+        }
+
+        const archive = Buffer.from(await response.arrayBuffer());
+        if (archive.length === 0) {
+          throw new Error("O arquivo ZIP baixado está vazio.");
+        }
+
+        await sendDocumentFromBuffer(
+          archive,
+          "application/zip",
+          "xic-bot.zip",
+        );
+      } catch (error) {
+        errorLog(`[TERMUX TUTORIAL DOWNLOAD ERROR] ${error.stack || error.message || error}`);
+        await sendErrorReply(
+          "Não consegui baixar o ZIP do bot agora. Tente novamente mais tarde ou use o comando git clone mostrado no tutorial.",
+        );
+      }
+      return;
     }
 
     const stepIndex = args.length === 0 ? 0 : Number(args[0]);
