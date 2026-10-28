@@ -9,13 +9,13 @@ Este guia mostra como enviar botões de resposta rápida no WhatsApp e organizar
 - `baileys_helper` instalado.
 - A função `sendNativeFlowButtons` deste projeto, em `src/utils/interactive.js`, ou uma implementação equivalente compatível com a versão instalada do Baileys.
 
-Neste projeto, o helper de botões importa o pacote chamado `baileys` e usa `baileys_helper`:
+Neste projeto, o pacote chamado `baileys` é o fork compatível com A2UI, e o helper de botões usa `baileys_helper`:
 
 ```bash
-npm install baileys@7.0.0-rc13 baileys_helper@^1.0.6
+npm install "baileys@npm:@rexxhayanasi/elaina-baileys@1.4.7" baileys_helper@^1.0.6
 ```
 
-Se o outro bot já usa uma distribuição ou versão diferente de Baileys, não instale uma segunda implementação sem verificar a compatibilidade. Copie `src/utils/interactive.js` e ajuste os imports/detecção interna do pacote para usar a mesma versão que cria o socket. As APIs internas variam entre versões.
+Se o outro bot já usa uma distribuição ou versão diferente de Baileys, não instale uma segunda implementação sem verificar a compatibilidade. Para enviar A2UI, a mesma distribuição que cria o socket precisa reconhecer e serializar `interactiveMessage.bloksWidget`; o Baileys upstream usado anteriormente neste projeto não incluía esse campo. As APIs internas variam entre versões.
 
 ## 2. Por que usar o helper Native Flow
 

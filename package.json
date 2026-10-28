@@ -17,9 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "@cacheable/node-cache": "^3.0.0",
-    "@whiskeysockets/baileys": "^7.0.0-rc14",
     "axios": "^1.19.0",
-    "baileys": "7.0.0-rc13",
+    "baileys": "npm:@rexxhayanasi/elaina-baileys@1.4.7",
     "baileys_helper": "^1.0.6",
     "correios-brasil": "^3.0.6",
     "express": "^5.2.1",

@@ -1,0 +1,254 @@
+{
+  "canvas-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "level": 1,
+    "inventory": {
+      "resources": {},
+      "items": {}
+    },
+    "tools": {
+      "pickaxe": {
+        "level": 1,
+        "durability": 100
+      },
+      "axe": {
+        "level": 1,
+        "durability": 100
+      },
+      "rod": {
+        "level": 1,
+        "durability": 100
+      },
+      "weapon": {
+        "level": 1,
+        "durability": 100
+      }
+    },
+    "skins": {
+      "owned": [
+        "padrao"
+      ],
+      "equipped": "padrao"
+    },
+    "stats": {
+      "mining": 0,
+      "woodcutting": 0,
+      "hunting": 0,
+      "fishing": 0,
+      "sales": 0,
+      "wins": 0,
+      "losses": 0
+    }
+  },
+  "227886971789349@lid": {
+    "coins": 0,
+    "xp": 0,
+    "level": 1,
+    "inventory": {
+      "resources": {},
+      "items": {}
+    },
+    "tools": {
+      "pickaxe": {
+        "level": 1,
+        "durability": 100
+      },
+      "axe": {
+        "level": 1,
+        "durability": 100
+      },
+      "rod": {
+        "level": 1,
+        "durability": 100
+      },
+      "weapon": {
+        "level": 1,
+        "durability": 100
+      }
+    },
+    "skins": {
+      "owned": [
+        "padrao"
+      ],
+      "equipped": "padrao"
+    },
+    "stats": {
+      "mining": 0,
+      "woodcutting": 0,
+      "hunting": 0,
+      "fishing": 0,
+      "sales": 0,
+      "wins": 0,
+      "losses": 0
+    }
+  },
+  "canvas-ui-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "level": 1,
+    "inventory": {
+      "resources": {},
+      "items": {}
+    },
+    "tools": {
+      "pickaxe": {
+        "level": 1,
+        "durability": 100
+      },
+      "axe": {
+        "level": 1,
+        "durability": 100
+      },
+      "rod": {
+        "level": 1,
+        "durability": 100
+      },
+      "weapon": {
+        "level": 1,
+        "durability": 100
+      }
+    },
+    "skins": {
+      "owned": [
+        "padrao"
+      ],
+      "equipped": "padrao"
+    },
+    "stats": {
+      "mining": 0,
+      "woodcutting": 0,
+      "hunting": 0,
+      "fishing": 0,
+      "sales": 0,
+      "wins": 0,
+      "losses": 0
+    }
+  },
+  "canvas-fallback-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "level": 1,
+    "inventory": {
+      "resources": {},
+      "items": {}
+    },
+    "tools": {
+      "pickaxe": {
+        "level": 1,
+        "durability": 100
+      },
+      "axe": {
+        "level": 1,
+        "durability": 100
+      },
+      "rod": {
+        "level": 1,
+        "durability": 100
+      },
+      "weapon": {
+        "level": 1,
+        "durability": 100
+      }
+    },
+    "skins": {
+      "owned": [
+        "padrao"
+      ],
+      "equipped": "padrao"
+    },
+    "stats": {
+      "mining": 0,
+      "woodcutting": 0,
+      "hunting": 0,
+      "fishing": 0,
+      "sales": 0,
+      "wins": 0,
+      "losses": 0
+    }
+  },
+  "background-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "level": 1,
+    "inventory": {
+      "resources": {},
+      "items": {}
+    },
+    "tools": {
+      "pickaxe": {
+        "level": 1,
+        "durability": 100
+      },
+      "axe": {
+        "level": 1,
+        "durability": 100
+      },
+      "rod": {
+        "level": 1,
+        "durability": 100
+      },
+      "weapon": {
+        "level": 1,
+        "durability": 100
+      }
+    },
+    "skins": {
+      "owned": [
+        "padrao"
+      ],
+      "equipped": "padrao"
+    },
+    "stats": {
+      "mining": 0,
+      "woodcutting": 0,
+      "hunting": 0,
+      "fishing": 0,
+      "sales": 0,
+      "wins": 0,
+      "losses": 0
+    }
+  },
+  "canvas-new-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "level": 1,
+    "inventory": {
+      "resources": {},
+      "items": {}
+    },
+    "tools": {
+      "pickaxe": {
+        "level": 1,
+        "durability": 100
+      },
+      "axe": {
+        "level": 1,
+        "durability": 100
+      },
+      "rod": {
+        "level": 1,
+        "durability": 100
+      },
+      "weapon": {
+        "level": 1,
+        "durability": 100
+      }
+    },
+    "skins": {
+      "owned": [
+        "padrao"
+      ],
+      "equipped": "padrao"
+    },
+    "stats": {
+      "mining": 0,
+      "woodcutting": 0,
+      "hunting": 0,
+      "fishing": 0,
+      "sales": 0,
+      "wins": 0,
+      "losses": 0
+    }
+  }
+}

@@ -6,7 +6,7 @@
     "lastDaily": 1788204054653,
     "name": "🫠",
     "createdAt": "2026-07-22T15:51:02.167Z",
-    "updatedAt": "2026-10-08T01:07:39.490Z"
+    "updatedAt": "2026-10-28T03:53:01.748Z"
   },
   "216848687726684@lid": {
     "coins": 184,
@@ -232,5 +232,50 @@
     "name": "usuário",
     "createdAt": "2026-10-08T01:07:39.592Z",
     "updatedAt": "2026-10-08T01:07:39.592Z"
+  },
+  "canvas-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "lastWork": 0,
+    "lastDaily": 0,
+    "name": "Canvas Teste",
+    "createdAt": "2026-10-28T03:07:22.395Z",
+    "updatedAt": "2026-10-28T03:07:22.395Z"
+  },
+  "canvas-ui-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "lastWork": 0,
+    "lastDaily": 0,
+    "name": "UI Teste",
+    "createdAt": "2026-10-28T03:12:25.182Z",
+    "updatedAt": "2026-10-28T03:12:25.182Z"
+  },
+  "canvas-fallback-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "lastWork": 0,
+    "lastDaily": 0,
+    "name": "Fallback Teste",
+    "createdAt": "2026-10-28T03:13:54.888Z",
+    "updatedAt": "2026-10-28T03:13:54.888Z"
+  },
+  "background-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "lastWork": 0,
+    "lastDaily": 0,
+    "name": "Fundo Teste",
+    "createdAt": "2026-10-28T03:21:17.146Z",
+    "updatedAt": "2026-10-28T03:21:17.146Z"
+  },
+  "canvas-new-validation@s.whatsapp.net": {
+    "coins": 0,
+    "xp": 0,
+    "lastWork": 0,
+    "lastDaily": 0,
+    "name": "Perfil Novo",
+    "createdAt": "2026-10-28T03:42:48.526Z",
+    "updatedAt": "2026-10-28T03:42:48.986Z"
   }
 }

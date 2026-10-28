@@ -3,6 +3,11 @@ import { ensureRecord, readJson, writeJson } from "./_helpers.js";
 const FILE = "profile.json";
 
 const DEFAULT = {
+  description: "Ainda nao defini uma descricao.",
+  font: "moderna",
+  theme: "neon",
+  background: "",
+  pokedolars: 0,
   xp: 0,
   level: 1,
   mining: 0,
@@ -16,6 +21,15 @@ const DEFAULT = {
 export function getProfile(userId) {
   const db = readJson(FILE, {});
   const record = ensureRecord(db, userId, DEFAULT);
+  writeJson(FILE, db);
+  return record;
+}
+
+export function updateProfile(userId, changes) {
+  const db = readJson(FILE, {});
+  const record = ensureRecord(db, userId, DEFAULT);
+
+  Object.assign(record, changes);
   writeJson(FILE, db);
   return record;
 }

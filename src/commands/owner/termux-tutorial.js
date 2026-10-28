@@ -70,8 +70,9 @@ const STEPS = [
     text:
       "Dentro da pasta do projeto, instale as dependências:\n\n" +
       "SHARP_FORCE_GLOBAL_LIBVIPS=1 npm install\n\n" +
-      "Depois inicie o bot:\n" +
+      "Para iniciar agora, execute:\n" +
       "npm start\n\n" +
+      "Para ligar o bot novamente pelo celular depois: abra o aplicativo Termux, entre na pasta do projeto com cd ~/bot e execute npm start. Não é necessário instalar as dependências de novo a cada inicialização.\n\n" +
       "Siga o pareamento exibido pelo bot e vincule o WhatsApp em Aparelhos conectados. Nunca envie seu QR Code, código de pareamento ou pasta assets/auth para outra pessoa.",
   },
   {
