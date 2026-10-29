@@ -6,7 +6,7 @@
     "lastDaily": 1788204054653,
     "name": "🫠",
     "createdAt": "2026-07-22T15:51:02.167Z",
-    "updatedAt": "2026-10-28T03:53:01.748Z"
+    "updatedAt": "2026-10-29T22:29:54.604Z"
   },
   "216848687726684@lid": {
     "coins": 184,
@@ -277,5 +277,14 @@
     "name": "Perfil Novo",
     "createdAt": "2026-10-28T03:42:48.526Z",
     "updatedAt": "2026-10-28T03:42:48.986Z"
+  },
+  "canvas-validation@lid": {
+    "coins": 0,
+    "xp": 0,
+    "lastWork": 0,
+    "lastDaily": 0,
+    "name": "Usuário",
+    "createdAt": "2026-10-29T22:26:18.080Z",
+    "updatedAt": "2026-10-29T22:26:18.080Z"
   }
 }

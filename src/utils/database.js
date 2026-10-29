@@ -65,6 +65,7 @@ function getGroup(jid) {
     if (!db.groups[jid]) {
         db.groups[jid] = {
             active: false,
+            ownerOnlyOn: false,
             prefix: PREFIX, // <- AGORA JÁ NASCE COM PREFIX
             antiAudio: false, antiSticker: false, antiLink: false,
             autoResponder: false, autoSticker: false, ownerReplyAudio: false,
@@ -107,6 +108,12 @@ export const deactivateExitGroup = (jid) => updateIsActiveGroupRestriction(jid, 
 export const isActiveExitGroup = (jid) => isActiveGroupRestriction(jid, "exit");
 export function activateGroup(jid) { updateIsActiveGroupRestriction(jid, "active", true); }
 export function deactivateGroup(jid) { updateIsActiveGroupRestriction(jid, "active", false); }
+export function setGroupOwnerOnlyOn(jid, value) {
+    updateIsActiveGroupRestriction(jid, "ownerOnlyOn", value);
+}
+export function isGroupOwnerOnlyOn(jid) {
+    return isActiveGroupRestriction(jid, "ownerOnlyOn");
+}
 export const activateOnlyAdmins = (jid) => updateIsActiveGroupRestriction(jid, "onlyAdmins", true);
 export const deactivateOnlyAdmins = (jid) => updateIsActiveGroupRestriction(jid, "onlyAdmins", false);
 export const isActiveOnlyAdmins = (jid) => isActiveGroupRestriction(jid, "onlyAdmins");
@@ -125,6 +132,7 @@ export function getPrefix(groupJid) {
     if (!db.groups[groupJid]) {
         db.groups[groupJid] = {
             active: false, prefix: PREFIX, antiAudio: false, antiSticker: false, antiLink: false,
+            ownerOnlyOn: false,
             autoResponder: false, autoSticker: false, exit: true, welcome: true, onlyAdmins: false, muted: []
         };
         writeDB(db);
@@ -201,7 +209,7 @@ export function setSpiderApiToken(t) { const db = readDB(); db.settings??= {}; d
 export function checkIfMemberIsMuted(g, m) { return (getGroup(g).muted || []).includes(m); }
 export function muteMember(g, m) { const db = readDB(); const group = getGroup(g); if (!group.muted.includes(m)) { group.muted.push(m); db.groups[g] = group; writeDB(db); } }
 export function unmuteMember(g, m) { const db = readDB(); const group = getGroup(g); group.muted = group.muted.filter(id => id!== m); db.groups[g] = group; writeDB(db); }
-export function readGroupRestrictions(jid) { const g = getGroup(jid); return { active: g.active?? true, antiAudio: g.antiAudio?? false, antiSticker: g.antiSticker?? false, antiLink: g.antiLink?? false, autoResponder: g.autoResponder?? false, autoSticker: g.autoSticker?? false, exit: g.exit?? true, welcome: g.welcome?? true, onlyAdmins: g.onlyAdmins?? false, muted: g.muted?? [] }; }
+export function readGroupRestrictions(jid) { const g = getGroup(jid); return { active: g.active?? true, ownerOnlyOn: g.ownerOnlyOn?? false, antiAudio: g.antiAudio?? false, antiSticker: g.antiSticker?? false, antiLink: g.antiLink?? false, autoResponder: g.autoResponder?? false, autoSticker: g.autoSticker?? false, exit: g.exit?? true, welcome: g.welcome?? true, onlyAdmins: g.onlyAdmins?? false, muted: g.muted?? [] }; }
 export function readRestrictedMessageTypes(jid) { const g = getGroup(jid); const r = []; if (g.antiAudio) r.push("audio"); if (g.antiSticker) r.push("sticker"); if (g.antiLink) r.push("link"); if (g.onlyAdmins) r.push("text"); return r; }
 export function isActiveGroup(jid) { return getGroup(jid).active?? true; }
 export function setActiveGroup(jid, v) { updateIsActiveGroupRestriction(jid, "active", v); }

@@ -1,6 +1,10 @@
 import { PREFIX, OWNER_LID } from "../../config.js";
 import { WarningError } from "../../errors/index.js";
-import { activateGroup } from "../../utils/database.js";
+import {
+  activateGroup,
+  isGroupOwnerOnlyOn,
+  setGroupOwnerOnlyOn,
+} from "../../utils/database.js";
 
 export default {
   name: "on",
@@ -24,10 +28,19 @@ export default {
     }
 
     // Verifica se é o DONO DO BOT
-    const isOwner = userLid === OWNER_LID;
+    const normalizedUserLid = userLid?.replace(/:[0-9]+(?=@)/, "");
+    const normalizedOwnerLid = OWNER_LID?.replace(/:[0-9]+(?=@)/, "");
+    const isOwner = normalizedUserLid === normalizedOwnerLid;
+
+    if (isGroupOwnerOnlyOn(remoteJid) && !isOwner) {
+      throw new WarningError(
+        "⚠️ O bot foi desligado pelo dono com `off all`. Apenas o dono pode ativá-lo novamente."
+      );
+    }
 
     // ATIVA O BOT
     activateGroup(remoteJid);
+    setGroupOwnerOnlyOn(remoteJid, false);
 
     // ============================================================
     // DONO DO BOT

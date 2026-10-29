@@ -265,6 +265,185 @@ function isPathInside(directory, target) {
     );
 }
 
+function getThemeDecorations(themeName, theme) {
+  const common = `
+    <g fill="${theme.accent}" opacity="0.42">
+      <circle cx="92" cy="142" r="2" />
+      <circle cx="372" cy="58" r="1.5" />
+      <circle cx="706" cy="92" r="2" />
+      <circle cx="934" cy="350" r="1.5" />
+      <circle cx="44" cy="402" r="1.5" />
+    </g>
+    <g fill="none" stroke="${theme.line}" stroke-width="1" opacity="0.16">
+      <path d="M22 218 C104 188 146 193 204 226" />
+      <path d="M756 512 C820 473 890 479 978 438" />
+      <path d="M705 24 C760 54 792 60 848 48" />
+    </g>
+  `;
+
+  if (themeName === "oceano") {
+    return `
+      ${common}
+      <g fill="none" stroke="${theme.accent}" stroke-linecap="round">
+        <path d="M0 448 C112 408 185 492 302 454 S492 429 610 468 S824 495 1000 438"
+          stroke-width="2.5" opacity="0.34" />
+        <path d="M0 468 C122 430 185 514 318 474 S496 452 626 490 S842 514 1000 462"
+          stroke-width="1" opacity="0.22" />
+      </g>
+      <g fill="${theme.line}" stroke="${theme.accent}" stroke-width="1" opacity="0.42">
+        <circle cx="118" cy="330" r="8" fill-opacity="0.08" />
+        <circle cx="145" cy="300" r="3" fill-opacity="0.12" />
+        <circle cx="178" cy="364" r="5" fill-opacity="0.1" />
+        <circle cx="386" cy="92" r="6" fill-opacity="0.08" />
+        <circle cx="422" cy="70" r="2.5" fill-opacity="0.12" />
+        <circle cx="927" cy="401" r="10" fill-opacity="0.07" />
+        <circle cx="956" cy="371" r="4" fill-opacity="0.1" />
+      </g>
+      <g fill="${theme.accent}" opacity="0.3">
+        <path d="M236 514 C236 501 248 494 248 484 C248 494 260 501 260 514 C260 526 236 526 236 514Z" />
+        <path d="M770 184 C770 173 780 168 780 160 C780 168 790 173 790 184 C790 194 770 194 770 184Z" />
+      </g>
+    `;
+  }
+
+  if (themeName === "sangue") {
+    return `
+      ${common}
+      <g fill="${theme.accentEnd}" opacity="0.78">
+        <path d="M92 0 H116 V28 C116 42 110 49 104 61 C98 49 92 42 92 28Z" />
+        <path d="M172 0 H184 V18 C184 28 181 34 178 42 C175 34 172 28 172 18Z" />
+        <path d="M278 0 H314 V37 C314 53 305 62 296 78 C287 62 278 53 278 37Z" />
+        <path d="M486 0 H502 V22 C502 34 498 40 494 50 C490 40 486 34 486 22Z" />
+        <path d="M684 0 H706 V30 C706 43 701 51 695 63 C689 51 684 43 684 30Z" />
+        <path d="M866 0 H908 V31 C908 48 897 59 887 76 C877 59 866 48 866 31Z" />
+      </g>
+      <g fill="${theme.accent}" opacity="0.72">
+        <circle cx="104" cy="85" r="5" />
+        <circle cx="296" cy="101" r="3.5" />
+        <circle cx="494" cy="72" r="4" />
+        <circle cx="695" cy="91" r="3" />
+        <circle cx="887" cy="105" r="5" />
+        <path d="M52 258 C52 246 63 240 63 230 C63 240 74 246 74 258 C74 269 52 269 52 258Z" />
+        <path d="M918 292 C918 281 927 275 927 266 C927 275 936 281 936 292 C936 302 918 302 918 292Z" />
+      </g>
+      <g fill="none" stroke="${theme.line}" stroke-width="1" opacity="0.3">
+        <path d="M22 116 C74 102 110 116 156 105" />
+        <path d="M828 126 C884 111 925 126 978 110" />
+      </g>
+    `;
+  }
+
+  if (themeName === "eclipse") {
+    return `
+      ${common}
+      <g transform="translate(846 150)" opacity="0.58">
+        <circle r="142" fill="none" stroke="${theme.accent}" stroke-width="1" stroke-dasharray="2 12" />
+        <circle r="134" fill="none" stroke="${theme.line}" stroke-width="0.8" stroke-opacity="0.38" />
+        <circle r="58" fill="${theme.glow}" fill-opacity="0.18" />
+        <circle cx="-10" cy="-7" r="40" fill="${theme.text}" fill-opacity="0.9" />
+        <circle cx="8" cy="-15" r="40" fill="${theme.end}" />
+        <g stroke="${theme.accent}" stroke-width="1.3" stroke-linecap="round" opacity="0.8">
+          <path d="M0 -83 V-106 M0 83 V106 M-83 0 H-106 M83 0 H106" />
+          <path d="M-59 -59 L-75 -75 M59 -59 L75 -75 M-59 59 L-75 75 M59 59 L75 75" />
+        </g>
+      </g>
+      <g fill="${theme.line}" opacity="0.7">
+        <path d="M632 104 l3 7 7 3-7 3-3 7-3-7-7-3 7-3Z" />
+        <path d="M746 238 l2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" />
+        <path d="M948 232 l2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" />
+      </g>
+    `;
+  }
+
+  if (themeName === "neon") {
+    return `
+      ${common}
+      <g fill="none" stroke="${theme.accent}" stroke-width="1.2" opacity="0.3">
+        <path d="M0 318 L110 272 L205 310 L300 265" />
+        <path d="M730 400 L816 360 L900 392 L1000 350" />
+      </g>
+      <g fill="${theme.accentEnd}" opacity="0.7">
+        <circle cx="112" cy="272" r="3" />
+        <circle cx="205" cy="310" r="3" />
+        <circle cx="816" cy="360" r="3" />
+        <circle cx="900" cy="392" r="3" />
+      </g>
+    `;
+  }
+
+  if (themeName === "matrix") {
+    return `
+      ${common}
+      <g fill="${theme.accent}" opacity="0.35" font-family="monospace" font-size="12">
+        <text x="24" y="214">10110</text>
+        <text x="344" y="112">01001</text>
+        <text x="930" y="324">11010</text>
+        <text x="726" y="532">00101</text>
+      </g>
+      <g stroke="${theme.accentEnd}" stroke-width="1" opacity="0.3">
+        <path d="M24 226 H126 M344 124 H430 M874 336 H976" />
+      </g>
+    `;
+  }
+
+  if (themeName === "sunset") {
+    return `
+      ${common}
+      <circle cx="92" cy="452" r="52" fill="${theme.accent}" fill-opacity="0.08" />
+      <path d="M0 448 C132 410 190 492 310 456 S510 438 630 476 S842 500 1000 452"
+        fill="none" stroke="${theme.accent}" stroke-width="2" opacity="0.3" />
+      <g stroke="${theme.accent}" stroke-width="1.5" opacity="0.35">
+        <path d="M40 430 H148 M58 414 H132 M76 398 H116" />
+      </g>
+    `;
+  }
+
+  if (themeName === "obsidiana") {
+    return `
+      ${common}
+      <g fill="none" stroke="${theme.accent}" opacity="0.35">
+        <path d="M34 238 L88 180 L142 238 L88 296Z" />
+        <path d="M858 370 L916 308 L974 370 L916 432Z" />
+        <path d="M34 238 H142 M88 180 V296 M858 370 H974 M916 308 V432" />
+      </g>
+    `;
+  }
+
+  if (themeName === "reliquia") {
+    return `
+      ${common}
+      <g fill="none" stroke="${theme.accent}" stroke-width="1.2" opacity="0.4">
+        <path d="M26 166 H150 M850 166 H974" />
+        <path d="M48 154 l14 -14 14 14-14 14Z M924 154 l14 -14 14 14-14 14Z" />
+      </g>
+      <g fill="${theme.line}" opacity="0.5">
+        <circle cx="70" cy="190" r="2" />
+        <circle cx="930" cy="190" r="2" />
+      </g>
+    `;
+  }
+
+  if (themeName === "abismo") {
+    return `
+      ${common}
+      <g fill="none" stroke="${theme.accent}" opacity="0.28">
+        <path d="M0 510 C120 460 190 530 308 486 S520 462 644 508 S858 544 1000 494"
+          stroke-width="3" />
+        <path d="M0 526 C120 476 190 546 308 502 S520 478 644 524 S858 560 1000 510"
+          stroke-width="1" />
+      </g>
+      <g fill="${theme.line}" opacity="0.45">
+        <circle cx="182" cy="116" r="2" />
+        <circle cx="228" cy="88" r="1.5" />
+        <circle cx="734" cy="106" r="2" />
+        <circle cx="780" cy="76" r="1.5" />
+      </g>
+    `;
+  }
+
+  return common;
+}
+
 async function loadProfileBackground(profile) {
   if (!profile?.background) {
     return null;
@@ -311,6 +490,7 @@ async function createProfileCanvas(
   const titleSpacing = fontConfig.titleSpacing;
 
   const theme = THEMES[profile.theme] || THEMES.obsidiana;
+  const themeDecorations = getThemeDecorations(profile.theme, theme);
 
   const level = escapeXml(formatNumber(profile.level ?? 1));
   const xp = escapeXml(formatNumber(economy?.xp ?? profile.xp));
@@ -409,14 +589,14 @@ async function createProfileCanvas(
           width="1000"
           height="560"
           fill="url(#backgroundGradient)"
-          opacity="${background ? "0.83" : "1"}"
+          opacity="${background ? "0.34" : "1"}"
         />
 
         <rect
           width="1000"
           height="560"
           fill="#020309"
-          opacity="${background ? "0.45" : "0.08"}"
+          opacity="${background ? "0.22" : "0.08"}"
         />
 
         <rect
@@ -429,7 +609,11 @@ async function createProfileCanvas(
           width="1000"
           height="560"
           fill="url(#shade)"
+          opacity="${background ? "0.52" : "1"}"
         />
+
+        <!-- Atmosfera específica do tema -->
+        ${themeDecorations}
 
         <!-- Lumière ambiente e marcas gravadas -->
         <circle

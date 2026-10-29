@@ -1,6 +1,6 @@
 import { PREFIX, OWNER_LID } from "../../config.js";
 import { WarningError } from "../../errors/index.js";
-import { deactivateGroup } from "../../utils/database.js";
+import { deactivateGroup, setGroupOwnerOnlyOn } from "../../utils/database.js";
 
 export default {
   name: "off",
@@ -15,6 +15,7 @@ export default {
     sendSuccessReply,
     remoteJid,
     isGroup,
+    args,
     userLid,
   }) => {
 
@@ -33,9 +34,13 @@ export default {
 
     const isOwner =
       normalizedUserLid === normalizedOwnerLid;
+    const ownerOnlyOn = isOwner && args?.[0]?.toLowerCase() === "all";
 
     // Desativa o bot no grupo
     deactivateGroup(remoteJid);
+    if (ownerOnlyOn) {
+      setGroupOwnerOnlyOn(remoteJid, true);
+    }
 
     // ============================================================
     // XAPA / DONO
