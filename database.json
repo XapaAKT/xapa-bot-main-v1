@@ -2621,7 +2621,8 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "ownerOnlyOn": true
     },
     "269273628991549@lid": {
       "active": false,
