@@ -628,7 +628,7 @@ export async function onMessagesUpsert({
         continue;
       }
 
-      if (commonFunctions.isSticker && commonFunctions.isReply) {
+      if (commonFunctions.isReply) {
         const canModerate =
           isVip(commonFunctions.userLid) ||
           await isAdmin({

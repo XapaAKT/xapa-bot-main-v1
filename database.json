@@ -400,7 +400,9 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": [],
-      "prefix": "!"
+      "prefix": "!",
+      "rpg": false,
+      "sus": false
     },
     "120363429279076216@g.us": {
       "active": true,
@@ -532,7 +534,9 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false
     },
     "120363300379503589@g.us": {
       "active": true,
@@ -558,7 +562,9 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false
     },
     "120363412088646182@g.us": {
       "active": true,
@@ -3322,7 +3328,9 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false
     },
     "271523537498326@lid": {
       "active": false,

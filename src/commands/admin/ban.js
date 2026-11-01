@@ -1,6 +1,6 @@
 import fs from "node:fs";
-import crypto from "node:crypto";
 import path from "node:path";
+import sharp from "sharp";
 import { BOT_LID, OWNER_LID, PREFIX } from "../../config.js";
 import { DangerError, InvalidParameterError } from "../../errors/index.js";
 import { onlyNumbers } from "../../utils/index.js";
@@ -22,29 +22,48 @@ const BAN_STICKERS_DIR = path.resolve(
   "xapa",
 );
 
-function getRandomBanSticker() {
-  const stickers = fs
-    .readdirSync(BAN_STICKERS_DIR, { withFileTypes: true })
-    .filter((file) => file.isFile() && /^ban\d+\.webp$/i.test(file.name))
-    .map((file) => path.join(BAN_STICKERS_DIR, file.name));
+function getBanStickerFiles() {
+  if (!fs.existsSync(BAN_STICKERS_DIR)) return [];
 
-  return stickers[Math.floor(Math.random() * stickers.length)] || null;
+  return ["ban1.webp", "ban2.webp", "ban3.webp"]
+    .map((fileName) => path.join(BAN_STICKERS_DIR, fileName))
+    .filter((filePath) => fs.existsSync(filePath));
 }
 
 function getDirectStickerMessage(webMessage) {
-  const message = webMessage?.message;
-  return (
-    message?.stickerMessage ||
-    message?.ephemeralMessage?.message?.stickerMessage ||
-    message?.viewOnceMessage?.message?.stickerMessage ||
-    message?.viewOnceMessageV2?.message?.stickerMessage ||
-    null
-  );
+  let message = webMessage?.message;
+
+  for (let depth = 0; message && depth < 5; depth += 1) {
+    if (message.stickerMessage) return message.stickerMessage;
+
+    message =
+      message.ephemeralMessage?.message ||
+      message.viewOnceMessage?.message ||
+      message.viewOnceMessageV2?.message ||
+      message.documentWithCaptionMessage?.message ||
+      null;
+  }
+
+  return null;
 }
 
-async function fileHash(filePath) {
-  const content = await fs.promises.readFile(filePath);
-  return crypto.createHash("sha256").update(content).digest("hex");
+async function getStickerSignature(filePath) {
+  return sharp(filePath)
+    .resize(96, 96, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .ensureAlpha()
+    .raw()
+    .toBuffer();
+}
+
+function getSignatureDistance(left, right) {
+  if (left.length !== right.length) return Number.POSITIVE_INFINITY;
+
+  let totalDifference = 0;
+  for (let index = 0; index < left.length; index += 1) {
+    totalDifference += Math.abs(left[index] - right[index]);
+  }
+
+  return totalDifference / left.length;
 }
 
 export async function isOfficialBanSticker({ webMessage, downloadSticker }) {
@@ -57,15 +76,17 @@ export async function isOfficialBanSticker({ webMessage, downloadSticker }) {
     );
     if (!stickerPath) return false;
 
-    const receivedHash = await fileHash(stickerPath);
-    const officialStickers = fs
-      .readdirSync(BAN_STICKERS_DIR, { withFileTypes: true })
-      .filter((file) => file.isFile() && /^ban\d+\.webp$/i.test(file.name))
-      .map((file) => path.join(BAN_STICKERS_DIR, file.name));
+    const officialStickers = getBanStickerFiles();
+    const receivedSignature = await getStickerSignature(stickerPath);
 
     for (const officialSticker of officialStickers) {
-      if (receivedHash === await fileHash(officialSticker)) return true;
+      const officialSignature = await getStickerSignature(officialSticker);
+      if (getSignatureDistance(receivedSignature, officialSignature) <= 24) {
+        return true;
+      }
     }
+
+    errorLog("[BAN STICKER] Figurinha recebida não corresponde às figurinhas oficiais.");
   } catch (error) {
     errorLog(`[BAN STICKER] Não foi possível validar a figurinha: ${error.message}`);
   }
@@ -80,7 +101,6 @@ export async function handleBan({
     remoteJid,
     replyLid,
     sendReply,
-    sendStickerFromFile,
     userLid,
     webMessage,
     sendSuccessReact,
@@ -130,10 +150,6 @@ export async function handleBan({
       await sendSuccessReact();
       await sendReply("✅ Membro removido do grupo com sucesso!");
 
-      if (sendStickerFromFile) {
-        const sticker = getRandomBanSticker();
-        if (sticker) await sendStickerFromFile(sticker);
-      }
       } catch (error) {
       errorLog(JSON.stringify(error, null, 2));
     await sendErrorReply(`Ocorreu um erro ao remover o membro: ${error.message}`);
