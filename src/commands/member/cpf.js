@@ -11,9 +11,14 @@ const motivos = [
 ];
 
 function gerarCPF() {
-  const n = () => Math.floor(Math.random() * 900 + 100);
-  const d = () => Math.floor(Math.random() * 90 + 10);
-  return `${n()}.${n()}.${n()}-${d()}`;
+  const numbers = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10));
+
+  for (const factor of [10, 11]) {
+    const total = numbers.reduce((sum, number, index) => sum + number * (factor - index), 0);
+    numbers.push((total * 10) % 11 % 10);
+  }
+
+  return `${numbers.slice(0, 3).join("")}.${numbers.slice(3, 6).join("")}.${numbers.slice(6, 9).join("")}-${numbers.slice(9).join("")}`;
 }
 
 export default {
@@ -22,35 +27,30 @@ export default {
   commands: ["cpf"],
   usage: `${PREFIX}cpf`,
 
-  handle: async ({ sendReply, sender }) => {
+  handle: async ({ sendReply, userLid }) => {
+    const nome = userLid?.split("@")[0] || "cidadão misterioso";
 
-    await sendReply(`🗂️ 𝐂𝐎𝐍𝐒𝐔𝐋𝐓𝐀𝐍𝐃𝐎...
-
-████████████`);
+    await sendReply(`╭━━━〔 🕵️‍♂️ 𝐂𝐏𝐅 𝐒𝐄𝐂𝐑𝐄𝐓𝐎 〕━━━╮
+┃ 🔐 Acessando o banco de dados...
+┃ ██████████ 100%
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
 
     await delay(3000);
 
     const motivo = motivos[Math.floor(Math.random()*motivos.length)];
 
-    await sendReply(`🗂️━━━━━━━━━━━━━━━━━━🗂️
+    await sendReply(`╭━━━〔 🗂️ 𝐃𝐎𝐒𝐒𝐈𝐄̂ 𝐃𝐎 𝐂𝐏𝐅 〕━━━╮
 
-👤 𝐍𝐨𝐦𝐞
+👤 𝐍𝐨𝐦𝐞: ${nome}
 
-${sender}
+📄 𝐂𝐏𝐅: ${gerarCPF()}
 
-📄 𝐂𝐏𝐅
+📌 𝐒𝐢𝐭𝐮𝐚𝐜̧𝐚̃𝐨: 🔴 PROCURADO
 
-${gerarCPF()}
-
-📌 𝐒𝐢𝐭𝐮𝐚𝐜̧𝐚̃𝐨
-
-🔴 𝐏𝐫𝐨𝐜𝐮𝐫𝐚𝐝𝐨 𝐩𝐞𝐥𝐚 𝐑𝐞𝐜𝐞𝐢𝐭𝐚 𝐅𝐞𝐝𝐞𝐫𝐚𝐥.
-
-⚠️ 𝐌𝐨𝐭𝐢𝐯𝐨
-
+⚠️ 𝐀𝐜𝐮𝐬𝐚𝐜̧𝐚̃𝐨:
 ${motivo}
 
-🗂️━━━━━━━━━━━━━━━━━━🗂️`);
+╰━━━〔 🚨 Receita Federal do XIC 〕━━━╯`);
 
   },
 };

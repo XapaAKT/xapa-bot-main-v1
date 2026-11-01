@@ -9,6 +9,7 @@ export default {
   description: "Convida um usuário para uma festa de siririca.",
   commands: ["siririca", "siriricada", "siriricão"],
   usage: `${PREFIX}siririca @usuario`,
+  requiresSus: true,
   /**
    * @param {CommandHandleProps} props
    */

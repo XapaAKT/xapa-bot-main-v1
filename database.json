@@ -62,7 +62,9 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": [],
-      "prefix": "!"
+      "prefix": "!",
+      "rpg": false,
+      "sus": false
     },
     "120363428429532522@g.us": {
       "active": false,
@@ -100,7 +102,9 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": [],
-      "prefix": "!"
+      "prefix": "!",
+      "rpg": false,
+      "sus": false
     },
     "120363425216914975@g.us": {
       "active": true,
@@ -448,7 +452,9 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": [],
-      "prefix": "/"
+      "prefix": "/",
+      "rpg": false,
+      "sus": false
     },
     "120363428476653549@g.us": {
       "active": true,
@@ -2264,7 +2270,9 @@
       "welcome": false,
       "onlyAdmins": false,
       "muted": [],
-      "ownerOnlyOn": true
+      "ownerOnlyOn": true,
+      "rpg": false,
+      "sus": false
     },
     "40712531890189@lid": {
       "active": false,
@@ -2467,7 +2475,9 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false
     },
     "120363413845004567@g.us": {
       "active": false,
@@ -2622,7 +2632,9 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": [],
-      "ownerOnlyOn": true
+      "ownerOnlyOn": true,
+      "rpg": false,
+      "sus": false
     },
     "269273628991549@lid": {
       "active": false,
@@ -2832,7 +2844,9 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false
     },
     "145732619223191@lid": {
       "active": false,
@@ -3336,7 +3350,41 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false
+    },
+    "258037994504444@lid": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "/",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
       "muted": []
+    },
+    "120363430896033236@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false
     }
   },
   "autoresponder": [],
@@ -3344,6 +3392,7 @@
     "prefix": "!",
     "menuType": "list",
     "menuCarousel": true,
-    "youtubeSearchCarousel": true
+    "youtubeSearchCarousel": true,
+    "seloType": 2
   }
 }

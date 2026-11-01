@@ -9,6 +9,7 @@ import { getProfile, updateProfile } from "../../../database/profile.js";
 import { getPlayer } from "../../../database/rpg.js";
 import { getUserEconomy } from "../../../utils/economy.js";
 import { getUserName } from "../../../utils/index.js";
+import { getUserSummary } from "../../../services/pokemonGame.js";
 import {
   createNativeFlowButton,
   sendNativeFlowButtons,
@@ -165,6 +166,7 @@ const EDITOR_FALLBACK = () =>
   [
     "🎛️ *EDITOR DO CANVAS*",
     "",
+    `👤 ${PREFIX}${COMMAND} nome <nome>`,
     `✏️ ${PREFIX}${COMMAND} desc <texto>`,
     `🔤 ${PREFIX}${COMMAND} fontes`,
     `🎨 ${PREFIX}${COMMAND} temas`,
@@ -473,6 +475,7 @@ async function createProfileCanvas(
   profile = {},
   economy = {},
   player = {},
+  pokemonSummary = {},
 ) {
   const safeName = escapeXml(truncate(name || "Usuário", 24));
 
@@ -495,6 +498,7 @@ async function createProfileCanvas(
   const level = escapeXml(formatNumber(profile.level ?? 1));
   const xp = escapeXml(formatNumber(economy?.xp ?? profile.xp));
   const pokedolars = escapeXml(formatNumber(player?.coins));
+  const pokemonCount = escapeXml(formatNumber(pokemonSummary?.totalPokemons));
   const coins = escapeXml(formatNumber(economy?.coins));
 
   const pokedolarsSize = getFontSize(pokedolars, 34, 22, 10);
@@ -1085,7 +1089,7 @@ async function createProfileCanvas(
             fill="${theme.text}"
             fill-opacity="0.75"
             font-size="13"
-          >Registro de saldo <tspan fill="${theme.accent}">/</tspan> perfil ativo</text>
+          >Pokémon capturados <tspan fill="${theme.accent}">/</tspan> ${pokemonCount}</text>
 
           <text
             x="912"
@@ -1179,6 +1183,10 @@ function getEditorButtons() {
       id: `${PREFIX}${COMMAND} desc`,
     }),
     createNativeFlowButton("quick_reply", {
+      display_text: "👤 Alterar nome",
+      id: `${PREFIX}${COMMAND} nome`,
+    }),
+    createNativeFlowButton("quick_reply", {
       display_text: "🔤 Escolher fonte",
       id: `${PREFIX}${COMMAND} fontes`,
     }),
@@ -1261,20 +1269,38 @@ async function renderAndSendPreview({
   sendImageFromBuffer,
 }) {
   const profile = getProfile(userLid) || {};
-  const name = getUserName(webMessage, userLid, "Usuário");
+  const name = profile.displayName || getUserName(webMessage, userLid, "Usuário");
   const economy = getUserEconomy(userLid, name) || {};
   const player = getPlayer(userLid) || {};
+  const pokemonSummary = await getUserSummary(userLid);
 
   const canvas = await createProfileCanvas(
     name,
     profile,
     economy,
     player,
+    pokemonSummary,
   );
 
   await sendImageFromBuffer(
     canvas,
     "⛓️ XIC BOT // Preview do perfil",
+  );
+}
+
+export async function renderProfileCanvas(
+  name,
+  profile = {},
+  economy = {},
+  player = {},
+  pokemonSummary = {},
+) {
+  return createProfileCanvas(
+    name,
+    profile,
+    economy,
+    player,
+    pokemonSummary,
   );
 }
 
@@ -1289,6 +1315,7 @@ export default {
   usage:
     `${PREFIX}${COMMAND} | ` +
     `${PREFIX}${COMMAND} editar | ` +
+    `${PREFIX}${COMMAND} nome <nome> | ` +
     `${PREFIX}${COMMAND} desc <texto> | ` +
     `${PREFIX}${COMMAND} fonte <estilo> | ` +
     `${PREFIX}${COMMAND} tema <tema> | ` +
@@ -1360,6 +1387,23 @@ export default {
             `Use: ${PREFIX}${COMMAND} desc <sua descrição>`,
           );
 
+          return;
+        }
+
+        if (action === "nome") {
+          const displayName = truncate(
+            String(fullArgs || "").replace(/^\S+\s*/i, "").trim(),
+            24,
+          );
+
+          if (!displayName) {
+            await sendReply(`Use: ${PREFIX}${COMMAND} nome <seu nome>`);
+            return;
+          }
+
+          await updateProfile(userLid, { displayName });
+          await sendReply(`✅ Nome do canvas alterado para: ${displayName}.`);
+          await sendSuccessReact();
           return;
         }
 

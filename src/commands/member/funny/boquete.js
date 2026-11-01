@@ -8,6 +8,7 @@ export default {
   description: "Convida um usuário para um boquete ou pede um.",
   commands: ["boquete", "boquetada", "boquetão", "bj"],
   usage: `${PREFIX}boquete @usuario`,
+  requiresSus: true,
   /**
    * @param {CommandHandleProps} props
    */

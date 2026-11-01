@@ -1,4 +1,5 @@
 import { PREFIX } from "../../config.js";
+import { getSelo } from "../../utils/selo.js";
 
 export default {
   name: "dono",
@@ -9,7 +10,7 @@ export default {
   handle: async ({ sendReply }) => {
     const readMore = String.fromCharCode(8206).repeat(4000);
 
-    await sendReply(`${readMore}
+    const texto = `${readMore}
 
 ╔═══════════════════════════════╗
 ║        ☠️  𝑿𝑰𝑪 𝑵𝑶𝑫𝑬  ☠️         ║
@@ -71,7 +72,8 @@ export default {
 ═══════════════════════════════
       ☠️  𝑿𝑰𝑪 𝑩𝑶𝑻  ☠️
 ═══════════════════════════════
+`;
 
-`);
+    await sendReply(texto, { quoted: getSelo() });
   },
 };

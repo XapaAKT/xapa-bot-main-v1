@@ -29,6 +29,8 @@ import {
   isActiveAutoStickerGroup,
   isActiveGroup,
   isActiveOnlyAdmins,
+  isActiveRpgGroup,
+  isActiveSusGroup,
 } from "./database.js";
 import { findCommandImport } from "./index.js";
 import { errorLog } from "./logger.js";
@@ -131,7 +133,7 @@ export async function dynamicCommand(paramsHandler, startProcess) {
     foundCommand = await findCommandImport(normalizedFullMessage);
   }
 
-  const { type, command } = foundCommand;
+  let { type, command } = foundCommand;
   const isNoPrefixCommand = command?.noPrefix === true || command?.isEmojiCommand === true;
   const worksWhenGroupInactive =
     command?.name === "salvar" && command?.noPrefix === true;
@@ -231,6 +233,47 @@ export async function dynamicCommand(paramsHandler, startProcess) {
   }
 
   if (!messageHasPrefix &&!isNoPrefixCommand) return;
+
+  if (remoteJid?.endsWith("@g.us") && isActiveRpgGroup(remoteJid)) {
+    const rpgAliases = new Map([
+      ["perfil", "rpgperfil"],
+      ["classe", "rpgclasse"],
+      ["profissao", "rpgprofissao"],
+      ["explorar", "rpgexplorar"],
+      ["batalha", "rpgbatalha"],
+      ["monstro", "rpgbatalha"],
+      ["ataca", "rpgatacar"],
+      ["atacar", "rpgatacar"],
+      ["fugir", "rpgfugir"],
+      ["loja", "rpgloja"],
+      ["comprar", "rpgcomprar"],
+      ["mochila", "rpginventario"],
+      ["inventario", "rpginventario"],
+      ["ajuda", "rpghelp"],
+      ["help", "rpghelp"],
+    ]);
+    const rpgCommandName = rpgAliases.get(commandName);
+    if (rpgCommandName) {
+      const rpgCommand = await findCommandImport(rpgCommandName);
+      type = rpgCommand.type;
+      command = rpgCommand.command;
+    }
+
+    const rpgControlCommands = new Set(["rpg", "sus", "off", "on", "perfil"]);
+    if (!command?.requiresRpg && !rpgControlCommands.has(command?.name)) {
+      await sendWarningReply("╔══〔 ⚔️ REINO EM GUERRA 〕══╗\n║ O RPG está ativo neste grupo.\n║ Use apenas os comandos da aventura.\n║ Consulte /rpghelp para continuar.\n╚════════════════════════════╝");
+      return;
+    }
+  }
+
+  if (command?.requiresRpg && remoteJid?.endsWith("@g.us") && !isActiveRpgGroup(remoteJid)) {
+    await sendWarningReply("⚔️ O modo RPG está desativado neste grupo. Um administrador pode usar `/rpg on`.");
+    return;
+  }
+  if (command?.requiresSus && remoteJid?.endsWith("@g.us") && !isActiveSusGroup(remoteJid)) {
+    await sendWarningReply("🔒 Os comandos SUS estão desativados neste grupo. Um administrador pode usar `/sus on`.");
+    return;
+  }
 
   const groupPrefix = getPrefix(remoteJid);
 

@@ -107,8 +107,10 @@ export function loadCommonFunctions({ socket, webMessage }) {
     });
   };
 
-  const sendReply = async (text, mentions) => {
+  const sendReply = async (text, mentionsOrOptions, options = {}) => {
     await sendTypingState();
+    const mentions = Array.isArray(mentionsOrOptions) ? mentionsOrOptions : undefined;
+    const sendOptions = Array.isArray(mentionsOrOptions) ? options : mentionsOrOptions || options;
     let optionalParams = {};
     if (mentions?.length) {
       optionalParams = { mentions };
@@ -116,7 +118,7 @@ export function loadCommonFunctions({ socket, webMessage }) {
     return await socket.sendMessage(
       remoteJid,
       { text: `${text}`, ...optionalParams },
-      { quoted: JSON.parse(JSON.stringify(webMessage)) }
+      { quoted: JSON.parse(JSON.stringify(webMessage)), ...sendOptions }
     );
   };
 

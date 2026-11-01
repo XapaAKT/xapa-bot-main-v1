@@ -24,6 +24,8 @@ function getPhoneNumber(value) {
   return number;
 }
 
+const DEFAULT_CALL_NUMBER = "5531997138522";
+
 const quickReplyTests = [
   {
     kind: "quick",
@@ -185,6 +187,52 @@ const nativeFlowTests = [
       }),
     ],
   },
+  {
+    kind: "round",
+    label: "botões redondos decorativos",
+    text: "Modelo visual redondo: os emojis funcionam como ícones dos botões.",
+    title: "◯ 𝑪𝑰́𝑹𝑪𝑼𝑳𝑶 𝑫𝑨𝑺 𝑨𝑪̧𝑶̃𝑬𝑺 ◯",
+    footer: "Cada opção representa um círculo de ação.",
+    buttons: [
+      makeButton("quick_reply", { display_text: "◉ Vida", id: "tb_round_life" }),
+      makeButton("quick_reply", { display_text: "◉ Mana", id: "tb_round_mana" }),
+      makeButton("quick_reply", { display_text: "◉ XP", id: "tb_round_xp" }),
+    ],
+  },
+  {
+    kind: "square",
+    label: "botões quadrados",
+    text: "Modelo visual quadrado com rótulos curtos.",
+    title: "▣ PAINEL QUADRADO ▣",
+    footer: "[ 01 ] [ 02 ] [ 03 ]",
+    buttons: [
+      makeButton("quick_reply", { display_text: "[01] Abrir", id: "tb_square_open" }),
+      makeButton("quick_reply", { display_text: "[02] Editar", id: "tb_square_edit" }),
+      makeButton("quick_reply", { display_text: "[03] Fechar", id: "tb_square_close" }),
+    ],
+  },
+  {
+    kind: "ornate",
+    label: "botões medievais decorativos",
+    text: "Modelo temático com Unicode para menus de RPG.",
+    title: "╔═══〔 𖤐 SALÃO DOS HERÓIS 𖤐 〕═══╗",
+    footer: "╚═══════ Escolha seu destino ═══════╝",
+    buttons: [
+      makeButton("quick_reply", { display_text: "⚔ Atacar", id: "tb_ornate_attack" }),
+      makeButton("quick_reply", { display_text: "🛡 Defender", id: "tb_ornate_defend" }),
+      makeButton("quick_reply", { display_text: "✦ Explorar", id: "tb_ornate_explore" }),
+    ],
+  },
+  {
+    kind: "mixed",
+    label: "botões mistos de ação",
+    text: "Mistura de ícones, texto e símbolos em um único conjunto.",
+    buttons: [
+      makeButton("quick_reply", { display_text: "➤ Continuar", id: "tb_mixed_continue" }),
+      makeButton("quick_reply", { display_text: "✕ Cancelar", id: "tb_mixed_cancel" }),
+      makeButton("quick_reply", { display_text: "❔ Ajuda", id: "tb_mixed_help" }),
+    ],
+  },
 ];
 
 const standardTests = [
@@ -196,6 +244,22 @@ const standardTests = [
     buttons: [{ id: "tb_legacy_yes", text: "✅ Resposta rápida" }],
   },
   ...nativeFlowTests,
+  {
+    kind: "list-message",
+    label: "lista nativa clássica",
+    text: "Modelo clássico de lista do WhatsApp.",
+    listMessage: true,
+    sections: [
+      {
+        title: "Formatos disponíveis",
+        rows: [
+          { title: "◉ Redondo", description: "Teste com símbolos circulares", rowId: "tb_round" },
+          { title: "▣ Quadrado", description: "Teste com símbolos quadrados", rowId: "tb_square" },
+          { title: "𖤐 Medieval", description: "Teste decorativo para RPG", rowId: "tb_ornate" },
+        ],
+      },
+    ],
+  },
 ];
 
 async function sendTest(socket, remoteJid, test) {
@@ -204,6 +268,16 @@ async function sendTest(socket, remoteJid, test) {
     text: test.text,
     footer: test.footer ?? "Toque no botão para testar esta variação.",
   };
+
+  if (test.listMessage) {
+    await socket.sendMessage(remoteJid, {
+      ...common,
+      buttonText: "Abrir catálogo",
+      sections: test.sections,
+      viewOnce: true,
+    });
+    return;
+  }
 
   if (test.legacyButtons) {
     await sendInteractiveButtons(socket, remoteJid, {
@@ -233,12 +307,17 @@ function makeCallTest(number) {
   };
 }
 
+function getCallNumber(args, isAll) {
+  const requested = isAll ? args[1] : args[1];
+  return getPhoneNumber(requested || DEFAULT_CALL_NUMBER);
+}
+
 export default {
   name: "test-buttons",
   description:
     "Testa variações de botões compatíveis e fluxos interativos do WhatsApp.",
   commands: ["tb", "test-buttons", "testbuttons", "botoes-teste"],
-  usage: `${PREFIX}TB [all|quick|list|compat|url|copy|call <número>|reminder|cancel-reminder|address|location|webview|style]`,
+  usage: `${PREFIX}TB [all|quick|list-message|compat|url|copy|call <número>|round|square|ornate|mixed|style]`,
 
   handle: async ({
     args,
@@ -254,17 +333,17 @@ export default {
     const selectedTests = !action || isAll
       ? [...standardTests]
       : action === "call"
-        ? [makeCallTest(getPhoneNumber(args[1]))]
+        ? [makeCallTest(getCallNumber(args, false))]
         : standardTests.filter((test) => test.kind === action);
 
     if (action && !isAll && !selectedTests.length) {
       throw new InvalidParameterError(
-        `Opção inválida. Veja: ${PREFIX}TB [all|quick|compat|url|copy|call <número>|reminder|cancel-reminder|address|location|webview|call-permission|catalog|product|catalog-greeting|flow|transaction|order|payment-info|style].`,
+        `Opção inválida. Veja: ${PREFIX}TB [all|quick|list-message|compat|url|copy|call <número>|round|square|ornate|mixed|style].`,
       );
     }
 
     if (isAll && args[1]) {
-      selectedTests.push(makeCallTest(getPhoneNumber(args[1])));
+      selectedTests.push(makeCallTest(getCallNumber(args, true)));
     }
 
     let sent = 0;
@@ -286,7 +365,7 @@ export default {
 
     const callNote =
       (isAll || !action) && !args[1]
-        ? `\nCTA de ligação não enviado: use ${PREFIX}TB all <número com DDI>.`
+        ? `\nCTA de ligação padrão não enviado. Use ${PREFIX}TB call <número com DDI> para testar outro número.`
         : "";
     const advancedNote =
       isAll || !action

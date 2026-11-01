@@ -8,6 +8,7 @@ export default {
   description: "Inicia uma suruba com o número de pessoas informado.",
   commands: ["suruba", "surubada", "surubão"],
   usage: `${PREFIX}suruba <quantidade>`,
+  requiresSus: true,
   /**
    * @param {CommandHandleProps} props
    */

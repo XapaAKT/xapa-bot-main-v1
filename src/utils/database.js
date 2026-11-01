@@ -16,6 +16,7 @@ const defaultDatabase = () => ({
         menuType: "buttons",
         menuCarousel: false,
         youtubeSearchCarousel: false,
+        seloType: 1,
     },
 });
 
@@ -34,6 +35,7 @@ const readDB = () => {
         data.settings.menuType??= "buttons";
         data.settings.menuCarousel??= false;
         data.settings.youtubeSearchCarousel??= false;
+        data.settings.seloType = data.settings.seloType === 2 ? 2 : 1;
         return data;
     } catch (error) {
         console.error("Erro ao ler database.json:", error);
@@ -70,11 +72,14 @@ function getGroup(jid) {
             antiAudio: false, antiSticker: false, antiLink: false,
             autoResponder: false, autoSticker: false, ownerReplyAudio: false,
             exit: true, welcome: true, onlyAdmins: false, muted: [],
+            rpg: false, sus: false,
         };
         writeDB(db);
     }
     let changed = false;
     if (!Array.isArray(db.groups[jid].muted)) { db.groups[jid].muted = []; changed = true; }
+    if (typeof db.groups[jid].rpg !== "boolean") { db.groups[jid].rpg = false; changed = true; }
+    if (typeof db.groups[jid].sus !== "boolean") { db.groups[jid].sus = false; changed = true; }
     if (typeof db.groups[jid].prefix!== "string" ||!db.groups[jid].prefix) {
         db.groups[jid].prefix = db.settings?.prefix || PREFIX;
         changed = true;
@@ -170,6 +175,18 @@ export function getMenuSettings() {
     };
 }
 
+export function getSeloType() {
+    return readDB().settings.seloType;
+}
+
+export function setSeloType(type) {
+    if (type !== 1 && type !== 2) return false;
+    const db = readDB();
+    db.settings.seloType = type;
+    writeDB(db);
+    return true;
+}
+
 export function setMenuType(type) {
     if (type !== "buttons" && type !== "list") {
         throw new TypeError("O tipo do menu deve ser 'buttons' ou 'list'.");
@@ -213,4 +230,8 @@ export function readGroupRestrictions(jid) { const g = getGroup(jid); return { a
 export function readRestrictedMessageTypes(jid) { const g = getGroup(jid); const r = []; if (g.antiAudio) r.push("audio"); if (g.antiSticker) r.push("sticker"); if (g.antiLink) r.push("link"); if (g.onlyAdmins) r.push("text"); return r; }
 export function isActiveGroup(jid) { return getGroup(jid).active?? true; }
 export function setActiveGroup(jid, v) { updateIsActiveGroupRestriction(jid, "active", v); }
+export const isActiveRpgGroup = (jid) => isActiveGroupRestriction(jid, "rpg");
+export const setRpgGroup = (jid, value) => updateIsActiveGroupRestriction(jid, "rpg", value);
+export const isActiveSusGroup = (jid) => isActiveGroupRestriction(jid, "sus");
+export const setSusGroup = (jid, value) => updateIsActiveGroupRestriction(jid, "sus", value);
 export function getAutoResponderResponse(msg) { const db = readDB(); const low = msg.toLowerCase(); const item = db.autoresponder.find(i => low.includes(i.keyword)); return item? item.response : null; }

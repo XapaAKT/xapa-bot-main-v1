@@ -64,6 +64,17 @@ export function load(socket) {
     }
   });
 
+  socket.ev.on("call", async (calls) => {
+    await safeEventHandler(async () => {
+      for (const call of calls || []) {
+        if (call?.status === "offer" && typeof socket.rejectCall === "function") {
+          await socket.rejectCall(call.id, call.from);
+          errorLog(`Chamada recusada automaticamente: ${call.from}`);
+        }
+      }
+    }, calls, "call.auto-reject");
+  });
+
   socket.ev.on("group.join-request", async (data) => {
     await safeEventHandler(
       () => notifyJoinRequest({ socket, data }),

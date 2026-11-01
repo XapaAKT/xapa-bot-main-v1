@@ -7,6 +7,7 @@ export default {
   description: "Gozar em alguém ou sozinho.",
   commands: ["gozar", "gozada", "gozão", "leitar"],
   usage: `${PREFIX}gozar @usuario`,
+  requiresSus: true,
   /**
    * @param {CommandHandleProps} props
    */
@@ -64,7 +65,7 @@ export default {
         frasesCom: [
           () => `@${userNumber} estragou a maquiagem de @${targetNumber}! 💦`,
           () => `@${userNumber} deu um facial em @${targetNumber}. Ficou marcado`,
-          () => `@${userNumber} cagou na cara de @${targetNumber}. Literalmente.`,
+          () => `@${userNumber} gozou na cara de @${targetNumber}. Literalmente.`,
         ]
       },
       {

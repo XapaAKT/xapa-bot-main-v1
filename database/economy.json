@@ -1,12 +1,12 @@
 {
   "227886971789349@lid": {
-    "coins": 97,
+    "coins": 5727,
     "xp": 1010200,
     "lastWork": 1791421634096,
     "lastDaily": 1788204054653,
     "name": "🫠",
     "createdAt": "2026-07-22T15:51:02.167Z",
-    "updatedAt": "2026-10-29T22:29:54.604Z"
+    "updatedAt": "2026-11-01T16:38:00.651Z"
   },
   "216848687726684@lid": {
     "coins": 184,
@@ -286,5 +286,14 @@
     "name": "Usuário",
     "createdAt": "2026-10-29T22:26:18.080Z",
     "updatedAt": "2026-10-29T22:26:18.080Z"
+  },
+  "smoke-user": {
+    "coins": 0,
+    "xp": 0,
+    "lastWork": 0,
+    "lastDaily": 0,
+    "name": "Nome WhatsApp",
+    "createdAt": "2026-11-01T06:24:58.369Z",
+    "updatedAt": "2026-11-01T06:24:58.369Z"
   }
 }

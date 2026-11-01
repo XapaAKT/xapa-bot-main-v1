@@ -8,6 +8,7 @@ export default {
   description: "Convida um usuário para uma dedada.",
   commands: ["dedada", "dedadada", "dedar"],
   usage: `${PREFIX}dedada @usuario`,
+  requiresSus: true,
   /**
    * @param {CommandHandleProps} props
    */

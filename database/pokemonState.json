@@ -1,12 +1,12 @@
 {
   "users": {
     "227886971789349": {
-      "coins": 66666666654613670,
+      "coins": 66666666654614190,
       "packs": {
         "common": 672,
         "rare": 657,
-        "epic": 654,
-        "legendary": 759
+        "epic": 653,
+        "legendary": 758
       },
       "pokemons": [
         {
@@ -398,15 +398,35 @@
           "image": "FuckBlastoiser.webp",
           "source": "pack:epic",
           "caughtAt": "2026-10-13T21:30:36.395Z"
+        },
+        {
+          "uid": "poke_mvxfh6sm_q5f5ro",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:epic",
+          "caughtAt": "2026-11-01T06:07:22.534Z"
+        },
+        {
+          "uid": "poke_mvxfhlh4_9g1aod",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-01T06:07:41.560Z"
         }
       ],
-      "fishingCount": 16,
-      "lastFishingAt": 1788901117163,
+      "fishingCount": 17,
+      "lastFishingAt": 1793512526650,
       "stats": {
         "nothing": 6,
-        "money": 2001,
-        "packs": 36,
-        "pokemons": 39,
+        "money": 2520,
+        "packs": 38,
+        "pokemons": 41,
         "sold": 0
       }
     },

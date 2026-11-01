@@ -3,6 +3,7 @@ import { ensureRecord, readJson, writeJson } from "./_helpers.js";
 const FILE = "profile.json";
 
 const DEFAULT = {
+  displayName: "",
   description: "Ainda nao defini uma descricao.",
   font: "moderna",
   theme: "neon",

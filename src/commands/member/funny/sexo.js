@@ -9,6 +9,7 @@ export default {
   description: "Convida um usuário para uma aventura íntima.",
   commands: ["sexo", "comer", "transar"],
   usage: `${PREFIX}sexo @usuario`,
+  requiresSus: true,
   /**
    * @param {CommandHandleProps} props
    */
