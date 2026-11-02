@@ -2264,7 +2264,7 @@
       "muted": []
     },
     "120363412034468029@g.us": {
-      "active": false,
+      "active": true,
       "prefix": "¡",
       "antiAudio": false,
       "antiSticker": false,
@@ -2276,7 +2276,7 @@
       "welcome": false,
       "onlyAdmins": false,
       "muted": [],
-      "ownerOnlyOn": true,
+      "ownerOnlyOn": false,
       "rpg": false,
       "sus": false
     },
@@ -2595,7 +2595,9 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false
     },
     "124490449178758@lid": {
       "active": false,

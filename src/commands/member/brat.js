@@ -57,7 +57,7 @@ async function createBratCanvas(text) {
 
   const svg = `
     <svg width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#8bdc65"/>
+      <rect width="100%" height="100%" fill="#f8f8f8"/>
       <g transform="rotate(-4 500 500)" fill="#111">${textSvg}</g>
     </svg>
   `;
