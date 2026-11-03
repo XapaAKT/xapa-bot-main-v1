@@ -1,6 +1,4 @@
 import { PREFIX } from "../../config.js";
-import { getUserName } from "../../utils/index.js";
-import { WarningError } from "../../errors/index.js";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -10,26 +8,45 @@ const barra = (pct) => {
   return "█".repeat(filled) + "░".repeat(empty);
 };
 
+function getTargetFromMessage(webMessage) {
+  const message = webMessage?.message;
+  const content =
+    message?.ephemeralMessage?.message ||
+    message?.viewOnceMessage?.message ||
+    message;
+  const contextInfo =
+    content?.extendedTextMessage?.contextInfo ||
+    content?.imageMessage?.contextInfo ||
+    content?.videoMessage?.contextInfo ||
+    content?.documentMessage?.contextInfo;
+  const mentionedJid =
+    contextInfo?.mentionedJid?.[0] ||
+    contextInfo?.mentionedJidAlt?.[0];
+
+  return {
+    jid: mentionedJid || contextInfo?.participant || null,
+    isTargeted: Boolean(mentionedJid || contextInfo?.quotedMessage),
+  };
+}
+
 export default {
   name: "animal",
   description: "Analisa o DNA da vítima.",
   commands: ["animal", "dna"],
   usage: `${PREFIX}animal @mencao`,
-  handle: async ({ sendReply, sender, mentionedJidList, socket, webMessage }) => {
-    let alvoJid = sender;
-    let alvoNome = "Você";
-
-    if (mentionedJidList?.length) {
-      alvoJid = mentionedJidList[0];
-      try {
-        const contato = await socket.onWhatsApp(alvoJid);
-        alvoNome = contato?.[0]?.notify || contato?.[0]?.verifiedName || getUserName(webMessage, alvoJid, "Usuário");
-      } catch {
-        alvoNome = getUserName(webMessage, alvoJid, "Usuário");
-      }
-    } else {
-      alvoNome = getUserName(webMessage, sender, "Você");
-    }
+  handle: async ({ sendReply, sender, mentionedJidList, replyLid, isReply, socket, webMessage }) => {
+    const messageTarget = getTargetFromMessage(webMessage);
+    const alvoJid =
+      mentionedJidList?.[0] ||
+      (isReply ? replyLid : null) ||
+      messageTarget.jid ||
+      sender;
+    const marcado = Boolean(
+      mentionedJidList?.[0] ||
+      (isReply && replyLid) ||
+      messageTarget.isTargeted,
+    );
+    const alvoNome = marcado ? `@${alvoJid.split("@")[0]}` : "Você";
 
     const animais = [
       "🐒 Macaco", "🦍 Gorila", "🐀 Rato", "🦆 Pato", "🐸 Sapo",
@@ -53,13 +70,18 @@ export default {
       "⚠️ Detectado DNA de capivara. Fica na água o dia todo.",
       "⚠️ Tem instinto de colecionar tampinhas.",
       "⚠️ Reage mal quando cortam a internet.",
-      "⚠️ Costuma sumir quando tem que lavar a louça."
+      "⚠️ Costuma sumir quando tem que lavar a louça.",
+      "⚠️ Possui talento raro para aparecer quando a comida fica pronta.",
+      "⚠️ Seu habitat natural inclui travesseiro, cobertor e celular.",
+      "⚠️ Fica agressivo quando alguém responde apenas 'ok'."
     ];
 
     const animal = animais[Math.floor(Math.random() * animais.length)];
     const porcentagem = Math.floor(Math.random() * 41) + 60; // 60 a 100%
     const humano = 100 - porcentagem;
     const obs = observacoes[Math.floor(Math.random() * observacoes.length)];
+    const habilidade = ["dormir em qualquer lugar", "farejar fofoca a quilômetros", "sumir quando chega a conta", "transformar qualquer assunto em meme", "sobreviver a três dias de miojo"][Math.floor(Math.random() * 5)];
+    const nivelFofoqueiro = Math.floor(Math.random() * 51) + 50;
 
     // Animação em 1 mensagem só pra não floodar
     const etapas = [
@@ -97,10 +119,17 @@ ${animal}
 
 ━━━━━━━━━━━━━━━━━━
 
+🎯 *Habilidade especial:* ${habilidade}
+🗣️ *Índice de fofoca:* ${nivelFofoqueiro}%
+
 ${obs}
 
 > Use ${PREFIX}animal @alguem pra analisar outra pessoa`;
 
-    await socket.sendMessage(webMessage.key.remoteJid, { text: resultado, edit: sent.key });
+    await socket.sendMessage(webMessage.key.remoteJid, {
+      text: resultado,
+      edit: sent.key,
+      ...(marcado ? { mentions: [alvoJid] } : {}),
+    });
   },
 };

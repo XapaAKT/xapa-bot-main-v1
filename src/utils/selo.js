@@ -9,7 +9,7 @@ export const MeuSelo = {
   },
   message: {
     contactMessage: {
-      displayName: "XIC BOT",
+      displayName: "Ulquiorra BOT",
       vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;Xapa;;;\nFN:Xapa\nitem1.TEL;waid=5531997138522:5531997138522\nitem1.X-ABLabel:Dono\nEND:VCARD`,
       contextInfo: { forwardingScore: 1, isForwarded: true },
     },

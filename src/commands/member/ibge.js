@@ -1,5 +1,4 @@
 import { PREFIX } from "../../config.js";
-import { getUserName } from "../../utils/index.js";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -14,22 +13,10 @@ export default {
   description: "Consulta o cadastro secreto do IBGE.",
   commands: ["ibge"],
   usage: `${PREFIX}ibge @mencao`,
-  handle: async ({ sendReply, sendEditedText, userLid, socket, webMessage }) => {
-    const mentionedJid =
-      webMessage?.message?.extendedTextMessage?.contextInfo?.mentionedJid?.[0];
-    const alvoJid =
-      mentionedJid || userLid || webMessage?.key?.remoteJid || "";
-    let alvoNome = mentionedJid
-      ? `@${mentionedJid.split("@")[0]}`
-      : getUserName(webMessage, userLid, "Você");
-
-    if (mentionedJid) {
-      try {
-        const contato = await socket.onWhatsApp(mentionedJid);
-        alvoNome =
-          contato?.[0]?.notify || contato?.[0]?.verifiedName || alvoNome;
-      } catch {}
-    }
+  handle: async ({ sendReply, sendEditedText, sender, mentionedJidList, replyLid, isReply }) => {
+    const alvoJid = mentionedJidList?.[0] || (isReply ? replyLid : null) || sender;
+    const marcado = Boolean(mentionedJidList?.[0] || (isReply && replyLid));
+    const alvoNome = marcado ? `@${alvoJid.split("@")[0]}` : "Você";
 
     const especies = [
       "Capivara Doméstica", "Macaco Urbano", "Pombo Premium", "Calango Atômico",
@@ -53,6 +40,8 @@ export default {
     ];
 
     const risco = ["Baixo 🟢", "Moderado 🟡", "Alto 🟠", "Extremamente Perigoso 🔴"];
+    const profissões = ["influenciador de grupo", "especialista em soneca", "detetive de fofocas", "atleta de sofá", "comentarista de memes"];
+    const compatibilidade = Math.floor(Math.random() * 51) + 50;
 
     // Animação editando 1 msg só
     const etapas = [
@@ -76,13 +65,14 @@ export default {
     const habitat = habitats[Math.floor(Math.random()*habitats.length)];
     const comida = comidas[Math.floor(Math.random()*comidas.length)];
     const nivelRisco = risco[Math.floor(Math.random()*risco.length)];
+    const profissao = profissões[Math.floor(Math.random() * profissões.length)];
 
     const resultado = `📋 *IBGE - CADASTRO NACIONAL*
 
 ━━━━━━━━━━
 
 👤 *Nome:* ${alvoNome}
-🆔 *ID:* ${alvoJid.split('@')[0]}
+🎯 *Alvo identificado:* ${alvoNome}
 
 ━━━━━━━━━━
 
@@ -90,12 +80,14 @@ export default {
 🏠 *Habitat:* ${habitat}
 🍕 *Alimentação:* ${comida}
 ☣️ *Nível de risco:* ${nivelRisco}
+💼 *Profissão provável:* ${profissao}
+🤝 *Compatibilidade com o grupo:* ${compatibilidade}%
 
 ━━━━━━━━━━
 
 ✅ *Registro atualizado com sucesso*
 > Use ${PREFIX}ibge @alguem pra consultar outra pessoa`;
 
-    await sendEditedText(resultado, sent);
+    await sendEditedText(resultado, sent, marcado ? [alvoJid] : undefined);
   },
 };

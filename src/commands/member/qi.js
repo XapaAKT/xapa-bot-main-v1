@@ -53,17 +53,19 @@ export default {
   commands: ["qi"],
   usage: `${PREFIX}qi @mencao`,
 
-  handle: async ({ sendReply, socket, webMessage, mentionedJidList }) => {
+  handle: async ({ sendReply, socket, webMessage, mentionedJidList, replyLid, sender, isReply }) => {
     try {
-      let alvoJid = webMessage.key.participant || webMessage.key.remoteJid;
+      let alvoJid = sender || webMessage.key.participant || webMessage.key.remoteJid;
       let alvoNome = "𝐕𝐨𝐜𝐞̂";
+      let alvoMarcado = false;
 
-      if (mentionedJidList?.length) {
-        alvoJid = mentionedJidList[0];
+      if (mentionedJidList?.length || (isReply && replyLid)) {
+        alvoJid = mentionedJidList?.[0] || replyLid;
+        alvoMarcado = true;
+        alvoNome = `@${alvoJid.split("@")[0]}`;
+      } else {
+        alvoNome = String(await getUserName(webMessage, alvoJid, "𝐔𝐬𝐮𝐚𝐫𝐢𝐨"));
       }
-
-      // Pega nome e força pra string
-      alvoNome = String(await getUserName(webMessage, alvoJid, "𝐔𝐬𝐮𝐚𝐫𝐢𝐨"));
 
       const etapas = [
         { txt: "𝐀𝐍𝐀𝐋𝐈𝐒𝐀𝐍𝐃𝐎 𝐎 𝐂𝐄́𝐑𝐄𝐁𝐑𝐎...", pct: 0 },
@@ -97,7 +99,11 @@ ${comentario}
 ${toFancy(`Use ${PREFIX}qi @alguem`)}`
       );
 
-      await socket.sendMessage(webMessage.key.remoteJid, { text: resultado, edit: sent.key });
+      await socket.sendMessage(webMessage.key.remoteJid, {
+        text: resultado,
+        edit: sent.key,
+        ...(alvoMarcado ? { mentions: [alvoJid] } : {}),
+      });
 
     } catch (error) {
       await sendReply(`☠️⛧━━━━━𖤐━━━━━☠️

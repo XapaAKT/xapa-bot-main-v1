@@ -1,5 +1,6 @@
 import { BOT_LID } from "../config.js";
 import { sendInteractiveButtons } from "../utils/interactive.js";
+import { isActiveJoinRequestNotification } from "../utils/database.js";
 
 const ACTION_PREFIX = "__join_request__";
 
@@ -24,6 +25,7 @@ export async function notifyJoinRequest({ socket, data }) {
   const participant = data?.participant || data?.jid || data?.user;
 
   if (!remoteJid?.endsWith("@g.us") || !participant) return;
+  if (!isActiveJoinRequestNotification(remoteJid)) return;
 
   const participantJid = normalizeJid(participant);
   const participantNumber = participantJid.replace(/\D/g, "");

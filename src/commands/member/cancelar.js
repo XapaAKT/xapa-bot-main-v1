@@ -14,9 +14,12 @@ export default {
   name: "cancelar",
   description: "Cancela alguém",
   commands: ["cancelar"],
-  usage: `${PREFIX}cancelar`,
+  usage: `${PREFIX}cancelar @usuario`,
   
-  handle: async ({ sendReply, sender }) => {
+  handle: async ({ sendReply, sender, mentionedJidList, replyLid, isReply }) => {
+    const alvoJid = mentionedJidList?.[0] || (isReply ? replyLid : null) || sender;
+    const marcado = Boolean(mentionedJidList?.[0] || (isReply && replyLid));
+    const nome = marcado ? `@${alvoJid.split("@")[0]}` : "Você";
     await sendReply(`🚨 𝐈𝐍𝐈𝐂𝐈𝐀𝐍𝐃𝐎 𝐂𝐀𝐍𝐂𝐄𝐋𝐀𝐌𝐄𝐍𝐓𝐎...
   
 ████████`);
@@ -28,12 +31,12 @@ export default {
     
     await sendReply(`🚨━━━━━━━━━━━━━━━━━━🚨
 🌐 𝐈𝐍𝐓𝐄𝐑𝐍𝐄𝐓
-👤 ${sender}
+👤 ${nome}
 ❌ 𝐀𝐜𝐚𝐛𝐚 𝐝𝐞 𝐬𝐞𝐫 𝐜𝐚𝐧𝐜𝐞𝐥𝐚𝐝𝐨.
 📄 𝐌𝐨𝐭𝐢𝐯𝐨
 ${motivo}
 📉 𝐒𝐞𝐠𝐮𝐢𝐝𝐨𝐫𝐞𝐬 𝐩𝐞𝐫𝐝𝐢𝐝𝐨𝐬
 ${seguidores}
-🚨━━━━━━━━━━━━━━━━━━🚨`);
+🚨━━━━━━━━━━━━━━━━━━🚨`, marcado ? [alvoJid] : undefined);
   }
 };

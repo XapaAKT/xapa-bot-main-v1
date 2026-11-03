@@ -72,7 +72,7 @@ function getGroup(jid) {
             antiAudio: false, antiSticker: false, antiLink: false,
             autoResponder: false, autoSticker: false, ownerReplyAudio: false,
             exit: true, welcome: true, onlyAdmins: false, muted: [],
-            rpg: false, sus: false,
+            rpg: false, sus: false, joinRequestNotification: false,
         };
         writeDB(db);
     }
@@ -80,6 +80,10 @@ function getGroup(jid) {
     if (!Array.isArray(db.groups[jid].muted)) { db.groups[jid].muted = []; changed = true; }
     if (typeof db.groups[jid].rpg !== "boolean") { db.groups[jid].rpg = false; changed = true; }
     if (typeof db.groups[jid].sus !== "boolean") { db.groups[jid].sus = false; changed = true; }
+    if (typeof db.groups[jid].joinRequestNotification !== "boolean") {
+        db.groups[jid].joinRequestNotification = false;
+        changed = true;
+    }
     if (typeof db.groups[jid].prefix!== "string" ||!db.groups[jid].prefix) {
         db.groups[jid].prefix = db.settings?.prefix || PREFIX;
         changed = true;
@@ -125,6 +129,12 @@ export const isActiveOnlyAdmins = (jid) => isActiveGroupRestriction(jid, "onlyAd
 export const activateWelcomeGroup = (jid) => updateIsActiveGroupRestriction(jid, "welcome", true);
 export const deactivateWelcomeGroup = (jid) => updateIsActiveGroupRestriction(jid, "welcome", false);
 export const isActiveWelcomeGroup = (jid) => isActiveGroupRestriction(jid, "welcome");
+export const activateJoinRequestNotification = (jid) =>
+    updateIsActiveGroupRestriction(jid, "joinRequestNotification", true);
+export const deactivateJoinRequestNotification = (jid) =>
+    updateIsActiveGroupRestriction(jid, "joinRequestNotification", false);
+export const isActiveJoinRequestNotification = (jid) =>
+    isActiveGroupRestriction(jid, "joinRequestNotification");
 
 // ========================================
 // PREFIXO POR GRUPO - CORRIGIDO

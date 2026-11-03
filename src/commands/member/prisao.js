@@ -12,7 +12,10 @@ const crimes = [
   "🍔 𝐂𝐨𝐦𝐞𝐫 𝐨 𝐥𝐚𝐧𝐜𝐡𝐞 𝐝𝐨 𝐚𝐦𝐢𝐠𝐨.",
   "📺 𝐃𝐚𝐫 𝐬𝐩𝐨𝐢𝐥𝐞𝐫 𝐝𝐞 𝐬𝐞́𝐫𝐢𝐞.",
   "📱 𝐌𝐚𝐧𝐝𝐚𝐫 '𝐛𝐨𝐦 𝐝𝐢𝐚' 𝐜𝐨𝐦 𝐟𝐥𝐨𝐫𝐳𝐢𝐧𝐡𝐚.",
-  "💀 𝐔𝐬𝐚𝐫 𝐓𝐢𝐤𝐓𝐨𝐤 𝐞𝐦 𝐯𝐨𝐥𝐮𝐦𝐞 𝐦𝐚́𝐱𝐢𝐦𝐨."
+  "💀 𝐔𝐬𝐚𝐫 𝐓𝐢𝐤𝐓𝐨𝐤 𝐞𝐦 𝐯𝐨𝐥𝐮𝐦𝐞 𝐦𝐚́𝐱𝐢𝐦𝐨.",
+  "🧦 𝐄𝐬𝐜𝐨𝐧𝐝𝐞𝐫 𝐚 𝐦𝐞𝐢𝐚 𝐝𝐨 𝐩𝐚𝐫 𝐞 𝐧𝐞𝐠𝐚𝐫 𝐚𝐭𝐞́ 𝐨 𝐟𝐢𝐦.",
+  "🗣️ 𝐕𝐢𝐬𝐮𝐚𝐥𝐢𝐳𝐚𝐫 𝐞 𝐧𝐚̃𝐨 𝐫𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐫 𝐩𝐨𝐫 𝟑 𝐝𝐢𝐚𝐬.",
+  "🍚 𝐅𝐚𝐳𝐞𝐫 𝐚𝐫𝐫𝐨𝐳 𝐬𝐞𝐦 𝐬𝐚𝐥 𝐩𝐨𝐫 𝐭𝐫𝐞̂𝐬 𝐯𝐞𝐳𝐞𝐬."
 ];
 
 export default {
@@ -25,10 +28,13 @@ export default {
     sendReply,
     sender,
     mentionedJidList,
+    replyLid,
+    isReply,
   }) => {
 
-    const alvo = mentionedJidList?.[0] || sender;
-    const nome = mentionedJidList?.[0] ? "@"+mentionedJidList[0].split("@")[0] : sender;
+    const alvo = mentionedJidList?.[0] || (isReply ? replyLid : null) || sender;
+    const marcado = Boolean(mentionedJidList?.[0] || (isReply && replyLid));
+    const nome = marcado ? `@${alvo.split("@")[0]}` : "Você";
 
     const pena = Math.floor(Math.random() * 120) + 1;
     const crime = crimes[Math.floor(Math.random() * crimes.length)];
@@ -44,8 +50,7 @@ export default {
 
     await delay(3500);
 
-    await sendReply({
-      text: `⛓️━━━━━━━━━━━━━━━━━━━━━━⛓️
+    await sendReply(`⛓️━━━━━━━━━━━━━━━━━━━━━━⛓️
 
 🚨 𝐏𝐑𝐈𝐒𝐀̃𝐎 𝐄𝐅𝐄𝐓𝐔𝐀𝐃𝐀
 
@@ -64,9 +69,7 @@ ${crime}
 👮 𝐀𝐠𝐞𝐧𝐭𝐞 𝐫𝐞𝐬𝐩𝐨𝐧𝐬𝐚́𝐯𝐞:
 𝐗𝐈𝐂 𝐏𝐨𝐥𝐢𝐜𝐞
 
-⛓️━━━━━━━━━━━━━━━━━━━━━━⛓️`,
-      mentions: [alvo],
-    });
+⛓️━━━━━━━━━━━━━━━━━━━━━━⛓️`, marcado ? [alvo] : undefined);
 
   },
 };

@@ -43,12 +43,33 @@ function cleanName(name = "usuário") {
   return value;
 }
 
+export function getRequiredXp(level = 1) {
+  const currentLevel = Math.max(1, Math.floor(Number(level) || 1));
+  const step = currentLevel - 1;
+
+  return 100 + 150 * step + (25 * step * (step - 1)) / 2;
+}
+
+function normalizeExperience(level, xp) {
+  let currentLevel = Math.max(1, Math.floor(Number(level) || 1));
+  let currentXp = Math.max(0, Number(xp) || 0);
+
+  while (currentXp >= getRequiredXp(currentLevel)) {
+    currentXp -= getRequiredXp(currentLevel);
+    currentLevel += 1;
+  }
+
+  return { level: currentLevel, xp: currentXp };
+}
+
 function normalizeEntry(entry, name = "usuário") {
   const now = Date.now();
+  const experience = normalizeExperience(entry?.level, entry?.xp);
 
   return {
     coins: Number(entry?.coins) || 0,
-    xp: Number(entry?.xp) || 0,
+    level: experience.level,
+    xp: experience.xp,
     lastWork: Number(entry?.lastWork) || 0,
     lastDaily: Number(entry?.lastDaily) || 0,
     name: cleanName(entry?.name || name),
@@ -104,6 +125,19 @@ export function getTopEconomy(limit = 10) {
 
 export function formatCoins(value) {
   return Number(value || 0).toLocaleString("pt-BR");
+}
+
+export function getLevelInfo(xp = 0, level = 1) {
+  const currentLevel = Math.max(1, Math.floor(Number(level) || 1));
+  const currentXp = Math.max(0, Number(xp) || 0);
+  const requiredXp = getRequiredXp(currentLevel);
+
+  return {
+    level: currentLevel,
+    currentXp,
+    requiredXp,
+    progress: currentXp,
+  };
 }
 
 export function formatDuration(ms) {

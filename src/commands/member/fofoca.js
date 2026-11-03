@@ -25,6 +25,17 @@ const fofocas = [
   "foi pego usando filtro do instagram pra tirar foto do pé!",
   "foi flagrado dormindo na aula e roncando. Acordou falando 'professor?'",
   "foi visto pedindo música no churrasco: 'toca a do tiktok'",
+  "foi flagrado ensaiando uma discussão no banho e perdeu para si mesmo!",
+  "foi pego visualizando a própria mensagem para conferir se ficou famoso!",
+  "foi visto abrindo a geladeira de cinco em cinco minutos esperando comida nova!",
+  "foi flagrado mandando 'kkkk' sem ter achado graça nenhuma!",
+  "foi pego stalkeando o crush e curtindo uma foto de 2017 sem querer!",
+  "foi visto dizendo 'já estou chegando' ainda deitado na cama!",
+  "foi flagrado pesquisando no Google como fazer arroz!",
+  "foi pego apagando e reescrevendo 'oi' durante quinze minutos!",
+  "foi visto entrando no grupo só para ler a fofoca e sair em silêncio!",
+  "foi flagrado usando a calculadora para dividir a conta e cobrando centavos!",
+  "foi pego falando 'não vou dormir tarde' às 04:00 da manhã!",
 ];
 
 const titulos = [

@@ -64,7 +64,8 @@
       "muted": [],
       "prefix": "!",
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363428429532522@g.us": {
       "active": false,
@@ -104,7 +105,8 @@
       "muted": [],
       "prefix": "!",
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363425216914975@g.us": {
       "active": true,
@@ -324,7 +326,10 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": [],
-      "prefix": "!"
+      "prefix": "!",
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "49590380302414@lid": {
       "active": true,
@@ -362,7 +367,9 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": [],
-      "prefix": "!"
+      "prefix": "!",
+      "rpg": false,
+      "sus": false
     },
     "19181860864004@lid": {
       "active": true,
@@ -402,7 +409,8 @@
       "muted": [],
       "prefix": "!",
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363429279076216@g.us": {
       "active": true,
@@ -456,7 +464,8 @@
       "muted": [],
       "prefix": "/",
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363428476653549@g.us": {
       "active": true,
@@ -536,7 +545,8 @@
       "onlyAdmins": false,
       "muted": [],
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363300379503589@g.us": {
       "active": true,
@@ -564,7 +574,8 @@
       "onlyAdmins": false,
       "muted": [],
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363412088646182@g.us": {
       "active": true,
@@ -642,7 +653,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363431380265864@g.us": {
       "active": true,
@@ -1048,7 +1062,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "101150808404203@lid": {
       "active": false,
@@ -1384,7 +1401,9 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false
     },
     "120363409749097272@g.us": {
       "active": false,
@@ -1496,7 +1515,9 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false
     },
     "274032083632209@lid": {
       "active": false,
@@ -2278,7 +2299,8 @@
       "muted": [],
       "ownerOnlyOn": false,
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "40712531890189@lid": {
       "active": false,
@@ -2483,7 +2505,8 @@
       "onlyAdmins": false,
       "muted": [],
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363413845004567@g.us": {
       "active": false,
@@ -3395,6 +3418,216 @@
       "muted": [],
       "rpg": false,
       "sus": false
+    },
+    "120363431016097893@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false
+    },
+    "120363411457773600@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false
+    },
+    "120363432083277169@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false
+    },
+    "120363415135718512@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "120363429193590444@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false
+    },
+    "120363431702257394@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false
+    },
+    "120363414174440430@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false
+    },
+    "120363430302150679@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "120363432878995269@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "13474100945139@lid": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "120363415567109113@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "120363429380577985@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     }
   },
   "autoresponder": [],

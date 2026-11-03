@@ -46,15 +46,12 @@ export default {
     sendReply,
     sender,
     mentionedJidList,
-    socket
+    replyLid,
+    isReply,
   }) => {
-
-    let alvo = sender;
-
-    if (mentionedJidList?.length){
-      const contato = await socket.onWhatsApp(mentionedJidList[0]);
-      alvo = contato?.[0]?.notify || contato?.[0]?.verifiedName || "Usuário";
-    }
+    const alvoJid = mentionedJidList?.[0] || (isReply ? replyLid : null) || sender;
+    const marcado = Boolean(mentionedJidList?.[0] || (isReply && replyLid));
+    const alvo = marcado ? `@${alvoJid.split("@")[0]}` : "Você";
 
     await sendReply(`☠️ 𝐂𝐎𝐍𝐒𝐔𝐋𝐓𝐀𝐍𝐃𝐎 𝐎 𝐃𝐄𝐒𝐓𝐈𝐍𝐎...
 
@@ -91,6 +88,6 @@ ${idade} 𝐚𝐧𝐨𝐬
 ${causa}
 ━━━━━━━━━━━━━━━━━━━━━━
 🪦 ${epitafio}
-☠️━━━━━━━━━━━━━━━━━━━━━━☠️`);
+☠️━━━━━━━━━━━━━━━━━━━━━━☠️`, marcado ? [alvoJid] : undefined);
   }
 };

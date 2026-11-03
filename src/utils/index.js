@@ -87,6 +87,10 @@ export function extractDataFromMessage(webMessage) {
 
   const isReply = !!contextInfo?.quotedMessage;
   const replyLid = contextInfo?.participant || null;
+  const mentionedJidList = [
+    ...(contextInfo?.mentionedJid || []),
+    ...(contextInfo?.mentionedJidAlt || []),
+  ].filter(Boolean);
 
   const quoted = contextInfo?.quotedMessage;
   const replyText =
@@ -110,8 +114,10 @@ export function extractDataFromMessage(webMessage) {
     prefix,
     remoteJid: webMessage?.key?.remoteJid,
     replyLid,
+    mentionedJidList: [...new Set(mentionedJidList)],
     replyText,
     userLid,
+    sender: userLid,
   };
 }
 

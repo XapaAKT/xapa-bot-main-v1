@@ -28,6 +28,8 @@ export function loadCommonFunctions({ socket, webMessage }) {
     replyLid,
     userLid,
     replyText,
+    mentionedJidList,
+    sender,
   } = extractDataFromMessage(webMessage);
 
   if (!remoteJid) {
@@ -372,7 +374,7 @@ export function loadCommonFunctions({ socket, webMessage }) {
 
   return {
     args, commandName, fullArgs, fullMessage, isGroup, isGroupWithLid, isAudio, isImage, isReply, isSticker, isVideo,
-    prefix, remoteJid, replyLid, socket, userLid, replyText, webMessage, deleteMessage, downloadAudio, downloadImage,
+    prefix, remoteJid, replyLid, socket, userLid, sender, replyText, mentionedJidList, webMessage, deleteMessage, downloadAudio, downloadImage,
     downloadSticker, downloadVideo, getGroupAdmins, getGroupMetadata, getGroupName, getGroupOwner, getGroupParticipants,
     sendAudioFromBuffer, sendAudioFromFile, sendAudioFromURL, sendContact, sendDocumentFromBuffer, sendDocumentFromFile,
     sendDocumentFromURL, sendEditedReply, sendEditedText, sendErrorReact, sendErrorReply, sendGifFromBuffer, sendGifFromFile,

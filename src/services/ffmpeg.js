@@ -75,6 +75,46 @@ class Ffmpeg {
     return outputPath;
   }
 
+  async reduceVideoDuration(inputPath, seconds = 1) {
+    if (!Number.isFinite(seconds) || seconds <= 0) {
+      throw new Error("A redução da duração deve ser maior que zero.");
+    }
+
+    const quotePath = (filePath) => `"${filePath.replaceAll('"', '\\"')}"`;
+    const probeCommand =
+      `ffprobe -v error -show_entries format=duration ` +
+      `-of default=noprint_wrappers=1:nokey=1 ${quotePath(inputPath)}`;
+    const durationOutput = await this._executeCommand(probeCommand);
+    const duration = Number.parseFloat(durationOutput.trim());
+
+    if (!Number.isFinite(duration) || duration <= seconds) {
+      throw new Error("O vídeo precisa ser maior que o tempo a ser reduzido.");
+    }
+
+    const outputPath = await this._createTempFilePath("mp4");
+    const targetDuration = (duration - seconds).toFixed(3);
+    const command =
+      `ffmpeg -y -i ${quotePath(inputPath)} -t ${targetDuration} ` +
+      `-c:v libx264 -c:a aac -movflags +faststart ${quotePath(outputPath)}`;
+    await this._executeCommand(command);
+    return outputPath;
+  }
+
+  async getVideoDuration(inputPath) {
+    const quotePath = (filePath) => `"${filePath.replaceAll('"', '\\"')}"`;
+    const command =
+      `ffprobe -v error -show_entries format=duration ` +
+      `-of default=noprint_wrappers=1:nokey=1 ${quotePath(inputPath)}`;
+    const durationOutput = await this._executeCommand(command);
+    const duration = Number.parseFloat(durationOutput.trim());
+
+    if (!Number.isFinite(duration) || duration <= 0) {
+      throw new Error("Não foi possível identificar a duração do vídeo.");
+    }
+
+    return duration;
+  }
+
   async cleanup(filePath) {
     removeFileIfExists(filePath);
   }

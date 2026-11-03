@@ -18,8 +18,8 @@ export async function executeMenu({
   webMessage,
 }) {
   const { text, footer } = getMenuText(userName);
-  const buttons = getMenuButtons(prefix);
   const { type, carousel } = getMenuSettings();
+  const buttons = getMenuButtons(prefix, type === "list");
 
   try {
     if (carousel) {

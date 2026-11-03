@@ -17,7 +17,11 @@ export default {
     }
 
     await sendPoll(
-      `╭━━━〔 🥀✨ 𝐄𝐔 𝐍𝐔𝐍𝐂𝐀 ✨🥀 〕━━━╮\n┃ 💬 ${frase}\n╰━━━━━━━━━━━━━━━━━━━━━━╯`,
+      `╭━━━〔 🥀✨ 𝐄𝐔 𝐍𝐔𝐍𝐂𝐀 ✨🥀 〕━━━╮
+┃
+┃ 💬 𝐄𝐮 𝐧𝐮𝐧𝐜𝐚: ${frase}
+┃
+╰━━━〔 🗳️ 𝐕𝐎𝐓𝐄 𝐒𝐄𝐌 𝐌𝐄𝐃𝐎 〕━━━╯`,
       [{ optionName: "✅ Eu já 😈" }, { optionName: "🙅 Eu nunca 👀" }],
       true
     );

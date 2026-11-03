@@ -25,10 +25,12 @@ export default {
   name: "cpf",
   description: "Consulta CPF",
   commands: ["cpf"],
-  usage: `${PREFIX}cpf`,
+  usage: `${PREFIX}cpf @usuario`,
 
-  handle: async ({ sendReply, userLid }) => {
-    const nome = userLid?.split("@")[0] || "cidadão misterioso";
+  handle: async ({ sendReply, sender, mentionedJidList, replyLid, isReply }) => {
+    const alvoJid = mentionedJidList?.[0] || (isReply ? replyLid : null) || sender;
+    const marcado = Boolean(mentionedJidList?.[0] || (isReply && replyLid));
+    const nome = marcado ? `@${alvoJid.split("@")[0]}` : "você";
 
     await sendReply(`╭━━━〔 🕵️‍♂️ 𝐂𝐏𝐅 𝐒𝐄𝐂𝐑𝐄𝐓𝐎 〕━━━╮
 ┃ 🔐 Acessando o banco de dados...
@@ -50,7 +52,7 @@ export default {
 ⚠️ 𝐀𝐜𝐮𝐬𝐚𝐜̧𝐚̃𝐨:
 ${motivo}
 
-╰━━━〔 🚨 Receita Federal do XIC 〕━━━╯`);
+╰━━━〔 🚨 Receita Federal do XIC 〕━━━╯`, marcado ? [alvoJid] : undefined);
 
   },
 };
