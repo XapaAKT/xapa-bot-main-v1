@@ -104,9 +104,9 @@ export async function messageHandler(socket, webMessage) {
       return;
     }
 
-    const messageType = Object.keys(readRestrictedMessageTypes()).find((type) =>
-      hasDirectMedia(webMessage, type),
-    );
+    const messageType = readRestrictedMessageTypes(remoteJid)
+      .filter((type) => type !== "sticker")
+      .find((type) => hasDirectMedia(webMessage, type));
 
     if (!messageType) {
       return;

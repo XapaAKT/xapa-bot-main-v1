@@ -354,7 +354,10 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": [],
-      "prefix": "!"
+      "prefix": "!",
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "13916449022202@lid": {
       "active": true,
@@ -369,7 +372,8 @@
       "muted": [],
       "prefix": "!",
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "19181860864004@lid": {
       "active": true,
@@ -517,7 +521,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363410719531771@g.us": {
       "active": true,
@@ -559,7 +566,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "146360154206349@lid": {
       "active": true,
@@ -825,7 +835,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "198874333495529@lid": {
       "active": true,
@@ -1149,7 +1162,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "245522157850861@lid": {
       "active": false,
@@ -1219,7 +1235,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363428253619282@g.us": {
       "active": false,
@@ -2002,7 +2021,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "86196319428623@lid": {
       "active": false,
@@ -2198,7 +2220,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "73856391901396@lid": {
       "active": false,
@@ -2548,7 +2573,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363435426877773@g.us": {
       "active": true,
@@ -2877,7 +2905,8 @@
       "onlyAdmins": false,
       "muted": [],
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "145732619223191@lid": {
       "active": false,
@@ -3417,7 +3446,8 @@
       "onlyAdmins": false,
       "muted": [],
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363431016097893@g.us": {
       "active": false,
@@ -3628,6 +3658,25 @@
       "rpg": false,
       "sus": false,
       "joinRequestNotification": false
+    },
+    "anti-status-handler-test@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false,
+      "anti-status-grupo": true
     }
   },
   "autoresponder": [],

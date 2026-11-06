@@ -172,6 +172,51 @@ export async function processAnimatedGifToSticker(inputPath, metadata) {
   });
 }
 
+export async function processPackSticker(inputPath, metadata, animated = false) {
+  const qualities = animated ? [55, 40, 28, 20] : [82, 68, 54, 42, 30];
+  const sizes = animated ? [480, 420, 360, 300] : [512, 480, 420, 360];
+
+  for (const size of sizes) {
+    for (const quality of qualities) {
+      const outputPath = path.resolve(TEMP_DIR, getRandomName("webp"));
+      const filter = animated
+        ? `scale=${size}:${size}:force_original_aspect_ratio=decrease,pad=${size}:${size}:(ow-iw)/2:(oh-ih)/2:color=0x00000000,fps=12`
+        : `scale=${size}:${size}:force_original_aspect_ratio=decrease,pad=${size}:${size}:(ow-iw)/2:(oh-ih)/2:color=0x00000000`;
+      const command = animated
+        ? `ffmpeg -y -i "${inputPath}" -t 6 -vf "${filter},format=yuva420p" -an -c:v libwebp -loop 0 -q:v ${quality} "${outputPath}"`
+        : `ffmpeg -y -i "${inputPath}" -frames:v 1 -vf "${filter},format=yuva420p" -c:v libwebp -lossless 0 -q:v ${quality} "${outputPath}"`;
+
+      try {
+        await new Promise((resolve, reject) => {
+          exec(command, (error, _, stderr) => {
+            if (error) {
+              reject(new Error(stderr || "Falha ao converter mídia."));
+              return;
+            }
+            resolve();
+          });
+        });
+
+        const processedBuffer = await fs.promises.readFile(outputPath);
+        const finalPath = await addStickerMetadata(processedBuffer, metadata);
+        await fs.promises.rm(outputPath, { force: true });
+
+        if ((await fs.promises.stat(finalPath)).size <= 100 * 1024) {
+          return finalPath;
+        }
+        await fs.promises.rm(finalPath, { force: true });
+      } catch (error) {
+        await fs.promises.rm(outputPath, { force: true });
+        if (quality === qualities.at(-1) && size === sizes.at(-1)) {
+          throw error;
+        }
+      }
+    }
+  }
+
+  throw new Error("Não foi possível gerar uma figurinha menor que 100 KB.");
+}
+
 export async function createSticker(paramsHandler, metadataOverrides = {}) {
   const {
     isImage,

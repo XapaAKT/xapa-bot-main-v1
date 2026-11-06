@@ -206,6 +206,14 @@ export function loadCommonFunctions({ socket, webMessage }) {
     return await socket.sendMessage(remoteJid, { sticker: { url } }, { url, ...quotedObject });
   };
 
+  const sendStickerPack = async (stickerPackMessage) => {
+    return await socket.sendMessage(
+      remoteJid,
+      { stickerPackMessage },
+      { quoted: JSON.parse(JSON.stringify(webMessage)) },
+    );
+  };
+
   const sendImageFromFile = async (file, caption = "", mentions = null, quoted = true) => {
     const quotedObject = quoted ? { quoted: JSON.parse(JSON.stringify(webMessage)) } : {};
     let optionalParams = {};
@@ -379,7 +387,7 @@ export function loadCommonFunctions({ socket, webMessage }) {
     sendAudioFromBuffer, sendAudioFromFile, sendAudioFromURL, sendContact, sendDocumentFromBuffer, sendDocumentFromFile,
     sendDocumentFromURL, sendEditedReply, sendEditedText, sendErrorReact, sendErrorReply, sendGifFromBuffer, sendGifFromFile,
     sendGifFromURL, sendImageFromBuffer, sendImageFromFile, sendImageFromURL, sendLocation, sendPoll, sendReact,
-    sendRecordState, sendReply, sendStickerFromBuffer, sendStickerFromFile, sendStickerFromURL, sendSuccessReact,
+    sendRecordState, sendReply, sendStickerFromBuffer, sendStickerFromFile, sendStickerFromURL, sendStickerPack, sendSuccessReact,
     sendSuccessReply, sendText, sendTypingState, sendVideoFromBuffer, sendVideoFromFile, sendVideoFromURL, sendWaitReact,
     sendWaitReply, sendWarningReact, sendWarningReply,
   };
