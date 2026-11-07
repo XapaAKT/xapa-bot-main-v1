@@ -1,6 +1,6 @@
 const USER_AGENT =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131 Safari/537.36";
-const MAX_RESULTS_PER_SOURCE = 12;
+const MAX_RESULTS_PER_SOURCE = 40;
 
 function uniqueUrls(urls) {
   return [...new Set(urls.filter((url) => /^https?:\/\//i.test(url)))];

@@ -1,4 +1,3 @@
-import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -12,9 +11,10 @@ import { processPackSticker } from "../../services/sticker.js";
 import { getRandomName, removeFileIfExists } from "../../utils/index.js";
 import { errorLog } from "../../utils/logger.js";
 
-const PACK_SIZE = 12;
+const PACK_SIZE = 50;
 const MAX_QUERY_LENGTH = 100;
 const PACK_PUBLISHER = "Pack criado pelo XIC-BOT";
+const PROCESSING_CONCURRENCY = 4;
 
 async function createCover(stickerPath) {
   const coverPath = path.resolve(TEMP_DIR, getRandomName("webp"));
@@ -61,7 +61,6 @@ export default {
       throw new WarningError("Não achei figurinha pra esse tema");
     }
 
-    const packId = crypto.randomUUID();
     const metadata = {
       username: theme,
       botName: PACK_PUBLISHER,
@@ -70,9 +69,12 @@ export default {
     const stickerPaths = [];
     let coverPath;
 
-    try {
-      await Promise.allSettled(
-        media.map(async (item) => {
+    for (let index = 0; index < media.length; index += PROCESSING_CONCURRENCY) {
+      const batch = media.slice(index, index + PROCESSING_CONCURRENCY);
+      await Promise.all(
+        batch.map(async (item) => {
+          if (stickerPaths.length >= PACK_SIZE) return;
+
           let inputPath;
           try {
             const downloaded = await downloadPackMedia(item.url);
@@ -87,7 +89,6 @@ export default {
               downloaded.animated,
             );
             stickerPaths.push({ path: stickerPath, animated: downloaded.animated });
-            await removeFileIfExists(inputPath);
           } catch (error) {
             errorLog(`Mídia ignorada no pack (${item.source}): ${error.message}`);
           } finally {
@@ -95,32 +96,33 @@ export default {
           }
         }),
       );
-    } catch (error) {
-      errorLog(`Falha ao processar mídia do pack: ${error.message}`);
+
+      if (stickerPaths.length >= PACK_SIZE) break;
     }
 
-    if (!stickerPaths.length) {
+    if (stickerPaths.length < PACK_SIZE) {
+      await Promise.all(
+        stickerPaths.map(({ path: filePath }) => removeFileIfExists(filePath)),
+      );
       throw new WarningError("Não achei figurinha pra esse tema");
     }
 
     try {
       const selectedStickers = stickerPaths.slice(0, PACK_SIZE);
       coverPath = await createCover(selectedStickers[0].path);
-      const stickers = selectedStickers.map(({ path: filePath, animated }, index) => ({
-        fileName: `${packId}-${index + 1}.webp`,
-        isAnimated: animated,
-        emojis: [""],
-        mimetype: "image/webp",
-      }));
+      const stickers = await Promise.all(
+        selectedStickers.map(async ({ path: filePath }) => ({
+          data: await fs.readFile(filePath),
+          emojis: [""],
+        })),
+      );
 
       await sendStickerPack({
-        stickerPackId: packId,
+        cover: await fs.readFile(coverPath),
+        stickers,
         name: theme,
         publisher: PACK_PUBLISHER,
-        stickers,
-        trayIconFileName: path.basename(coverPath),
-        stickerPackOrigin: 2,
-        thumbnail: await fs.readFile(coverPath),
+        description: `Pack criado pelo XIC-BOT: ${theme}`,
       });
       await sendSuccessReact();
     } finally {

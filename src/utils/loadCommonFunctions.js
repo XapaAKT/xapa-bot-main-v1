@@ -206,10 +206,10 @@ export function loadCommonFunctions({ socket, webMessage }) {
     return await socket.sendMessage(remoteJid, { sticker: { url } }, { url, ...quotedObject });
   };
 
-  const sendStickerPack = async (stickerPackMessage) => {
+  const sendStickerPack = async (stickerPack) => {
     return await socket.sendMessage(
       remoteJid,
-      { stickerPackMessage },
+      stickerPack,
       { quoted: JSON.parse(JSON.stringify(webMessage)) },
     );
   };
