@@ -692,7 +692,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "202474002595871@lid": {
       "active": true,
