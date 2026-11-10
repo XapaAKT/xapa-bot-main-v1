@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hell Runner — Escape from the Abyss</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', Courier, monospace;
+      color: #ff3333;
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+    }
+
+    .container {
+      position: relative;
+      box-shadow: 
+        0 0 40px rgba(255, 0, 0, 0.4),
+        0 0 80px rgba(180, 0, 0, 0.2),
+        inset 0 0 60px rgba(0, 0, 0, 0.8);
+      border: 3px solid #4a0000;
+      border-radius: 4px;
+      max-width: 100%;
+    }
+
+    canvas {
+      display: block;
+      background: #1a0505;
+      cursor: pointer;
+      max-width: 100%;
+      height: auto;
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .ui {
+      position: absolute;
+      top: 12px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+      pointer-events: none;
+      font-size: 12px;
+      text-shadow: 0 0 8px #ff0000, 0 0 4px #ff0000;
+    }
+
+    .title {
+      margin-bottom: 16px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      color: #ff2222;
+      text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #cc0000,
+        0 0 40px #880000;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #aa4444;
+      margin-bottom: 20px;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    .instructions {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #884444;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .glow-red {
+      color: #ff4444;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">HELL RUNNER</div>
+  <div class="subtitle">ESCAPE THE ABYSS</div>
+
+  <div class="container">
+    <canvas id="game" width="800" height="300"></canvas>
+    <div class="ui">
+      <div id="hi-score">HI 00000</div>
+      <div id="score">00000</div>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <span class="glow-red">[ TOQUE / SPACE / ↑ ]</span> para pular<br>
+    Sobreviva o máximo que conseguir no Inferno
+  </div>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('score');
+    const hiScoreEl = document.getElementById('hi-score');
+
+    // Config
+    const GROUND_Y = 250;
+    const GRAVITY = 0.65;
+    const JUMP_FORCE = -12.5;
+    const BASE_SPEED = 6;
+    const SPEED_INCREASE = 0.0015;
+
+    // State
+    let gameState = 'start'; // start | playing | gameover
+    let score = 0;
+    let highScore = parseInt(localStorage.getItem('hellRunnerHigh') || '0');
+    let speed = BASE_SPEED;
+    let frame = 0;
+    let particles = [];
+    let obstacles = [];
+    let nextObstacle = 90;
+    let groundOffset = 0;
+
+    // Player
+    const player = {
+      x: 80,
+      y: GROUND_Y,
+      width: 36,
+      height: 44,
+      vy: 0,
+      jumping: false,
+      grounded: true,
+      animFrame: 0
+    };
+
+    // Update high score display
+    function updateHiScore() {
+      hiScoreEl.textContent = 'HI ' + String(highScore).padStart(5, '0');
+    }
+    updateHiScore();
+
+    // Input
+    function jump() {
+      if (gameState === 'start') {
+        startGame();
+        return;
+      }
+      if (gameState === 'gameover') {
+        resetGame();
+        return;
+      }
+      if (player.grounded && gameState === 'playing') {
+        player.vy = JUMP_FORCE;
+        player.jumping = true;
+        player.grounded = false;
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' || e.code === 'ArrowUp') {
+        e.preventDefault();
+        jump();
+      }
+    });
+
+    let lastPointerInputAt = 0;
+
+    function handlePointerInput(e) {
+      if (e.isPrimary === false || e.button !== 0) return;
+      e.preventDefault();
+      lastPointerInputAt = performance.now();
+      jump();
+    }
+
+    document.addEventListener('pointerdown', handlePointerInput, { capture: true });
+    document.addEventListener('touchstart', (e) => {
+      if ('PointerEvent' in window) return;
+      e.preventDefault();
+      lastPointerInputAt = performance.now();
+      jump();
+    }, { capture: true, passive: false });
+    document.addEventListener('click', (e) => {
+      if (performance.now() - lastPointerInputAt < 500) return;
+      jump();
+    }, { capture: true });
+
+    function startGame() {
+      gameState = 'playing';
+      score = 0;
+      speed = BASE_SPEED;
+      obstacles = [];
+      nextObstacle = 80;
+      player.y = GROUND_Y;
+      player.vy = 0;
+      player.grounded = true;
+      particles = [];
+    }
+
+    function resetGame() {
+      startGame();
+    }
+
+    function gameOver() {
+      gameState = 'gameover';
+      if (score > highScore) {
+        highScore = Math.floor(score);
+        localStorage.setItem('hellRunnerHigh', highScore);
+        updateHiScore();
+      }
+    }
+
+    // Spawn obstacle
+    function spawnObstacle() {
+      const types = ['skull', 'fire', 'bones', 'imp'];
+      const type = types[Math.floor(Math.random() * types.length)];
+      let w, h;
+
+      switch (type) {
+        case 'skull': w = 28; h = 32; break;
+        case 'fire':  w = 22; h = 48; break;
+        case 'bones': w = 40; h = 28; break;
+        case 'imp':   w = 30; h = 36; break;
+      }
+
+      obstacles.push({
+        x: canvas.width + 20,
+        y: GROUND_Y - h + 4,
+        width: w,
+        height: h,
+        type: type
+      });
+    }
+
+    // Particles (embers)
+    function spawnParticle(x, y, count = 1) {
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: x + Math.random() * 20 - 10,
+          y: y,
+          vx: Math.random() * 2 - 1,
+          vy: -Math.random() * 3 - 1,
+          life: 30 + Math.random() * 30,
+          maxLife: 60,
+          size: 1.5 + Math.random() * 2.5
+        });
+      }
+    }
+
+    // Collision - player.y is the BOTTOM (feet), obstacles.y is the TOP
+    function collides(playerObj, obs) {
+      const marginX = 8;
+      const marginY = 6;
+
+      // Player bounding box (y is feet)
+      const pLeft   = playerObj.x + marginX;
+      const pRight  = playerObj.x + playerObj.width - marginX;
+      const pTop    = playerObj.y - playerObj.height + marginY;
+      const pBottom = playerObj.y - marginY;
+
+      // Obstacle bounding box (y is top)
+      const oLeft   = obs.x + marginX;
+      const oRight  = obs.x + obs.width - marginX;
+      const oTop    = obs.y + marginY;
+      const oBottom = obs.y + obs.height - marginY;
+
+      return (
+        pLeft < oRight &&
+        pRight > oLeft &&
+        pTop < oBottom &&
+        pBottom > oTop
+      );
+    }
+
+    // Draw functions
+    function drawBackground() {
+      // Deep hell gradient
+      const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      grad.addColorStop(0, '#1a0505');
+      grad.addColorStop(0.5, '#2a0a0a');
+      grad.addColorStop(0.85, '#3a1010');
+      grad.addColorStop(1, '#4a1500');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Distant fire glow
+      const glow = ctx.createRadialGradient(canvas.width / 2, canvas.height + 40, 20, canvas.width / 2, canvas.height, 300);
+      glow.addColorStop(0, 'rgba(255, 80, 0, 0.25)');
+      glow.addColorStop(0.5, 'rgba(180, 20, 0, 0.1)');
+      glow.addColorStop(1, 'transparent');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Subtle red vignette
+      const vig = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 100, canvas.width/2, canvas.height/2, 500);
+      vig.addColorStop(0, 'transparent');
+      vig.addColorStop(1, 'rgba(40, 0, 0, 0.5)');
+      ctx.fillStyle = vig;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawGround() {
+      // Lava-ish ground
+      const groundGrad = ctx.createLinearGradient(0, GROUND_Y, 0, canvas.height);
+      groundGrad.addColorStop(0, '#2a0800');
+      groundGrad.addColorStop(0.3, '#1a0400');
+      groundGrad.addColorStop(1, '#0a0000');
+      ctx.fillStyle = groundGrad;
+      ctx.fillRect(0, GROUND_Y, canvas.width, canvas.height - GROUND_Y);
+
+      // Cracks and texture
+      ctx.strokeStyle = '#3a1000';
+      ctx.lineWidth = 2;
+      for (let i = 0; i < 12; i++) {
+        const x = ((i * 90 - groundOffset * 0.8) % (canvas.width + 100)) - 50;
+        ctx.beginPath();
+        ctx.moveTo(x, GROUND_Y);
+        ctx.lineTo(x + 15 + Math.sin(i) * 10, GROUND_Y + 18);
+        ctx.lineTo(x + 30, GROUND_Y + 8);
+        ctx.stroke();
+      }
+
+      // Glowing lava cracks
+      ctx.strokeStyle = 'rgba(255, 60, 0, 0.4)';
+      ctx.lineWidth = 1.5;
+      for (let i = 0; i < 8; i++) {
+        const x = ((i * 130 - groundOffset * 1.2) % (canvas.width + 120)) - 40;
+        ctx.beginPath();
+        ctx.moveTo(x, GROUND_Y + 2);
+        ctx.lineTo(x + 20, GROUND_Y + 12);
+        ctx.stroke();
+      }
+
+      // Top edge glow
+      ctx.fillStyle = 'rgba(255, 40, 0, 0.15)';
+      ctx.fillRect(0, GROUND_Y - 3, canvas.width, 6);
+    }
+
+    function drawPlayer() {
+      const px = player.x;
+      const py = player.y - player.height;
+
+      ctx.save();
+      ctx.translate(px + player.width / 2, py + player.height / 2);
+
+      // Running animation bob
+      const bob = player.grounded ? Math.sin(frame * 0.3) * 1.5 : 0;
+      ctx.translate(0, bob);
+
+      // Body (demon torso)
+      ctx.fillStyle = '#8b0000';
+      ctx.beginPath();
+      ctx.ellipse(0, 4, 14, 16, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Head
+      ctx.fillStyle = '#a00000';
+      ctx.beginPath();
+      ctx.ellipse(0, -14, 12, 11, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Horns
+      ctx.fillStyle = '#220000';
+      ctx.beginPath();
+      ctx.moveTo(-8, -20);
+      ctx.lineTo(-14, -32);
+      ctx.lineTo(-4, -22);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(8, -20);
+      ctx.lineTo(14, -32);
+      ctx.lineTo(4, -22);
+      ctx.fill();
+
+      // Glowing eyes
+      ctx.fillStyle = '#ff2200';
+      ctx.shadowColor = '#ff0000';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.arc(-5, -15, 2.5, 0, Math.PI * 2);
+      ctx.arc(5, -15, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Mouth (grin)
+      ctx.strokeStyle = '#330000';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(0, -10, 5, 0.2, Math.PI - 0.2);
+      ctx.stroke();
+
+      // Legs (running)
+      const legSwing = player.grounded ? Math.sin(frame * 0.35) * 8 : 0;
+      ctx.fillStyle = '#6b0000';
+      
+      // Back leg
+      ctx.save();
+      ctx.translate(-6, 16);
+      ctx.rotate(legSwing * 0.08);
+      ctx.fillRect(-3, 0, 6, 14);
+      ctx.restore();
+
+      // Front leg
+      ctx.save();
+      ctx.translate(6, 16);
+      ctx.rotate(-legSwing * 0.08);
+      ctx.fillRect(-3, 0, 6, 14);
+      ctx.restore();
+
+      // Arms
+      ctx.fillStyle = '#7a0000';
+      const armSwing = player.grounded ? Math.sin(frame * 0.35) * 6 : -10;
+      ctx.save();
+      ctx.translate(-12, -2);
+      ctx.rotate(armSwing * 0.06);
+      ctx.fillRect(-2, 0, 5, 12);
+      ctx.restore();
+
+      ctx.save();
+      ctx.translate(12, -2);
+      ctx.rotate(-armSwing * 0.06);
+      ctx.fillRect(-2, 0, 5, 12);
+      ctx.restore();
+
+      // Tail
+      ctx.strokeStyle = '#5a0000';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(-10, 10);
+      ctx.quadraticCurveTo(-22, 5 + Math.sin(frame * 0.2) * 4, -18, 18);
+      ctx.stroke();
+
+      // Spiky tip
+      ctx.fillStyle = '#3a0000';
+      ctx.beginPath();
+      ctx.moveTo(-18, 18);
+      ctx.lineTo(-22, 22);
+      ctx.lineTo(-14, 20);
+      ctx.fill();
+
+      ctx.restore();
+
+      // Shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.3)';
+      ctx.beginPath();
+      ctx.ellipse(player.x + player.width/2, GROUND_Y + 2, 16, 4, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function drawObstacle(obs) {
+      const ox = obs.x;
+      const oy = obs.y;
+
+      ctx.save();
+      ctx.translate(ox + obs.width / 2, oy + obs.height / 2);
+
+      if (obs.type === 'skull') {
+        // Skull
+        ctx.fillStyle = '#ddd';
+        ctx.beginPath();
+        ctx.ellipse(0, -2, 12, 11, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Eye sockets
+        ctx.fillStyle = '#111';
+        ctx.beginPath();
+        ctx.ellipse(-5, -4, 3.5, 4, 0, 0, Math.PI * 2);
+        ctx.ellipse(5, -4, 3.5, 4, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Glow in eyes
+        ctx.fillStyle = 'rgba(255, 40, 0, 0.7)';
+        ctx.beginPath();
+        ctx.arc(-5, -3, 1.5, 0, Math.PI * 2);
+        ctx.arc(5, -3, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Nose
+        ctx.fillStyle = '#222';
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(-2, 4);
+        ctx.lineTo(2, 4);
+        ctx.fill();
+
+        // Teeth
+        ctx.fillStyle = '#eee';
+        ctx.fillRect(-6, 6, 3, 4);
+        ctx.fillRect(-2, 6, 3, 4);
+        ctx.fillRect(2, 6, 3, 4);
+      } 
+      else if (obs.type === 'fire') {
+        // Fire pillar
+        const flicker = Math.sin(frame * 0.4 + ox) * 3;
+        
+        // Base
+        ctx.fillStyle = '#3a1000';
+        ctx.fillRect(-10, 10, 20, 12);
+
+        // Flame body
+        const flameGrad = ctx.createLinearGradient(0, 18, 0, -24);
+        flameGrad.addColorStop(0, '#ff4400');
+        flameGrad.addColorStop(0.4, '#ff2200');
+        flameGrad.addColorStop(0.8, '#ff6600');
+        flameGrad.addColorStop(1, '#ffaa00');
+        ctx.fillStyle = flameGrad;
+
+        ctx.beginPath();
+        ctx.moveTo(-11, 12);
+        ctx.quadraticCurveTo(-14 + flicker, -5, -6, -18 + flicker);
+        ctx.quadraticCurveTo(0, -26, 6, -18 - flicker);
+        ctx.quadraticCurveTo(14 - flicker, -5, 11, 12);
+        ctx.closePath();
+        ctx.fill();
+
+        // Inner bright
+        ctx.fillStyle = 'rgba(255, 220, 100, 0.7)';
+        ctx.beginPath();
+        ctx.moveTo(-5, 8);
+        ctx.quadraticCurveTo(-4, -4, 0, -14);
+        ctx.quadraticCurveTo(4, -4, 5, 8);
+        ctx.fill();
+      }
+      else if (obs.type === 'bones') {
+        // Bone spikes
+        ctx.fillStyle = '#e8e0d0';
+        
+        // Left bone
+        ctx.save();
+        ctx.rotate(-0.3);
+        ctx.fillRect(-14, -4, 18, 6);
+        ctx.beginPath();
+        ctx.arc(-14, -1, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Right bone
+        ctx.save();
+        ctx.rotate(0.3);
+        ctx.fillRect(-4, -4, 18, 6);
+        ctx.beginPath();
+        ctx.arc(14, -1, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Center
+        ctx.fillStyle = '#d0c8b8';
+        ctx.fillRect(-3, -10, 6, 20);
+      }
+      else if (obs.type === 'imp') {
+        // Small flying/standing imp
+        ctx.fillStyle = '#5a0000';
+        ctx.beginPath();
+        ctx.ellipse(0, 2, 11, 13, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Head
+        ctx.fillStyle = '#6b0000';
+        ctx.beginPath();
+        ctx.ellipse(0, -10, 9, 8, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Horns
+        ctx.fillStyle = '#2a0000';
+        ctx.beginPath();
+        ctx.moveTo(-5, -15);
+        ctx.lineTo(-9, -24);
+        ctx.lineTo(-2, -16);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(5, -15);
+        ctx.lineTo(9, -24);
+        ctx.lineTo(2, -16);
+        ctx.fill();
+
+        // Eyes
+        ctx.fillStyle = '#ff3300';
+        ctx.shadowColor = '#ff0000';
+        ctx.shadowBlur = 6;
+        ctx.beginPath();
+        ctx.arc(-3, -11, 2, 0, Math.PI * 2);
+        ctx.arc(3, -11, 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Wings
+        ctx.fillStyle = 'rgba(80, 0, 0, 0.7)';
+        ctx.beginPath();
+        ctx.moveTo(-10, -2);
+        ctx.quadraticCurveTo(-22, -8 + Math.sin(frame * 0.3) * 3, -18, 8);
+        ctx.quadraticCurveTo(-12, 4, -8, 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(10, -2);
+        ctx.quadraticCurveTo(22, -8 + Math.sin(frame * 0.3) * 3, 18, 8);
+        ctx.quadraticCurveTo(12, 4, 8, 2);
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+
+    function drawParticles() {
+      particles.forEach(p => {
+        const alpha = p.life / p.maxLife;
+        ctx.fillStyle = `rgba(255, ${100 + Math.random()*80}, 0, ${alpha})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * alpha, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function drawUI() {
+      if (gameState === 'start') {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#ff3333';
+        ctx.font = 'bold 20px Courier New, monospace';
+        ctx.textAlign = 'center';
+        ctx.shadowColor = '#ff0000';
+        ctx.shadowBlur = 12;
+        ctx.fillText('HELL RUNNER', canvas.width / 2, 110);
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = '#cc6666';
+        ctx.font = '14px Courier New, monospace';
+        ctx.fillText('Toque para começar', canvas.width / 2, 160);
+
+        ctx.fillStyle = '#884444';
+        ctx.font = '12px Courier New, monospace';
+        ctx.fillText('Survive the abyss...', canvas.width / 2, 195);
+      }
+
+      if (gameState === 'gameover') {
+        ctx.fillStyle = 'rgba(20, 0, 0, 0.7)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#ff2222';
+        ctx.font = 'bold 22px Courier New, monospace';
+        ctx.textAlign = 'center';
+        ctx.shadowColor = '#ff0000';
+        ctx.shadowBlur = 15;
+        ctx.fillText('YOU HAVE FALLEN', canvas.width / 2, 110);
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = '#aa4444';
+        ctx.font = '14px Courier New, monospace';
+        ctx.fillText('Score: ' + Math.floor(score), canvas.width / 2, 150);
+
+        ctx.fillStyle = '#775555';
+        ctx.font = '12px Courier New, monospace';
+        ctx.fillText('Toque para jogar novamente', canvas.width / 2, 190);
+      }
+    }
+
+    // Main loop
+    function update() {
+      frame++;
+
+      if (gameState === 'playing') {
+        // Speed & score
+        speed = BASE_SPEED + score * SPEED_INCREASE;
+        score += 0.15 * (speed / BASE_SPEED);
+        scoreEl.textContent = String(Math.floor(score)).padStart(5, '0');
+
+        // Player physics
+        player.vy += GRAVITY;
+        player.y += player.vy;
+
+        if (player.y >= GROUND_Y) {
+          player.y = GROUND_Y;
+          player.vy = 0;
+          player.grounded = true;
+          player.jumping = false;
+        }
+
+        // Ground scroll
+        groundOffset = (groundOffset + speed) % 200;
+
+        // Obstacles
+        nextObstacle--;
+        if (nextObstacle <= 0) {
+          spawnObstacle();
+          nextObstacle = 60 + Math.random() * 70 - (speed * 2);
+          nextObstacle = Math.max(35, nextObstacle);
+        }
+
+        for (let i = obstacles.length - 1; i >= 0; i--) {
+          obstacles[i].x -= speed;
+
+          if (collides(player, obstacles[i])) {
+            gameOver();
+          }
+
+          if (obstacles[i].x + obstacles[i].width < -20) {
+            obstacles.splice(i, 1);
+          }
+        }
+
+        // Particles
+        if (Math.random() < 0.3) {
+          spawnParticle(Math.random() * canvas.width, GROUND_Y - 5, 1);
+        }
+        // Trail from player
+        if (player.grounded && Math.random() < 0.4) {
+          spawnParticle(player.x + 10, GROUND_Y - 2, 1);
+        }
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.05;
+          p.life--;
+        });
+        particles = particles.filter(p => p.life > 0);
+      }
+
+      // Always draw
+      drawBackground();
+      drawGround();
+      drawParticles();
+
+      obstacles.forEach(drawObstacle);
+      drawPlayer();
+      drawUI();
+
+      requestAnimationFrame(update);
+    }
+
+    // Start the loop
+    update();
+  </script>
+</body>
+</html>
