@@ -10,6 +10,7 @@ const dbPath = path.join(__dirname, "../../database.json");
 const defaultDatabase = () => ({
     users: {},
     groups: {},
+    whatsappNames: {},
     autoresponder: [],
     settings: {
         prefix: PREFIX,
@@ -29,6 +30,7 @@ const readDB = () => {
         const data = JSON.parse(fs.readFileSync(dbPath, "utf8"));
         data.users??= {};
         data.groups??= {};
+        data.whatsappNames??= {};
         data.autoresponder??= [];
         data.settings??= {};
         data.settings.prefix??= PREFIX;
@@ -46,6 +48,47 @@ const readDB = () => {
 const writeDB = (data) => {
     fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
 };
+
+export function setWhatsAppNames(identifiers, name) {
+    const normalizedName = String(name || "").trim();
+    const normalizedIdentifiers = [...new Set(
+        (Array.isArray(identifiers) ? identifiers : [])
+            .filter((jid) => typeof jid === "string")
+            .map((jid) => jid.replace(/:\d+(?=@)/g, "").trim())
+            .filter(Boolean),
+    )];
+    if (!normalizedName || !normalizedIdentifiers.length) return;
+
+    const db = readDB();
+    let changed = false;
+    for (const jid of normalizedIdentifiers) {
+        if (db.whatsappNames[jid] !== normalizedName) {
+            db.whatsappNames[jid] = normalizedName;
+            changed = true;
+        }
+    }
+
+    const nameEntries = Object.entries(db.whatsappNames);
+    if (nameEntries.length > 10_000) {
+        for (const [jid] of nameEntries.slice(0, nameEntries.length - 10_000)) {
+            delete db.whatsappNames[jid];
+            changed = true;
+        }
+    }
+
+    if (changed) writeDB(db);
+}
+
+export function getWhatsAppName(identifiers) {
+    const db = readDB();
+    for (const jid of identifiers || []) {
+        if (typeof jid !== "string") continue;
+        const normalizedJid = jid.replace(/:\d+(?=@)/g, "").trim();
+        const name = db.whatsappNames[normalizedJid];
+        if (typeof name === "string" && name.trim()) return name.trim();
+    }
+    return "";
+}
 
 // USERS, AUTO-RESPONDER, ETC... (mantive igual)
 export function getUser(jid) {

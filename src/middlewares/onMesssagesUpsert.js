@@ -32,6 +32,7 @@ import {
   errorLog,
   infoLog,
 } from "../utils/logger.js";
+import { rememberParticipantName } from "../utils/participantNames.js";
 
 import { customMiddleware } from "./customMiddleware.js";
 import { isAdmin } from "./index.js";
@@ -477,6 +478,8 @@ export async function onMessagesUpsert({
   }
 
   for (const webMessage of messages) {
+    rememberParticipantName(webMessage, { persist: true });
+
     if (DEVELOPER_MODE) {
       infoLog(
         `\n\n⪨========== [ MENSAGEM RECEBIDA ] ==========⪩\n\n${JSON.stringify(

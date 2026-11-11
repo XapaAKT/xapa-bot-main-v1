@@ -1,11 +1,67 @@
 import sharp from "sharp";
 import { PREFIX } from "../../config.js";
 import { InvalidParameterError } from "../../errors/index.js";
+import { errorLog } from "../../utils/logger.js";
+import { getRememberedParticipantName } from "../../utils/participantNames.js";
 
 const WIDTH = 800;
 const HEIGHT = 450;
 const PHOTO_WIDTH = 440;
+const PHOTO_FADE_WIDTH = 180;
 const MAX_QUOTE_LINES = 7;
+
+function normalizeJid(jid) {
+  return typeof jid === "string" ? jid.replace(/:\d+(?=@)/g, "").trim() : "";
+}
+
+function getMessageContextInfo(message) {
+  let content = message;
+
+  for (let depth = 0; content && depth < 5; depth += 1) {
+    const contextInfo =
+      content.extendedTextMessage?.contextInfo ||
+      content.imageMessage?.contextInfo ||
+      content.videoMessage?.contextInfo ||
+      content.documentMessage?.contextInfo ||
+      content.audioMessage?.contextInfo ||
+      content.stickerMessage?.contextInfo;
+
+    if (contextInfo) return contextInfo;
+
+    content =
+      content.ephemeralMessage?.message ||
+      content.viewOnceMessage?.message ||
+      content.viewOnceMessageV2?.message ||
+      content.documentWithCaptionMessage?.message ||
+      null;
+  }
+
+  return null;
+}
+
+function getTextFromQuotedMessage(message) {
+  let content = message;
+
+  for (let depth = 0; content && depth < 5; depth += 1) {
+    const text =
+      content.conversation ||
+      content.extendedTextMessage?.text ||
+      content.imageMessage?.caption ||
+      content.videoMessage?.caption ||
+      content.documentMessage?.caption;
+
+    if (typeof text === "string" && text.trim()) return text.trim();
+
+    content =
+      content.ephemeralMessage?.message ||
+      content.viewOnceMessage?.message ||
+      content.viewOnceMessageV2?.message ||
+      content.documentWithCaptionMessage?.message ||
+      null;
+  }
+
+  return "";
+}
 
 function escapeXml(text) {
   return text.replace(/[<>&"']/g, (character) => {
@@ -87,14 +143,13 @@ function makeQuoteOverlay(quote, name) {
   return Buffer.from(`
     <svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="fade" x1="0" x2="1">
+        <linearGradient id="fade" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0" stop-color="#000" stop-opacity="1"/>
-          <stop offset="0.58" stop-color="#000" stop-opacity="1"/>
           <stop offset="1" stop-color="#000" stop-opacity="0"/>
         </linearGradient>
       </defs>
       <rect width="${WIDTH - PHOTO_WIDTH}" height="${HEIGHT}" fill="#000"/>
-      <rect x="${WIDTH - PHOTO_WIDTH}" width="${PHOTO_WIDTH}" height="${HEIGHT}" fill="url(#fade)"/>
+      <rect x="${WIDTH - PHOTO_WIDTH}" width="${PHOTO_FADE_WIDTH}" height="${HEIGHT}" fill="url(#fade)"/>
       <g fill="#fff" font-family="Arial, sans-serif" font-size="28" font-weight="700">
         ${quoteSvg}
       </g>
@@ -104,22 +159,96 @@ function makeQuoteOverlay(quote, name) {
   `);
 }
 
-async function getQuotedAuthorName({ isGroup, remoteJid, replyLid, contextInfo, getGroupMetadata }) {
-  if (isGroup) {
-    const metadata = await getGroupMetadata(remoteJid);
-    const normalizedReplyLid = replyLid?.replace(/:[0-9]+(?=@)/, "");
-    const participant = metadata?.participants?.find((item) =>
-      [item.id, item.lid, item.phoneNumber]
-        .filter(Boolean)
-        .some((id) => id.replace(/:[0-9]+(?=@)/, "") === normalizedReplyLid),
-    );
+export async function getQuotedAuthorName({
+  isGroup,
+  remoteJid,
+  participantIds,
+  contextInfo,
+  getGroupMetadata,
+  socket,
+  webMessage,
+}) {
+  const contextName =
+    contextInfo?.participantName ||
+    contextInfo?.verifiedName;
+  if (contextName) return contextName;
 
-    if (participant?.name || participant?.notify) {
-      return participant.name || participant.notify;
+  const identifiers = new Set(participantIds.map(normalizeJid).filter(Boolean));
+  const cachedName = getRememberedParticipantName(identifiers);
+  if (cachedName) return cachedName;
+
+  const participantLids = [...identifiers].filter((jid) => jid.endsWith("@lid"));
+  const lidMapping = socket?.signalRepository?.lidMapping;
+  const getPNForLID = lidMapping?.getPNForLID;
+  const getLIDForPN = lidMapping?.getLIDForPN;
+
+  if (getPNForLID) {
+    for (const lid of participantLids) {
+      try {
+        const phoneJid = normalizeJid(
+          await getPNForLID.call(lidMapping, lid),
+        );
+        if (phoneJid) identifiers.add(phoneJid);
+      } catch (error) {
+        errorLog(
+          `[QUOTE] Não foi possível resolver o LID ${lid}: ${error?.message || String(error)}`,
+        );
+      }
     }
   }
 
-  return contextInfo?.pushName || "Usuário";
+  if (getLIDForPN) {
+    const participantPhones = [...identifiers].filter((jid) =>
+      jid.endsWith("@s.whatsapp.net"),
+    );
+    for (const phoneJid of participantPhones) {
+      try {
+        const lid = normalizeJid(await getLIDForPN.call(lidMapping, phoneJid));
+        if (lid) identifiers.add(lid);
+      } catch (error) {
+        errorLog(
+          `[QUOTE] Não foi possível resolver o telefone ${phoneJid}: ${error?.message || String(error)}`,
+        );
+      }
+    }
+  }
+
+  const mappedCachedName = getRememberedParticipantName(identifiers);
+  if (mappedCachedName) return mappedCachedName;
+
+  if (isGroup) {
+    const metadata = await getGroupMetadata(remoteJid);
+    const participant = metadata?.participants?.find((item) =>
+      [item.id, item.lid, item.phoneNumber, item.jid]
+        .map(normalizeJid)
+        .some((id) => identifiers.has(id)),
+    );
+
+    const participantName =
+      participant?.name ||
+      participant?.notify ||
+      participant?.verifiedName;
+    if (participantName) return participantName;
+  }
+
+  const commandSenderIds = [
+    webMessage?.key?.participant,
+    webMessage?.key?.participantAlt,
+    webMessage?.key?.senderPn,
+    webMessage?.key?.remoteJidAlt,
+    !isGroup ? webMessage?.key?.remoteJid : null,
+  ]
+    .map(normalizeJid)
+    .filter(Boolean);
+  const isSameSender = commandSenderIds.some((jid) => identifiers.has(jid));
+  if (!isGroup || isSameSender) {
+    const senderName = webMessage?.pushName || webMessage?.notifyName;
+    if (senderName) return senderName;
+  }
+
+  throw new InvalidParameterError(
+    "Não consegui obter o nome de perfil do autor da mensagem citada. Peça para essa pessoa enviar uma mensagem no grupo e tente novamente.",
+  );
 }
 
 export default {
@@ -135,24 +264,31 @@ export default {
     isReply,
     remoteJid,
     replyLid,
-    replyText,
     webMessage,
     socket,
     getGroupMetadata,
     sendImageFromBuffer,
   }) => {
-    if (!isReply || !replyText?.trim()) {
+    const contextInfo = getMessageContextInfo(webMessage.message);
+    const quotedMessage = contextInfo?.quotedMessage;
+    const quoteText = getTextFromQuotedMessage(quotedMessage);
+
+    if (!isReply || !quoteText) {
       throw new InvalidParameterError(
-        `Responda a uma mensagem de texto com ${PREFIX}quote.`,
+        `Responda a uma mensagem de texto ou a uma foto com legenda usando ${PREFIX}quote.`,
       );
     }
 
-    const contextInfo =
-      webMessage.message?.extendedTextMessage?.contextInfo ||
-      webMessage.message?.imageMessage?.contextInfo ||
-      webMessage.message?.videoMessage?.contextInfo ||
-      webMessage.message?.documentMessage?.contextInfo;
-    const authorJid = replyLid || (!isGroup ? remoteJid : null);
+    const participantIds = [
+      contextInfo?.participantPn,
+      contextInfo?.participantAlt,
+      contextInfo?.participant,
+      replyLid,
+      !isGroup ? remoteJid : null,
+    ]
+      .map(normalizeJid)
+      .filter(Boolean);
+    const authorJid = participantIds[0];
 
     if (!authorJid) {
       throw new InvalidParameterError(
@@ -163,29 +299,32 @@ export default {
     const authorName = await getQuotedAuthorName({
       isGroup,
       remoteJid,
-      replyLid: authorJid,
+      participantIds,
       contextInfo,
       getGroupMetadata,
+      socket,
+      webMessage,
     });
 
     let photo;
-    try {
-      const photoUrl = await socket.profilePictureUrl(authorJid, "image");
-      const response = await fetch(photoUrl);
-      if (response.status === 404) {
-        photo = undefined;
-      } else if (!response.ok) {
-        throw new Error(`Falha ao baixar a foto de perfil: HTTP ${response.status}`);
-      } else {
+    for (const jid of participantIds) {
+      try {
+        const photoUrl = await socket.profilePictureUrl(jid, "image");
+        const response = await fetch(photoUrl);
+        if (response.status === 404) continue;
+        if (!response.ok) {
+          throw new Error(`Falha ao baixar a foto de perfil: HTTP ${response.status}`);
+        }
         photo = Buffer.from(await response.arrayBuffer());
-      }
-    } catch (error) {
-      if (
-        error?.output?.statusCode !== 404 &&
-        error?.status !== 404 &&
-        error?.statusCode !== 404
-      ) {
-        throw error;
+        break;
+      } catch (error) {
+        if (
+          error?.output?.statusCode !== 404 &&
+          error?.status !== 404 &&
+          error?.statusCode !== 404
+        ) {
+          throw error;
+        }
       }
     }
 
@@ -207,7 +346,7 @@ export default {
           left: WIDTH - PHOTO_WIDTH,
           top: 0,
         },
-        { input: makeQuoteOverlay(replyText, authorName), left: 0, top: 0 },
+        { input: makeQuoteOverlay(quoteText, authorName), left: 0, top: 0 },
       ])
       .jpeg({ quality: 90 })
       .toBuffer();

@@ -95,7 +95,7 @@ export default {
   name: "status-grupo",
   description:
     "Publica texto ou mídia respondida no status do grupo para amigos próximos.",
-  commands: ["status-grupo", "statusgrupo"],
+  commands: ["status-grupo", "status"],
   usage: `${PREFIX}status-grupo <mensagem> ou responda a uma imagem, vídeo ou áudio`,
   /**
    * @param {CommandHandleProps} props
