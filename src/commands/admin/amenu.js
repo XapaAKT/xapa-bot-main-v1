@@ -95,7 +95,7 @@ ${readMore()}
 ┃ 🔥 𝐒𝐈𝐒𝐓𝐄𝐌𝐀𝐒
 ╚═ೋ༺⛓️༻ೋ═╝
 
-◈ on
+◈ on (reativa o bot desativado)
 ◈ off
 ◈ def
 ◈ set-proxy

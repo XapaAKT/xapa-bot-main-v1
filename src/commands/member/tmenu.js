@@ -135,6 +135,7 @@ ${readMore(3)}
 │ 🗃️ dlc
 │ 🔓 revelar
 │ 🕸️ nias
+│ 🎁 pack
 │ 🎞️ to-gif
 │ 🖼️ to-image
 │ 🎵 to-mp3

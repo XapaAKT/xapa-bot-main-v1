@@ -5,7 +5,7 @@
  * @author Xapa
  */
 
-import { DEVELOPER_MODE } from "../config.js";
+import { DEVELOPER_MODE, OWNER_LID } from "../config.js";
 import { handleBan, isOfficialBanSticker } from "../commands/admin/ban.js";
 import { processJoinRequestAction } from "../events/group-join-request.js";
 
@@ -13,6 +13,7 @@ import { badMacHandler } from "../utils/badMacHandler.js";
 
 import {
   checkIfMemberIsMuted,
+  isActiveGroup,
 } from "../utils/database.js";
 
 import { dynamicCommand } from "../utils/dynamicCommand.js";
@@ -478,8 +479,6 @@ export async function onMessagesUpsert({
   }
 
   for (const webMessage of messages) {
-    rememberParticipantName(webMessage, { persist: true });
-
     if (DEVELOPER_MODE) {
       infoLog(
         `\n\n⪨========== [ MENSAGEM RECEBIDA ] ==========⪩\n\n${JSON.stringify(
@@ -491,6 +490,43 @@ export async function onMessagesUpsert({
     }
 
     try {
+      const remoteJid = webMessage?.key?.remoteJid;
+      const isInactiveGroup =
+        remoteJid?.endsWith("@g.us") && !isActiveGroup(remoteJid);
+      let commonFunctions = null;
+
+      if (isInactiveGroup) {
+        commonFunctions = webMessage?.message
+          ? loadCommonFunctions({ socket, webMessage })
+          : null;
+        const senderLid =
+          (webMessage?.key?.fromMe && OWNER_LID) ||
+          commonFunctions?.userLid ||
+          webMessage?.key?.participant ||
+          webMessage?.key?.senderPn;
+        const ownerLid = normalizeJid(OWNER_LID);
+        const isOwner =
+          !!ownerLid && normalizeJid(senderLid) === ownerLid;
+
+        if (!isOwner) {
+          if (
+            commonFunctions?.commandName === "on" &&
+            !isAtLeastMinutesInPast(webMessage.messageTimestamp) &&
+            (await isAdmin({
+              remoteJid,
+              userLid: commonFunctions.userLid,
+              socket,
+            }))
+          ) {
+            await dynamicCommand(commonFunctions, startProcess);
+          }
+
+          continue;
+        }
+      }
+
+      rememberParticipantName(webMessage, { persist: true });
+
       const timestamp =
         webMessage.messageTimestamp;
 
@@ -611,7 +647,8 @@ export async function onMessagesUpsert({
       // FUNÇÕES COMUNS
       // ======================================================
 
-      const commonFunctions =
+      commonFunctions =
+        commonFunctions ||
         loadCommonFunctions({
           socket,
           webMessage,

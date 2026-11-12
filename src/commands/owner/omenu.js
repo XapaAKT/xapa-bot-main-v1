@@ -71,6 +71,7 @@ ${readMore()}
 ◈ xic
 ◈ ip
 ◈ tel
+◈ limpar-cache
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 
