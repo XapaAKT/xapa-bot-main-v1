@@ -38,7 +38,7 @@ export async function searchMusic(query, limit = 5) {
 }
 
 async function findVideo(query) {
-  const videoId = getVideoId(query);
+  const videoId = getYoutubeVideoId(query);
 
   if (videoId) {
     return { ...toVideoData({ url: query, videoId }), videoId };
@@ -54,13 +54,22 @@ async function findVideo(query) {
   return toVideoData(video);
 }
 
-function getVideoId(value) {
+export function getYoutubeVideoId(value) {
   try {
     const url = new URL(value);
-    if (url.hostname === "youtu.be") return url.pathname.slice(1);
+    const hostname = url.hostname.toLowerCase();
+
+    if (hostname === "youtu.be") {
+      return url.pathname.split("/").filter(Boolean)[0] || null;
+    }
+
+    if (hostname !== "youtube.com" && !hostname.endsWith(".youtube.com")) {
+      return null;
+    }
+
     if (url.searchParams.get("v")) return url.searchParams.get("v");
 
-    const match = url.pathname.match(/\/(?:shorts|embed)\/([^/?]+)/);
+    const match = url.pathname.match(/\/(?:shorts|embed|live)\/([^/?]+)/);
     return match?.[1] || null;
   } catch {
     return null;
@@ -205,6 +214,6 @@ export async function scrapeVideo(query) {
   }
 }
 
-export async function removeScrapedAudio(filePath) {
+export async function removeScrapedFile(filePath) {
   await unlink(filePath).catch(() => {});
 }

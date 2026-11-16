@@ -298,6 +298,13 @@ export async function dynamicCommand(paramsHandler, startProcess) {
     return;
   }
 
+  if (command.disabledReason) {
+    await sendWarningReply(
+      `🚫 Este comando está desativado no momento.\nMotivo: ${command.disabledReason}`,
+    );
+    return;
+  }
+
   try {
     await command.handle({...paramsHandler, type, startProcess });
   } catch (error) {

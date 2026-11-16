@@ -426,6 +426,34 @@ describe("Utility Functions", () => {
       assert.strictEqual(result.type, "");
       assert.strictEqual(result.command, null);
     });
+
+    it("routes merged YouTube aliases to their shared commands", async () => {
+      const audio = await utils.findCommandImport(
+        utils.formatCommand("yt-mp3"),
+      );
+      const video = await utils.findCommandImport(
+        utils.formatCommand("yt-mp4"),
+      );
+
+      assert.equal(audio.type, "member");
+      assert.equal(audio.command.name, "play-audio");
+      assert.equal(video.type, "member");
+      assert.equal(video.command.name, "play-video");
+    });
+
+    it("keeps link generation and the test menu owner-only", async () => {
+      const linkCommand = await utils.findCommandImport(
+        utils.formatCommand("gerar-link"),
+      );
+      const testMenu = await utils.findCommandImport(
+        utils.formatCommand("menu-testes"),
+      );
+
+      assert.equal(linkCommand.type, "owner");
+      assert.equal(linkCommand.command.name, "gerar-link");
+      assert.equal(testMenu.type, "owner");
+      assert.equal(testMenu.command.name, "menu-testes");
+    });
   });
 
   describe("readCommandImports", () => {

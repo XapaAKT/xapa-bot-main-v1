@@ -3,7 +3,6 @@ import { createNativeFlowButton, sendNativeFlowButtons } from "../../../utils/in
 
 const rows = [
   ["🎒 Minha coleção", "pokemon", "Veja seus Pokémon"],
-  ["📖 Pokédex", "pokedex", "Consulte seu progresso"],
   ["🎣 Pescar", "pescar", "Pesque novos Pokémon"],
   ["🏪 Loja", "loja-pokemon", "Compre itens e pacotes"],
   ["📦 Comprar pack", "comprarpack", "Adquira um novo pack"],

@@ -3,10 +3,10 @@
     "227886971789349": {
       "coins": 66666666654614190,
       "packs": {
-        "common": 672,
-        "rare": 657,
+        "common": 671,
+        "rare": 572,
         "epic": 653,
-        "legendary": 758
+        "legendary": 678
       },
       "pokemons": [
         {
@@ -418,15 +418,1685 @@
           "image": "UmbreonPIXEL.webp",
           "source": "pack:legendary",
           "caughtAt": "2026-11-01T06:07:41.560Z"
+        },
+        {
+          "uid": "poke_mwdndoff_z79isc",
+          "id": "surf_pikachu",
+          "name": "Surf Pikachu",
+          "rarity": "raro",
+          "value": 15000,
+          "image": "SurfPikachu.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T14:32:54.507Z"
+        },
+        {
+          "uid": "poke_mwdwfbj8_6knopa",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "fishing",
+          "caughtAt": "2026-11-12T18:46:07.652Z"
+        },
+        {
+          "uid": "poke_mwdwh8tt_djdk1v",
+          "id": "kadabra",
+          "name": "Kadabra",
+          "rarity": "incomum",
+          "value": 5000,
+          "image": "KadabraFIRERED.webp",
+          "source": "pack:common",
+          "caughtAt": "2026-11-12T18:47:37.457Z"
+        },
+        {
+          "uid": "poke_mwdwhdny_8m2ytt",
+          "id": "greninja",
+          "name": "Greninja",
+          "rarity": "epico",
+          "value": 35000,
+          "image": "GreninjaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:47:43.726Z"
+        },
+        {
+          "uid": "poke_mwdwhhsn_b2l7j5",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:47:49.079Z"
+        },
+        {
+          "uid": "poke_mwdwhjql_2i74mp",
+          "id": "pikachu_start",
+          "name": "Pikachu Star",
+          "rarity": "raro",
+          "value": 3000,
+          "image": "PikachuStar.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:47:51.597Z"
+        },
+        {
+          "uid": "poke_mwdwhlu2_2tlz2y",
+          "id": "sceptile",
+          "name": "Sceptile",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "SceptileGXShyne.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:47:54.315Z"
+        },
+        {
+          "uid": "poke_mwdwhxgb_x2wu8w",
+          "id": "pikachu_start",
+          "name": "Pikachu Star",
+          "rarity": "raro",
+          "value": 3000,
+          "image": "PikachuStar.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.372Z"
+        },
+        {
+          "uid": "poke_mwdwhxgc_co2w6f",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.372Z"
+        },
+        {
+          "uid": "poke_mwdwhxgc_471qtt",
+          "id": "gardevoir",
+          "name": "Gardevoir",
+          "rarity": "raro",
+          "value": 18000,
+          "image": "GardevoirPIXEL.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.372Z"
+        },
+        {
+          "uid": "poke_mwdwhxgc_xe00pz",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.372Z"
+        },
+        {
+          "uid": "poke_mwdwhxgc_vbc1zh",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.372Z"
+        },
+        {
+          "uid": "poke_mwdwhxgc_n2uwa5",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.372Z"
+        },
+        {
+          "uid": "poke_mwdwhxgd_jviqyj",
+          "id": "gardevoir",
+          "name": "Gardevoir",
+          "rarity": "raro",
+          "value": 18000,
+          "image": "GardevoirPIXEL.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.373Z"
+        },
+        {
+          "uid": "poke_mwdwhxgd_9xc4pf",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.373Z"
+        },
+        {
+          "uid": "poke_mwdwhxgd_sh5b1y",
+          "id": "venusaur",
+          "name": "Venusaur",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "FuckVenusaur.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.373Z"
+        },
+        {
+          "uid": "poke_mwdwhxgd_sj3141",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:09.373Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_h23psc",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_yk7th8",
+          "id": "venusaur",
+          "name": "Venusaur",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "FuckVenusaur.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_7hnjjc",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_9xkvme",
+          "id": "surf_pikachu",
+          "name": "Surf Pikachu",
+          "rarity": "raro",
+          "value": 15000,
+          "image": "SurfPikachu.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_plu5z1",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_k8ouk0",
+          "id": "charizard",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "FuckCharizard.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_p585uf",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_qgf2sh",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_zzcvu8",
+          "id": "pikachu_start",
+          "name": "Pikachu Star",
+          "rarity": "raro",
+          "value": 3000,
+          "image": "PikachuStar.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi4s7_d6p2py",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:18.871Z"
+        },
+        {
+          "uid": "poke_mwdwi8cq_cegwnh",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.498Z"
+        },
+        {
+          "uid": "poke_mwdwi8cq_f2w4qj",
+          "id": "surf_pikachu",
+          "name": "Surf Pikachu",
+          "rarity": "raro",
+          "value": 15000,
+          "image": "SurfPikachu.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.498Z"
+        },
+        {
+          "uid": "poke_mwdwi8cq_aju1b4",
+          "id": "venusaur",
+          "name": "Venusaur",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "FuckVenusaur.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.498Z"
+        },
+        {
+          "uid": "poke_mwdwi8cr_v521qz",
+          "id": "sceptile",
+          "name": "Sceptile",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "SceptileGXShyne.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.499Z"
+        },
+        {
+          "uid": "poke_mwdwi8cr_vmnsfp",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.499Z"
+        },
+        {
+          "uid": "poke_mwdwi8cr_cbkgwg",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.499Z"
+        },
+        {
+          "uid": "poke_mwdwi8cr_1rqtbz",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.499Z"
+        },
+        {
+          "uid": "poke_mwdwi8cr_a6xxyz",
+          "id": "venusaur",
+          "name": "Venusaur",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "FuckVenusaur.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.499Z"
+        },
+        {
+          "uid": "poke_mwdwi8cr_0ocwe3",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.499Z"
+        },
+        {
+          "uid": "poke_mwdwi8cr_hhb3q1",
+          "id": "charizard",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "FuckCharizard.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:23.499Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_x3oeub",
+          "id": "charizard",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "FuckCharizard.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_gkbibx",
+          "id": "sceptile",
+          "name": "Sceptile",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "SceptileGXShyne.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_lex5mr",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_n7zx8y",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_zvg7s2",
+          "id": "greninja",
+          "name": "Greninja",
+          "rarity": "epico",
+          "value": 35000,
+          "image": "GreninjaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_2l30gn",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_mkf4oe",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_ivykia",
+          "id": "surf_pikachu",
+          "name": "Surf Pikachu",
+          "rarity": "raro",
+          "value": 15000,
+          "image": "SurfPikachu.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_hq1n3q",
+          "id": "sceptile",
+          "name": "Sceptile",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "SceptileGXShyne.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwiagw_sydkak",
+          "id": "pikachu_start",
+          "name": "Pikachu Star",
+          "rarity": "raro",
+          "value": 3000,
+          "image": "PikachuStar.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:26.240Z"
+        },
+        {
+          "uid": "poke_mwdwicen_t9ymwi",
+          "id": "gardevoir",
+          "name": "Gardevoir",
+          "rarity": "raro",
+          "value": 18000,
+          "image": "GardevoirPIXEL.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwicen_fgq70k",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwicen_xdkqsi",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwicen_u8wvnp",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwicen_7y76y0",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwicen_rxgnvp",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwicen_6fzqx9",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwicen_qluz4x",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwicen_ou21b4",
+          "id": "charizard",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "FuckCharizard.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwicen_zq5bcj",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:28.751Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_lg2kib",
+          "id": "pikachu_start",
+          "name": "Pikachu Star",
+          "rarity": "raro",
+          "value": 3000,
+          "image": "PikachuStar.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_l7mmx6",
+          "id": "greninja",
+          "name": "Greninja",
+          "rarity": "epico",
+          "value": 35000,
+          "image": "GreninjaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_bc3utu",
+          "id": "pikachu_start",
+          "name": "Pikachu Star",
+          "rarity": "raro",
+          "value": 3000,
+          "image": "PikachuStar.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_da7pwp",
+          "id": "greninja",
+          "name": "Greninja",
+          "rarity": "epico",
+          "value": 35000,
+          "image": "GreninjaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_6frgsu",
+          "id": "venusaur",
+          "name": "Venusaur",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "FuckVenusaur.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_bmcc9h",
+          "id": "pikachu_start",
+          "name": "Pikachu Star",
+          "rarity": "raro",
+          "value": 3000,
+          "image": "PikachuStar.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_ushyn2",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_9uoc62",
+          "id": "charizard",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "FuckCharizard.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_qqc8br",
+          "id": "sceptile",
+          "name": "Sceptile",
+          "rarity": "epico",
+          "value": 38000,
+          "image": "SceptileGXShyne.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwieqr_7wuroi",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:31.779Z"
+        },
+        {
+          "uid": "poke_mwdwihbx_aygxi0",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.133Z"
+        },
+        {
+          "uid": "poke_mwdwihbx_l2u4u9",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.133Z"
+        },
+        {
+          "uid": "poke_mwdwihbx_c0mh01",
+          "id": "surf_pikachu",
+          "name": "Surf Pikachu",
+          "rarity": "raro",
+          "value": 15000,
+          "image": "SurfPikachu.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.133Z"
+        },
+        {
+          "uid": "poke_mwdwihbx_o4dceu",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.133Z"
+        },
+        {
+          "uid": "poke_mwdwihby_rt9kd7",
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "mimikyuANIM.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.134Z"
+        },
+        {
+          "uid": "poke_mwdwihby_ezcou9",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.134Z"
+        },
+        {
+          "uid": "poke_mwdwihby_x84oas",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.134Z"
+        },
+        {
+          "uid": "poke_mwdwihby_y4hbyu",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.134Z"
+        },
+        {
+          "uid": "poke_mwdwihby_g6qvyd",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.134Z"
+        },
+        {
+          "uid": "poke_mwdwihby_kzdlk4",
+          "id": "surf_pikachu",
+          "name": "Surf Pikachu",
+          "rarity": "raro",
+          "value": 15000,
+          "image": "SurfPikachu.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:35.134Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_0e9me8",
+          "id": "blastoise",
+          "name": "Blastoise",
+          "rarity": "epico",
+          "value": 40000,
+          "image": "FuckBlastoiser.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_bw8v83",
+          "id": "gardevoir",
+          "name": "Gardevoir",
+          "rarity": "raro",
+          "value": 18000,
+          "image": "GardevoirPIXEL.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_79kjkg",
+          "id": "greninja",
+          "name": "Greninja",
+          "rarity": "epico",
+          "value": 35000,
+          "image": "GreninjaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_njj3c9",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_bqrkk3",
+          "id": "charizard_ass",
+          "name": "Charizard",
+          "rarity": "epico",
+          "value": 42000,
+          "image": "CharizardASS.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_4niav9",
+          "id": "gardevoir",
+          "name": "Gardevoir",
+          "rarity": "raro",
+          "value": 18000,
+          "image": "GardevoirPIXEL.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_kgdz5q",
+          "id": "greninja",
+          "name": "Greninja",
+          "rarity": "epico",
+          "value": 35000,
+          "image": "GreninjaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_86nmzb",
+          "id": "tsareena",
+          "name": "Tsareena",
+          "rarity": "epico",
+          "value": 30000,
+          "image": "TsareenaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_p0iijz",
+          "id": "pikachu_start",
+          "name": "Pikachu Star",
+          "rarity": "raro",
+          "value": 3000,
+          "image": "PikachuStar.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiiif_l32rot",
+          "id": "greninja",
+          "name": "Greninja",
+          "rarity": "epico",
+          "value": 35000,
+          "image": "GreninjaGX.webp",
+          "source": "pack:rare",
+          "caughtAt": "2026-11-12T18:48:36.663Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_lkx646",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_kxlebt",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_3sz20l",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_5h1o1c",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_stf8y8",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_kflcfa",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_encd4s",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_qls6u5",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_fuyr4e",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwiy12_jti412",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:48:56.774Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_vli7xx",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_niyob9",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_iw08zm",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_f25pxt",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_dsyans",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_o7iuq1",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_qxiges",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_txtor0",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_4f96tn",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjehu_43cqu1",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:18.114Z"
+        },
+        {
+          "uid": "poke_mwdwjfev_dz3vzu",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.303Z"
+        },
+        {
+          "uid": "poke_mwdwjfev_vsm79h",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.303Z"
+        },
+        {
+          "uid": "poke_mwdwjfev_1b2y8k",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.303Z"
+        },
+        {
+          "uid": "poke_mwdwjfev_9plbnc",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.303Z"
+        },
+        {
+          "uid": "poke_mwdwjfev_6xqyy6",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.303Z"
+        },
+        {
+          "uid": "poke_mwdwjfev_50g962",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.303Z"
+        },
+        {
+          "uid": "poke_mwdwjfev_cfco4p",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.303Z"
+        },
+        {
+          "uid": "poke_mwdwjfev_gxxeeh",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.303Z"
+        },
+        {
+          "uid": "poke_mwdwjfew_st63iq",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.304Z"
+        },
+        {
+          "uid": "poke_mwdwjfew_dhgg6d",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:19.304Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_ujjkec",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_2nu8bh",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_x7mwgf",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_o81ulu",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_hcjzeo",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_0f8k5d",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_yr41us",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_soskhi",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_hqc9qk",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjh64_d33hj1",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:21.580Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_owdjnv",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_1s02kd",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_hgb1j0",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_8k9fxc",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_qgpjxb",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_udkrvx",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_fgj9pd",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_434roy",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_qev8w8",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjjzl_7un6mh",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:25.233Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_q16rum",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_mmnd29",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_ujtws3",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_vkaksz",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_gf94gi",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_2r2hew",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_n7kq3c",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_h63zzi",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_fszetd",
+          "id": "moltres",
+          "name": "Moltres",
+          "rarity": "lendario",
+          "value": 75000,
+          "image": "moltres.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjlts_lixmzq",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:27.616Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_8rly13",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_fdkvaw",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_8ltjga",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_x9ai5k",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_v0y2bz",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_5ca6ai",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_vq69vb",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_n8fhgp",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_m157ms",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjp6p_ik3jvd",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:31.969Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_j4xlus",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_x5aaa1",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_tnhgvg",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_mtlsnk",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_jjhnc8",
+          "id": "articuno",
+          "name": "Articuno",
+          "rarity": "lendario",
+          "value": 70000,
+          "image": "Articuno.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_mvumf0",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "rarity": "lendario",
+          "value": 80000,
+          "image": "Zapdos.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_26ueqc",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_baao6g",
+          "id": "lucario",
+          "name": "Lucario",
+          "rarity": "lendario",
+          "value": 60000,
+          "image": "Lucario.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_idgjzh",
+          "id": "lugia",
+          "name": "Lugia",
+          "rarity": "lendario",
+          "value": 90000,
+          "image": "Lugia.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
+        },
+        {
+          "uid": "poke_mwdwjw3n_pk24rz",
+          "id": "umbreon",
+          "name": "Umbreon",
+          "rarity": "lendario",
+          "value": 55000,
+          "image": "UmbreonPIXEL.webp",
+          "source": "pack:legendary",
+          "caughtAt": "2026-11-12T18:49:40.931Z"
         }
       ],
-      "fishingCount": 17,
-      "lastFishingAt": 1793512526650,
+      "fishingCount": 19,
+      "lastFishingAt": 1794608330398,
       "stats": {
-        "nothing": 6,
+        "nothing": 7,
         "money": 2520,
-        "packs": 38,
-        "pokemons": 41,
+        "packs": 204,
+        "pokemons": 208,
         "sold": 0
       }
     },

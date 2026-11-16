@@ -99,6 +99,7 @@ Command authoring rules:
 - prefer existing helpers and services over duplicating code
 - if a command needs persistence, go through `src/utils/database.js`
 - for a step-by-step guide with examples of commands, buttons, carousels, and polls, see `docs/tutoriais/README.md`
+- set `disabledReason` on temporarily unavailable commands; the dispatcher blocks them and menus should mark them as disabled
 
 ## TYPING_AND_MIDDLEWARE
 
@@ -177,6 +178,8 @@ It depends on `SPIDER_API_TOKEN`, which can come from:
 - animated sticker workflows
 - EXIF metadata
 - WebP packaging
+
+The `removebg` command uses remove.bg and requires `REMOVE_BG_API_KEY` in the bot process environment.
 
 ## STACK
 

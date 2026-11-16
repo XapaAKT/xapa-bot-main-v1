@@ -6,6 +6,7 @@ export default {
   description: "Catálogo oficial do ULQUIORRA BOT",
   commands: ["catalogo", "catalog", "precos", "preços"],
   usage: `${PREFIX}catalogo`,
+  disabledReason: "O catálogo está temporariamente desativado.",
 
   handle: async ({ sendReply }) => {
     await sendReply(`

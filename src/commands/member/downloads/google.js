@@ -33,6 +33,7 @@ export default {
   description: "Busco imagens no Google e envio em formato carrossel.",
   commands: ["google", "googleimg", "imagensgoogle"],
   usage: `${PREFIX}google gatos fofos`,
+  disabledReason: "A busca do Google está desativada enquanto a extração é revisada.",
   /**
    * @param {CommandHandleProps} props
    */

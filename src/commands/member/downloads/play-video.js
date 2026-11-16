@@ -1,61 +1,69 @@
 import { PREFIX } from "../../../config.js";
 import { InvalidParameterError } from "../../../errors/index.js";
-import { play } from "../../../services/spider-x-api.js";
+import {
+  getYoutubeVideoId,
+  removeScrapedFile,
+  scrapeVideo,
+} from "../../../services/music-scraper.js";
 import { errorLog } from "../../../utils/logger.js";
 
 export default {
   name: "play-video",
-  description: "Faço o download de vídeos",
-  commands: ["play-video", "pv"],
-  usage: `${PREFIX}play-video dumb nirvana`,
+  description: "Pesquisa ou baixa vídeos do YouTube em MP4.",
+  commands: [
+    "play-video",
+    "pv",
+    "yt-mp4",
+    "youtube-mp4",
+    "yt-video",
+    "youtube-video",
+    "mp4",
+  ],
+  usage: `${PREFIX}play-video <pesquisa ou link do YouTube>`,
   /**
    * @param {CommandHandleProps} props
    */
   handle: async ({
-    sendVideoFromURL,
-    sendImageFromURL,
+    sendVideoFromFile,
     fullArgs,
     sendWaitReact,
     sendSuccessReact,
+    sendErrorReact,
     sendErrorReply,
   }) => {
-    if (!fullArgs.length) {
+    const query = fullArgs?.trim();
+    if (!query) {
       throw new InvalidParameterError(
-        "Você precisa me dizer o que deseja buscar!",
+        `Use ${PREFIX}play-video <pesquisa ou link do YouTube>.`,
       );
     }
 
-    if (fullArgs.includes("http://") || fullArgs.includes("https://")) {
+    if (/^https?:\/\//i.test(query) && !getYoutubeVideoId(query)) {
       throw new InvalidParameterError(
-        `Você não pode usar links para baixar vídeos! Use ${PREFIX}yt-mp4 link`,
+        "Envie um link válido do YouTube ou pesquise pelo nome do vídeo.",
       );
     }
 
     await sendWaitReact();
-
+    let scrapedFile;
     try {
-      const data = await play("video", fullArgs);
-
-      if (!data) {
-        await sendErrorReply("Nenhum resultado encontrado!");
-        return;
-      }
-
-      await sendSuccessReact();
-
-      await sendImageFromURL(
-        data.thumbnail,
-        `*Título*: ${data.title}
-        
-*Descrição*: ${data.description}
-*Duração em segundos*: ${data.total_duration_in_seconds}
-*Canal*: ${data.channel.name}`,
+      scrapedFile = await scrapeVideo(query);
+      await sendVideoFromFile(
+        scrapedFile.filePath,
+        `🎬 *${scrapedFile.title}*\n` +
+          `👤 Canal: ${scrapedFile.author}\n` +
+          `⏱️ Duração: ${scrapedFile.duration}\n` +
+          `🔗 ${scrapedFile.url}`,
       );
-
-      await sendVideoFromURL(data.url);
+      await sendSuccessReact();
     } catch (error) {
-      errorLog(JSON.stringify(error, null, 2));
-      await sendErrorReply(JSON.stringify(error.message));
+      errorLog(`[PLAY-VIDEO ERROR] ${error.stack || error.message || error}`);
+      await sendErrorReact();
+      await sendErrorReply(`Não consegui baixar o vídeo: ${error.message}`);
+    } finally {
+      if (scrapedFile?.filePath) {
+        await removeScrapedFile(scrapedFile.filePath);
+      }
     }
   },
 };

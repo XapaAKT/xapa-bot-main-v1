@@ -4,6 +4,14 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+try {
+  process.loadEnvFile(path.resolve(__dirname, "..", ".env"));
+} catch (error) {
+  if (error.code !== "ENOENT") {
+    throw error;
+  }
+}
+
 // Prefixo padrão dos comandos.
 export const PREFIX = "¡";
 

@@ -98,7 +98,7 @@ ${readMore()}
 ◈ on (reativa o bot desativado)
 ◈ off
 ◈ def
-◈ set-proxy
+◈ set-proxy (DESATIVADO)
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 

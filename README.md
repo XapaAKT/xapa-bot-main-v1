@@ -68,6 +68,10 @@ npm install
 
 Configure the required environment and settings, then start the bot using the appropriate project script.
 
+The `removebg` command requires a `REMOVE_BG_API_KEY` environment variable from
+[remove.bg](https://www.remove.bg/api). The owner-only `gerar-link` command
+requires the Linker API credentials configured in `src/config.js`.
+
 ### 🩸 05 — CONTRIBUTING
 
 Improvements, ideas, and experiments are welcome.

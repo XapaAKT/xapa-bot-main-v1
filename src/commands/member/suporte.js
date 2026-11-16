@@ -1,243 +1,74 @@
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import OpenAI from "openai";
-import { BOT_EMOJI, OPENAI_API_KEY, PREFIX } from "../../config.js";
-import { DangerError, WarningError } from "../../errors/index.js";
-import { getRandomName } from "../../utils/index.js";
+import { PREFIX } from "../../config.js";
+
+function getSupportTopics(prefix) {
+  return [
+    {
+      match: /\b(prefixo|prefix)\b/i,
+      answer: `Para ver o prefixo e os menus disponíveis, use ${prefix}menu. Se o prefixo do grupo foi alterado, confirme-o com um administrador.`,
+    },
+    {
+      match: /\b(download|youtube|música|musica|mp3|mp4|vídeo|video)\b/i,
+      answer: `Para áudio, use ${prefix}play-audio <nome ou link do YouTube>. Para incluir o link junto do áudio, acrescente --link. Para vídeo, use ${prefix}play-video <pesquisa ou link do YouTube>.`,
+    },
+    {
+      match: /\b(figurinha|sticker|fig)\b/i,
+      answer: `Para criar uma figurinha, responda a uma imagem ou vídeo com ${prefix}sticker. Os comandos de IA estão temporariamente desativados.`,
+    },
+    {
+      match: /\b(grupo|admin|administrador|banir|ban|link)\b/i,
+      answer: `Os comandos administrativos aparecem em ${prefix}amenu e só podem ser usados por administradores do grupo.`,
+    },
+    {
+      match: /\b(economia|saldo|moeda|dinheiro)\b/i,
+      answer: `Os comandos da economia estão no menu ${prefix}economia-menu.`,
+    },
+    {
+      match: /\b(pok[eé]mon|pokemon)\b/i,
+      answer: `Os comandos de Pokémon estão no menu ${prefix}pokemon-menu.`,
+    },
+    {
+      match: /\brpg\b/i,
+      answer: `Os comandos e o guia do RPG estão no menu ${prefix}rpg-menu.`,
+    },
+  ];
+}
 
 export default {
   name: "suporte",
-  description: "Suporte inteligente do Xapa usando IA treinada",
+  description: "Ajuda rápida com os comandos e recursos do bot.",
   commands: ["suporte", "help", "ajuda"],
-  usage: `${PREFIX}suporte como instalar o ULQUIORRA BOT no Termux?
+  usage: `${PREFIX}suporte <dúvida>`,
 
-Você também pode enviar uma imagem com o comando ${PREFIX}suporte
-
-Você também pode escrever o texto e responder a mensagem com o comando ${PREFIX}suporte`,
-  /**
-   * @param {CommandHandleProps} props
-   */
   handle: async ({
     fullArgs,
-    args,
-    sendReply,
-    sendWaitReply,
-    sendReact,
     replyText,
     isImage,
-    isVideo,
-    isAudio,
-    downloadImage,
-    webMessage,
+    prefix = PREFIX,
+    sendReply,
   }) => {
-    if (!OPENAI_API_KEY) {
-      throw new WarningError(
-        "O suporte inteligente não está disponível no momento. Entre em contato com o administrador do bot!",
-      );
-    }
+    const question = fullArgs?.trim() || replyText?.trim() || "";
 
-    if (isVideo) {
-      throw new WarningError(
-        "Não consigo interpretar vídeos ainda! Envie uma imagem ou texto!",
-      );
-    }
-
-    if (isAudio) {
-      throw new WarningError(
-        "Não consigo interpretar áudios ainda! Envie uma imagem ou texto!",
-      );
-    }
-
-    const doubleContext = args.length && replyText;
-    const text = args.length ? fullArgs : replyText;
-
-    if (!text && !isImage) {
-      await sendReact(BOT_EMOJI);
-
+    if (!question) {
       await sendReply(
-        `*Xapa Suporte*
-        
-Faça sua pergunta sobre mim que eu te ajudarei!
-  
-📝 *Exemplos*
-
-- ${PREFIX}suporte bot desliga sozinho
-- ${PREFIX}suporte como instalar no Termux?
-- ${PREFIX}suporte erro 401 API Spider X
-- Envie uma imagem com ${PREFIX}suporte para análise visual`,
+        `🛠️ *Suporte XIC BOT*\n` +
+          `Este suporte usa respostas rápidas, sem IA.\n\n` +
+          `Exemplos:\n` +
+          `• ${prefix}suporte como usar downloads\n` +
+          `• ${prefix}suporte comandos de economia\n` +
+          `• ${prefix}suporte comandos de administrador\n\n` +
+          (isImage
+            ? "A análise automática de imagens está desativada."
+            : "Para dúvidas fora desses tópicos, fale com o dono do bot."),
       );
-
       return;
     }
 
-    await sendWaitReply("Analisando sua pergunta...");
-
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-
-    const finalText = doubleContext
-      ? `Contexto anterior: ${replyText}\n\nNova questão: ${text}`
-      : text;
-
-    if (finalText) {
-      const minLength = 5;
-      const maxLength = 4096;
-
-      if (finalText.length < minLength) {
-        throw new DangerError(
-          `O texto deve ter no mínimo ${minLength} caracteres.`,
-        );
-      }
-
-      if (finalText.length > maxLength) {
-        throw new DangerError(
-          `O texto deve ter no máximo ${maxLength} caracteres.`,
-        );
-      }
-    }
-
-    let imagePath = null;
-
-    if (isImage) {
-      imagePath = await downloadImage(webMessage, getRandomName());
-    }
-
-    const openai = new OpenAI({
-      apiKey: OPENAI_API_KEY,
-    });
-
-    const messages = [
-      {
-        role: "system",
-        content: `Você é um assistente especializado em suporte técnico do ULQUIORRA BOT.(Xapa é do dono do bot e gosta de parecer ser um ser infernal)
- 
-Responda apenas assuntos relacionados a: tecnologia, programação, desenvolvimento de bots, inteligência artificial, 
-machine learning, ou assuntos relacionados ao ULQUIORRA BOT.
-
-Responda apenas em português do Brasil.
-Seja direto e objetivo nas respostas, salvo se o usuário solicitar explicações mais aprofundadas.
-
-Escreva como alguém que realmente sabe do que está falando e vai direto ao ponto, logo, não escreva demais, apenas o suficiente para ser objetivo. 
-Sem frases de abertura do tipo "Claro!", "Ótima pergunta!", "Com certeza!" ou similares. 
-Sem encerramento do tipo "Espero ter ajudado!" ou "Qualquer dúvida é só perguntar!". 
-Sem travessão (—) para estruturar listas ou ideias. Sem bullet points a menos que seja absolutamente necessário para clareza. 
-Evite palavras de enchimento: "importante", "crucial", "fundamental", "robusto", "abrangente". 
-Nunca responda de forma genérica quando uma resposta específica é possível. Se a pergunta for vaga, interprete da forma mais útil e responda com substância, não peça esclarecimentos desnecessários. 
-Use exemplos concretos quando ajudar a explicar algo. Se tiver uma opinião sobre o assunto, diga, não fique em cima do muro.
-
-Quando receber imagens, analise o conteúdo visual primeiro e interprete-o considerando o contexto técnico do ULQUIORRA BOT.
-
-Se alguém te pedir o link de alguma Host, envie as que você já conhece, 
-sem mencionar Pterodactyl, pois os iniciantes não sabem o que é (exceto se perguntarem sobre)!`,
-      },
-    ];
-
-    messages.push({
-      role: "system",
-      content: fs.readFileSync(
-        path.resolve(__dirname, "..", "..", "..", "AGENTS.md"),
-        "utf-8",
-      ),
-    });
-
-    messages.push({
-      role: "system",
-      content: fs.readFileSync(
-        path.resolve(__dirname, "..", "..", "..", "README.md"),
-        "utf-8",
-      ),
-    });
-
-    messages.push({
-      role: "system",
-      content: fs.readFileSync(
-        path.resolve(__dirname, "..", "..", "..", "package.json"),
-        "utf-8",
-      ),
-    });
-
-    messages.push({
-      role: "system",
-      content: fs.readFileSync(
-        path.resolve(__dirname, "..", "..", "menu.js"),
-        "utf-8",
-      ),
-    });
-
-    const userMessage = {
-      role: "user",
-      content: [],
-    };
-
-    if (finalText) {
-      userMessage.content.push({
-        type: "text",
-        text: finalText,
-      });
-    }
-
-    if (imagePath && fs.existsSync(imagePath)) {
-      const buffer = fs.readFileSync(imagePath);
-      const base64 = buffer.toString("base64");
-      const ext = path.extname(imagePath).toLowerCase();
-
-      let mimeType = "image/jpeg";
-      switch (ext) {
-        case ".png":
-          mimeType = "image/png";
-          break;
-        case ".jpg":
-        case ".jpeg":
-          mimeType = "image/jpeg";
-          break;
-        case ".webp":
-          mimeType = "image/webp";
-          break;
-        case ".gif":
-          mimeType = "image/gif";
-          break;
-      }
-
-      userMessage.content.push({
-        type: "image_url",
-        image_url: {
-          url: `data:${mimeType};base64,${base64}`,
-          detail: "low",
-        },
-      });
-    }
-
-    if (!finalText && isImage) {
-      userMessage.content.unshift({
-        type: "text",
-        text: "O que você vê nesta imagem?",
-      });
-    }
-
-    messages.push(userMessage);
-
-    const response = await openai.chat.completions.create({
-      model: "gpt-5-nano",
-      messages: messages,
-      max_completion_tokens: 4096,
-    });
-
-    const answer = response.choices[0].message.content.trim();
-
-    if (!answer) {
-      throw new DangerError(
-        `Não consegui encontrar uma resposta para sua pergunta. Tente reformular ou ser mais específico!
-
-Não respondo assuntos fora do meu escopo de tecnologia!`,
-      );
-    }
-
-    await sendReact(BOT_EMOJI);
-    await sendReply(answer);
-
-    if (imagePath && fs.existsSync(imagePath)) {
-      fs.unlinkSync(imagePath);
-    }
+    const topic = getSupportTopics(prefix).find(({ match }) =>
+      match.test(question),
+    );
+    await sendReply(
+      topic?.answer ||
+        "Não encontrei uma resposta rápida para essa dúvida. Consulte o menu do bot ou fale com o dono; este comando não usa IA para responder perguntas abertas.",
+    );
   },
 };

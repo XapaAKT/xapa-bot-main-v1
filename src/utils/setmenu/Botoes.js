@@ -9,6 +9,7 @@ export function getMenuButtons(prefix = PREFIX, includeCategoryMenus = false) {
 
   if (includeCategoryMenus) {
     buttons.splice(1, 0,
+      { id: `${prefix}familia-menu`, text: "👪 Família" },
       { id: `${prefix}economia-menu`, text: "💰 Economia" },
       { id: `${prefix}pokemon-menu`, text: "🎮 Pokémon" },
       { id: `${prefix}rpg-menu`, text: "⚔️ RPG" },

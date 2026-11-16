@@ -2,7 +2,7 @@ import { PREFIX } from "../../../config.js";
 import { InvalidParameterError } from "../../../errors/index.js";
 import { scrapeLyrics } from "../../../services/music-lyrics.js";
 import {
-  removeScrapedAudio,
+  removeScrapedFile,
   scrapeMusic,
   scrapeVideo,
 } from "../../../services/music-scraper.js";
@@ -32,7 +32,10 @@ export default {
     sendVideoFromFile,
     sendReply,
   }) => {
-    const query = requireQuery(fullArgs);
+    const includeLink = /(?:^|\s)--link(?=\s|$)/i.test(fullArgs || "");
+    const query = requireQuery(
+      (fullArgs || "").replace(/(?:^|\s)--link(?=\s|$)/i, " "),
+    );
     let scrapedFile;
 
     await sendWaitReact();
@@ -41,6 +44,9 @@ export default {
       if (commandName === "musicaudio") {
         scrapedFile = await scrapeMusic(query);
         await sendAudioFromFile(scrapedFile.filePath, false);
+        if (includeLink) {
+          await sendReply(`🔗 Link da música: ${scrapedFile.url}`);
+        }
       } else if (commandName === "musicvideo") {
         scrapedFile = await scrapeVideo(query);
         await sendVideoFromFile(scrapedFile.filePath, scrapedFile.title);
@@ -56,7 +62,7 @@ export default {
       await sendErrorReply(`❌ Não consegui concluir o pedido.\n\n${error.message}`);
     } finally {
       if (scrapedFile?.filePath) {
-        await removeScrapedAudio(scrapedFile.filePath);
+        await removeScrapedFile(scrapedFile.filePath);
       }
     }
   },

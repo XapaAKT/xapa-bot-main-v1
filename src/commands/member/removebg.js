@@ -3,7 +3,7 @@ import path from "node:path";
 import { BOT_EMOJI, BOT_NAME, PREFIX, TEMP_DIR } from "../../config.js";
 import { InvalidParameterError } from "../../errors/index.js";
 import { Ffmpeg } from "../../services/ffmpeg.js";
-import { removeBg } from "../../services/spider-x-api.js";
+import { removeBackground } from "../../services/remove-bg.js";
 import { processStaticSticker } from "../../services/sticker.js";
 import {
   getRandomName,
@@ -50,9 +50,8 @@ export default {
         inputPath = await downloadImage(webMessage, getRandomName());
 
         const inputBuffer = await fs.promises.readFile(inputPath);
-        const outputBuffer = await removeBg(
+        const outputBuffer = await removeBackground(
           inputBuffer,
-          "image/png",
           "imagem.png",
         );
 
@@ -67,9 +66,8 @@ export default {
       convertedImagePath = await ffmpeg.convertStickerToImage(inputPath);
 
       const inputBuffer = await fs.promises.readFile(convertedImagePath);
-      const outputBuffer = await removeBg(
+      const outputBuffer = await removeBackground(
         inputBuffer,
-        "image/png",
         "sticker.png",
       );
       await fs.promises.writeFile(removeBgPath, outputBuffer);

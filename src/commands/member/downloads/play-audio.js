@@ -4,17 +4,23 @@ import {
   PREFIX,
 } from "../../../config.js";
 import { InvalidParameterError } from "../../../errors/index.js";
-import { searchMusic } from "../../../services/music-scraper.js";
+import {
+  getYoutubeVideoId,
+  removeScrapedFile,
+  scrapeMusic,
+  searchMusic,
+} from "../../../services/music-scraper.js";
 import { sendInteractiveCarousel } from "../../../utils/interactive.js";
 import { errorLog } from "../../../utils/logger.js";
 
 export default {
   name: "play-audio",
-  description: "Baixa e envia músicas em MP3.",
-  commands: ["play-audio", "play", "p", "musica"],
-  usage: `${PREFIX}play nome da música`,
+  description: "Pesquisa ou baixa músicas do YouTube em MP3.",
+  commands: ["play-audio", "play", "p", "musica", "yt-mp3", "ytmp3"],
+  usage: `${PREFIX}play-audio <nome ou link do YouTube> [--link]`,
 
   handle: async ({
+    commandName,
     fullArgs,
     socket,
     remoteJid,
@@ -24,28 +30,50 @@ export default {
     sendSuccessReact,
     sendErrorReact,
     sendErrorReply,
+    sendAudioFromFile,
+    sendReply,
   }) => {
-    if (!fullArgs?.trim()) {
+    const legacyLinkCommand = ["yt-mp3", "ytmp3"].includes(
+      (commandName || "").toLowerCase(),
+    );
+    const includeLink =
+      legacyLinkCommand || /(?:^|\s)--link(?=\s|$)/i.test(fullArgs || "");
+    const query = (fullArgs || "")
+      .replace(/(?:^|\s)--link(?=\s|$)/i, " ")
+      .trim();
+
+    if (!query) {
       throw new InvalidParameterError(
-        `⛧━━━━━༺𖤐༻━━━━━⛧\n┃ 🩸 Diga o nome da música que procura.\n┃\n┃ Exemplo: ${PREFIX}play Alice in Chains\n╰━━━━━━━⛓️━━━━━━━╯`,
+        `Use ${PREFIX}play-audio <nome ou link do YouTube> [--link].`,
       );
     }
 
-    if (/https?:\/\//i.test(fullArgs)) {
+    if (/^https?:\/\//i.test(query) && !getYoutubeVideoId(query)) {
       throw new InvalidParameterError(
-        `⛧━━━━━༺𖤐༻━━━━━⛧\n┃ Este comando procura pelo nome da música.\n┃ Para usar um link, invoque ${PREFIX}yt-mp3 <link>.\n╰━━━━━━━⛓️━━━━━━━╯`,
+        "Envie um link válido do YouTube ou pesquise pelo nome da música.",
       );
     }
 
     await sendWaitReact();
 
+    let scrapedFile;
     try {
-      const results = await searchMusic(fullArgs.trim());
+      if (getYoutubeVideoId(query)) {
+        scrapedFile = await scrapeMusic(query);
+        await sendAudioFromFile(scrapedFile.filePath, false);
+        if (includeLink) {
+          await sendReply(`🔗 Link da música: ${scrapedFile.url}`);
+        }
+        await sendSuccessReact();
+        return;
+      }
+
+      const results = await searchMusic(query);
 
       if (results.length === 0) {
         await sendErrorReact();
         await sendErrorReply(
-          `⛧ Não encontrei essa faixa nas sombras do YouTube.\nTente outra busca com ${PREFIX}play <nome da música>.`,
+          `Não encontrei essa faixa. Tente outra busca com ${PREFIX}play-audio <nome da música>.`,
         );
         return;
       }
@@ -63,7 +91,9 @@ export default {
         footer: BOT_NAME,
         buttons: [
           {
-            id: `${activePrefix}music-audio https://youtu.be/${track.videoId}`,
+            id:
+              `${activePrefix}music-audio https://youtu.be/${track.videoId}` +
+              (includeLink ? " --link" : ""),
             text: "Ouvir faixa",
           },
         ],
@@ -86,8 +116,12 @@ Deslize para percorrer os resultados.`,
       errorLog(`[PLAY-AUDIO ERROR] ${error.stack || error.message || error}`);
       await sendErrorReact();
       await sendErrorReply(
-        "⛧ A busca foi interrompida antes de revelar as faixas. Tente novamente em instantes.",
+        `Não consegui baixar o áudio: ${error.message}`,
       );
+    } finally {
+      if (scrapedFile?.filePath) {
+        await removeScrapedFile(scrapedFile.filePath);
+      }
     }
   },
 };

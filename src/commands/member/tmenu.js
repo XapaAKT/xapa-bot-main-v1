@@ -5,149 +5,87 @@ import { readMore } from "../../utils/index.js";
 export default {
   name: "tmenu",
   description: "Menu de comandos para membros.",
-  commands: ["tmenu", "menu-membro", "menu-member"],
-  usage: `${PREFIX}mmenu`,
+  commands: ["tmenu", "menu-member"],
+  usage: `${PREFIX}tmenu`,
 
-  /**
-   * @param {CommandHandleProps} props
-   */
   handle: async ({ sendImageFromFile, sendSuccessReact }) => {
     await sendSuccessReact();
-
     await sendImageFromFile(
       path.join(ASSETS_DIR, "images", "xapa-member.png"),
       `
 ╭━━━〔 👤 MENU DO MEMBRO 〕━━━╮
-┃ ✨ Comandos organizados para você
-┃ 🎯 Escolha o que deseja usar
+┃ 🎯 Comandos organizados por categoria
+┃ 📖 Leia a lista completa abaixo
 ╰━━━━━━━━━━━━━━━━━━━━━━━━━━╯
-
-📖 Clique em *Ler mais* para ver a lista completa.
 
 ${readMore(3)}
 
-╭─ 🎨 EDIÇÃO DE IMAGENS ─╮
-│ 🖌️ blur
-│ 🎭 contraste
-│ 🪞 espelhar
-│ ⚫ gray
-│ 🔄 inverter
-│ 🧩 pixel
-╰──────────────────────╯
+🎮 JOGOS
+◈ doom
+◈ ttt
+◈ dinossauro
+◈ truco
 
-╭─ 📥 DOWNLOADS ─╮
-│ 📷 facebook
-│ 📷 instagram
-│ 📌 pinterest
-│ 🔎 google
-│ 🎵 play-audio
-│ 🎥 play-video
-│ 🎵 tik-tok
-│ 🎵 tik-tok-audio
-│ 🎼 music-audio
-│ 🎬 music-video
-│ 📝 music-lyrics
-│ ▶ yt-mp3
-│ ▶ yt-mp4
-│ 🔎 yt-search
-╰────────────────╯
+🖼️ EDIÇÃO DE IMAGENS
+◈ blur
+◈ contraste
+◈ espelhar
+◈ gray
+◈ pixel
+◈ imagem
 
-╭─ 🤖 IA ─╮
-│ 🧠 deepseek
-│ ✨ flux
-│ 🌌 gemini
-│ 💬 gpt-5-mini
-│ 🖼️ ia-sticker
-╰─────────╯
+📥 DOWNLOADS
+◈ facebook (DESATIVADO)
+◈ instagram (DESATIVADO)
+◈ google (DESATIVADO)
+◈ tik-tok (DESATIVADO)
+◈ tik-tok-audio (DESATIVADO)
+◈ pinterest
+◈ play-audio (busca ou link; yt-mp3)
+◈ play-video (busca ou link; yt-mp4)
+◈ yt-search
+◈ music-lyrics
 
-╭─ 🎭 FUNNY ─╮
-│ 🤗 abraçar
-│ 💋 beijar
-│ 🍺 beber
-│ 💦 cuspir
-│ 🍽️ jantar
-│ ⚔️ lutar
-│ 🩸 matar
-│ 👊 socar
-│ 👋 tapa
-│ 📸 tirarfoto
-│ 🎭 verdadeoudesafio
-╰──────────╯
+🤖 INTELIGÊNCIA ARTIFICIAL (DESATIVADA)
+◈ deepseek (DESATIVADO)
+◈ flux (DESATIVADO)
+◈ gemini (DESATIVADO)
+◈ gpt-5-mini (DESATIVADO)
+◈ ia-sticker (DESATIVADO)
 
-╭─ 👪 FAMÍLIA ─╮
-│ abandonar
-│ aceitar
-│ adotar
-│ casados
-│ casar
-│ divorciar
-│ familia
-│ historico
-│ perfil
-│ recusar
-│ rankingfamilia
-│ ship
-╰─────────────╯
+🛠️ XAPA BOT
+◈ catalogo (DESATIVADO)
+◈ calculadora
+◈ dono
+◈ ddd
+◈ info
+◈ removebg (requer REMOVE_BG_API_KEY)
+◈ rename
+◈ sugestao
+◈ suporte
+◈ dlc
+◈ nias
+◈ attp
+◈ brat
+◈ bratvid
+◈ pack
+◈ sticker
+◈ ttp
+◈ to-gif
+◈ to-image
+◈ to-mp3
 
-╭─ 🎮 POKÉMON ─╮
-│ abrirpack
-│ comprarpack
-│ loja-pokemon
-│ pescar
-│ pokemon
-│ venderpokemon
-╰─────────────╯
-
-╭─ 💰 ECONOMIA ─╮
-│ cassino
-│ corrida
-│ diario
-│ economia
-│ saldo
-│ toprico
-│ trabalhar
-│ transferir
-╰──────────────╯
-
-╭─ 🔎 SEARCH ─╮
-│ 📍 cep
-│ 🎧 yt-search
-╰────────────╯
-
-╭─ 🛠️ UTILIDADES ─╮
-│ 📝 attp
-│ 🎞️ brat
-│ 🎬 bratvid
-│ 👤 dono
-│ 📞 ddd
-│ 💬 fake-chat
-│ 🔗 gerar-link
-│ ℹ️ info
-│ 🧮 calculadora
-│ 🪪 meu-lid
-│ 👤 perfil
-│ ⚡ ping
-│ 🧼 removebg
-│ ✍️ rename
-│ 🧱 sticker
-│ 💡 sugestao
-│ 📢 suporte
-│ 🗃️ dlc
-│ 🔓 revelar
-│ 🕸️ nias
-│ 🎁 pack
-│ 🎞️ to-gif
-│ 🖼️ to-image
-│ 🎵 to-mp3
-│ ✨ ttp
-╰──────────────────╯
+📂 MENUS ESPECÍFICOS
+◈ familia-menu
+◈ economia-menu
+◈ pokemon-menu
+◈ rpg-menu
 
 ╭━━━━━━━━━━━━━━━━━━━━━━╮
-┃ 🌟 ULQUIORRA BOT
-┃ 📡 Status: Online
+┃ 🌟 XAPA BOT
 ┃ 💡 Use os comandos com o prefixo configurado
 ╰━━━━━━━━━━━━━━━━━━━━━━╯
-`
+`,
     );
   },
 };

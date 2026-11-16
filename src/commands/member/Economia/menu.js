@@ -2,6 +2,7 @@ import { PREFIX } from "../../../config.js";
 import { createNativeFlowButton, sendNativeFlowButtons } from "../../../utils/interactive.js";
 
 const rows = [
+  ["📈 Painel", "economia", "Veja seu saldo, experiência e nível"],
   ["💰 Saldo", "saldo", "Veja suas moedas e XP"],
   ["🎁 Diário", "diario", "Colete sua recompensa diária"],
   ["💼 Trabalhar", "trabalhar", "Trabalhe e receba moedas"],

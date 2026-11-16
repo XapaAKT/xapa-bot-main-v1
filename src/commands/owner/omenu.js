@@ -48,10 +48,16 @@ ${readMore()}
 ◈ set-menu-image
 ◈ SMT (1=botoes|2=lista)
 ◈ SMC (1=ativar|0=desativar)
-◈ test-carousel
-◈ test-menu (testa 1 a 7 cards)
 ◈ set-spider-api-token
 ◈ termux-tutorial
+
+✦━━━━━━━━━━━━━━━━━━━━✦
+
+╔═ೋ༺🧪༻ೋ═╗
+┃ 🧪 TESTES
+╚═ೋ༺🧪༻ೋ═╝
+
+◈ menu-testes
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 
@@ -59,12 +65,10 @@ ${readMore()}
 ┃ 🌑 𝐒𝐈𝐒𝐓𝐄𝐌𝐀𝐒
 ╚═ೋ༺🦇༻ೋ═╝
 
-◈ catalogo
 ◈ alugar
 ◈ backupgrupo
 ◈ exec
 ◈ gitbot
-◈ metaai
 ◈ restart
 ◈ update
 ◈ void
@@ -72,6 +76,7 @@ ${readMore()}
 ◈ ip
 ◈ tel
 ◈ limpar-cache
+◈ gerar-link
 
 ✦━━━━━━━━━━━━━━━━━━━━✦
 

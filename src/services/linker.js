@@ -5,6 +5,7 @@
  */
 import axios from "axios";
 import FormData from "form-data";
+import path from "node:path";
 import { LINKER_API_KEY, LINKER_BASE_URL } from "../config.js";
 
 /**
@@ -43,14 +44,27 @@ export async function upload(imageBuffer, filename) {
     throw new Error("O buffer da imagem está vazio!");
   }
 
+  if (!LINKER_BASE_URL?.trim()) {
+    throw new Error("LINKER_BASE_URL não está configurada.");
+  }
+
   if (!linkerAPIKeyConfigured) {
     throw new Error(messageIfKeyNotConfigured);
   }
 
   const formData = new FormData();
+  const extension = path.extname(filename).toLowerCase();
+  const contentType =
+    extension === ".png"
+      ? "image/png"
+      : extension === ".webp"
+        ? "image/webp"
+        : extension === ".gif"
+          ? "image/gif"
+          : "image/jpeg";
   formData.append("file", imageBuffer, {
     filename: filename,
-    contentType: "image/jpeg",
+    contentType,
   });
 
   const response = await axios.post(`${LINKER_BASE_URL}/upload`, formData, {

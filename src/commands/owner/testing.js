@@ -3,7 +3,7 @@ import { PREFIX } from "../../config.js";
 export default {
   name: "testing",
   description: "Comando de testes",
-  commands: ["testing", "teste"],
+  commands: ["testing"],
   usage: `${PREFIX}testing`,
   /**
    * @param {CommandHandleProps} props

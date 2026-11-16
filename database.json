@@ -386,7 +386,10 @@
       "welcome": true,
       "onlyAdmins": false,
       "muted": [],
-      "prefix": "!"
+      "prefix": "!",
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "125769628012773@lid": {
       "active": true,
@@ -740,7 +743,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "51965161685179@lid": {
       "active": true,
@@ -769,7 +775,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363402062626367@g.us": {
       "active": true,
@@ -894,7 +903,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363422809344002@g.us": {
       "active": false,
@@ -1561,7 +1573,8 @@
       "onlyAdmins": false,
       "muted": [],
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "274032083632209@lid": {
       "active": false,
@@ -1813,7 +1826,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "234355007975571@lid": {
       "active": false,
@@ -1869,7 +1885,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363430660692493@g.us": {
       "active": true,
@@ -2164,7 +2183,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363406932289276@g.us": {
       "active": false,
@@ -2220,7 +2242,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "120363428651138399@g.us": {
       "active": false,
@@ -2646,7 +2671,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "1945737646318@lid": {
       "active": false,
@@ -2777,7 +2805,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "104462882480365@lid": {
       "active": false,
@@ -2791,7 +2822,10 @@
       "exit": true,
       "welcome": true,
       "onlyAdmins": false,
-      "muted": []
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     },
     "155663204380683@lid": {
       "active": false,
@@ -3424,7 +3458,8 @@
       "onlyAdmins": false,
       "muted": [],
       "rpg": false,
-      "sus": false
+      "sus": false,
+      "joinRequestNotification": false
     },
     "271523537498326@lid": {
       "active": false,
@@ -3897,6 +3932,132 @@
       "rpg": false,
       "sus": false,
       "joinRequestNotification": false
+    },
+    "20629348692095@lid": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "120363431157344974@g.us": {
+      "active": true,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "14813426094110@lid": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "124816564744277@lid": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "120363411667443809@g.us": {
+      "active": true,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "178405123334297@lid": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
+    },
+    "120363414538564506@g.us": {
+      "active": false,
+      "ownerOnlyOn": false,
+      "prefix": "¡",
+      "antiAudio": false,
+      "antiSticker": false,
+      "antiLink": false,
+      "autoResponder": false,
+      "autoSticker": false,
+      "ownerReplyAudio": false,
+      "exit": true,
+      "welcome": true,
+      "onlyAdmins": false,
+      "muted": [],
+      "rpg": false,
+      "sus": false,
+      "joinRequestNotification": false
     }
   },
   "autoresponder": [],
@@ -3905,7 +4066,7 @@
     "menuType": "list",
     "menuCarousel": true,
     "youtubeSearchCarousel": true,
-    "seloType": 2
+    "seloType": 1
   },
   "whatsappNames": {
     "156126909886719@lid": "Lucas",
@@ -3959,7 +4120,7 @@
     "553196306125@s.whatsapp.net": "manx </>",
     "157187867459684@lid": "Jéssica Maria Gabriel",
     "5519988416297@s.whatsapp.net": "Jéssica Maria Gabriel",
-    "214165021040824@lid": "𝒀𝒁⋮𝒔𝒂𝒏𝒖",
+    "214165021040824@lid": "𝒀𝒁⋮𝒔𝒂𝒏𝒖\n𝒀𝒁⋮𝒔𝒂𝒏𝒖\n𝒀𝒁⋮𝒔𝒂𝒏𝒖\n𝒀𝒁⋮𝒔𝒂𝒏𝒖\n𝒀𝒁⋮𝒔𝒂𝒏𝒖\nppk",
     "639559802494@s.whatsapp.net": "𝒀𝒁⋮𝒔𝒂𝒏𝒖",
     "12902702575840@lid": "wi-fi",
     "48732105468@s.whatsapp.net": "wi-fi",
@@ -3975,7 +4136,7 @@
     "554797157379@s.whatsapp.net": "𝙆𝙞𝙩𝙩𝙮 𝙆𝙖𝙩𝙩𝙮",
     "126289738498203@lid": "『 𝕋𝕤𝕦𝕟𝕒𝕞𝕚 𝐒𝐩𝐢𝐤𝐞 』",
     "557788361542@s.whatsapp.net": "『 𝕋𝕤𝕦𝕟𝕒𝕞𝕚 𝐒𝐩𝐢𝐤𝐞 』",
-    "241777399328845@lid": "𝒀𝒁 | 𝒁𝒂𝒎𝒑𝒊𝒆𝒓𝒊☭⃠",
+    "241777399328845@lid": "𝒀𝒁 | 𝒁𝒂𝒎𝒑𝒊𝒆𝒓𝒊",
     "5571920079702@s.whatsapp.net": "𝒀𝒁 | 𝒁𝒂𝒎𝒑𝒊𝒆𝒓𝒊☭⃠",
     "101150808404203@lid": "DAVI",
     "553183576934@s.whatsapp.net": "DAVI",
@@ -4084,7 +4245,7 @@
     "559884918776@s.whatsapp.net": "Ruby",
     "4376823341079@lid": "𝗺𝗼𝘀𝘇𝘆",
     "6289530466289@s.whatsapp.net": "𝗺𝗼𝘀𝘇𝘆",
-    "169291219468531@lid": "神 𖠋 𝐕𝐓𝐙 𝐌𝐎𝐃𝐒 𝐃𝐎𝐌𝐈𝐍𝐀 神 𖠋 </>",
+    "169291219468531@lid": "ᴰᴺ  神 𖠋 𝐕𝐓𝐙 𝐌𝐎𝐃𝐒 𝐃𝐎𝐌𝐈𝐍𝐀 神 𖠋 </>",
     "6331251556600@lid": "Mary",
     "10738072580138@lid": "Shadow",
     "244954882892@s.whatsapp.net": "Shadow",
@@ -4099,12 +4260,52 @@
     "41056330588278@lid": "Roberta Valak",
     "5511962655547@s.whatsapp.net": "Roberta Valak",
     "5162567483459@lid": "💫KARLA MOURA SILVA💫",
-    "198849150886026@lid": "𝚢𝚣   ⃞⃟ ⃠ 𝙄.𝙖𝙢 𝙔𖦹𝙧𝙪| • 𝔦𝔠𝖇𝖓 ꗃ ʰᵉⁱ.⁰³",
+    "198849150886026@lid": "𝚢𝚣   ⃞⃟ ⃠ 𝙄.𝙖𝙢 𝙔𖦹𝙧𝙪⁷⁴⁵| • 𝔦𝔠𝖇𝖓 ꗃ ʰᵉⁱ.⁰³",
     "5511991926810@s.whatsapp.net": "𝚢𝚣   ⃞⃟ ⃠ 𝙄.𝙖𝙢 𝙔𖦹𝙧𝙪| • 𝔦𝔠𝖇𝖓 ꗃ ʰᵉⁱ.⁰³",
     "268418393595970@lid": "🍍",
     "237460839747784@lid": "Prado.",
     "40119574749197@lid": ".",
     "51389334061218@lid": "Lavínia Pereira",
-    "71507514499083@lid": "塞缪尔👑"
+    "71507514499083@lid": "塞缪尔👑",
+    "553197177973@s.whatsapp.net": "Xaulin ",
+    "553195216443@s.whatsapp.net": "Gustavo",
+    "77773955706951@lid": "Gustavo",
+    "5519998872466@s.whatsapp.net": "𝒏𝒊𝒏𝒚.",
+    "20629348692095@lid": "𝒏𝒊𝒏𝒚.",
+    "553192421035@s.whatsapp.net": "🎭",
+    "36717943857231@lid": "🎭",
+    "553199438787@s.whatsapp.net": "Márcio",
+    "252471146500293@lid": "Márcio",
+    "280728390607101@lid": "ㅤ",
+    "5521977092720@s.whatsapp.net": "elle",
+    "146243938418714@lid": "elle",
+    "553183144815@s.whatsapp.net": "Yasmin Silva",
+    "176313038020842@lid": "Yasmin Silva",
+    "124816564744277@lid": "GH💭😵‍💫💭",
+    "553192197161@s.whatsapp.net": "GH💭😵‍💫💭",
+    "86122902368361@lid": "Kauã",
+    "553171282229@s.whatsapp.net": "Kauã",
+    "197238169022533@lid": "GS_👑",
+    "553197966536@s.whatsapp.net": "GS_👑",
+    "553195142834@s.whatsapp.net": "Fran Muniz",
+    "16355386458351@lid": "Fran Muniz",
+    "553195970402@s.whatsapp.net": "⋆.ೃ𐦍*:･⋆Mel :･⋆𐦍.ೃ࿔*:･",
+    "3591230230562@lid": "⋆.ೃ𐦍*:･⋆Mel :･⋆𐦍.ೃ࿔*:･",
+    "553197590707@s.whatsapp.net": "🦂",
+    "19181860864004@lid": "🦂",
+    "133075988119710@lid": "COLUMBINA HYPOSELENIA V2",
+    "5511979711547@s.whatsapp.net": "COLUMBINA HYPOSELENIA V2",
+    "150139943551199@lid": "𝒃𝒂𝒃𝒊",
+    "553484272209@s.whatsapp.net": "𝒃𝒂𝒃𝒊",
+    "119443745157165@lid": "Angel 🪽",
+    "50642429161684@lid": "Miguel",
+    "553199741001@s.whatsapp.net": "Vithor Hugo",
+    "112137468940337@lid": "Vithor Hugo",
+    "93605289029834@lid": "𝐑𝐋-𝐍.𝐑𝐃",
+    "147498505097368@lid": "sesz?",
+    "553798310838@s.whatsapp.net": "Márcio Eustáquio",
+    "135296117129378@lid": "Márcio Eustáquio",
+    "266172696137898@lid": "🜋𝐀𝐋𝐀𝐍𝐀 𝐃𝐄𝐒𝐈𝐆𝐍𝐄𝐑 𝐎𝐅𝐈𝐂𝐈𝐀𝐋🜋",
+    "145948105818128@lid": "System Shizuku Bot"
   }
 }
